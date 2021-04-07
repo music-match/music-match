@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Card, Image, List } from 'semantic-ui-react';
+import { Container, Header, Card, Image, List, Label } from 'semantic-ui-react';
 import { withRouter, Link } from 'react-router-dom';
 
 /** A simple static component to render some text for the landing page. */
@@ -14,12 +14,11 @@ class BrowseUsers extends React.Component {
               <Card.Content>
                 <Image floated='right' size='mini' src='https://ethancheez.github.io/images/ethan.jpg'/>
                 <Card.Header>Ethan Chee</Card.Header>
+                <Card.Meta>ethanwc@hawaii.edu</Card.Meta>
                 <Card.Description>Goals: Become a Computer Engineer, Develop Innovative Technologies</Card.Description>
                 <Header as='h4'>Music Interests:</Header>
-                <List bulleted horizontal>
-                  <List.Item>Pop</List.Item>
-                  <List.Item>Alternate</List.Item>
-                </List>
+                <Label>Pop</Label>
+                <Label>Alternate</Label>
               </Card.Content>
               <Card.Content extra>
                 <Link to="/viewprofile">View Profile</Link>
@@ -32,10 +31,8 @@ class BrowseUsers extends React.Component {
                 <Card.Header>John Doe</Card.Header>
                 <Card.Description>Goals: </Card.Description>
                 <Header as='h4'>Music Interests:</Header>
-                <List bulleted horizontal>
-                  <List.Item>stuff</List.Item>
-                  <List.Item>another stuff</List.Item>
-                </List>
+                <Label>stuff</Label>
+                <Label>other stuff</Label>
               </Card.Content>
               <Card.Content extra>
                 <Link to="/ViewProfile">View Profile</Link>
@@ -48,10 +45,8 @@ class BrowseUsers extends React.Component {
                 <Card.Header>John Doe</Card.Header>
                 <Card.Description>Goals: </Card.Description>
                 <Header as='h4'>Music Interests:</Header>
-                <List bulleted horizontal>
-                  <List.Item>stuff</List.Item>
-                  <List.Item>another stuff</List.Item>
-                </List>
+                <Label>stuff</Label>
+                <Label>other stuff</Label>
               </Card.Content>
               <Card.Content extra>
                 <Link to="/ViewProfile">View Profile</Link>
@@ -64,10 +59,8 @@ class BrowseUsers extends React.Component {
                 <Card.Header>John Doe</Card.Header>
                 <Card.Description>Goals: </Card.Description>
                 <Header as='h4'>Music Interests:</Header>
-                <List bulleted horizontal>
-                  <List.Item>stuff</List.Item>
-                  <List.Item>another stuff</List.Item>
-                </List>
+                <Label>stuff</Label>
+                <Label>other stuff</Label>
               </Card.Content>
               <Card.Content extra>
                 <Link to="/ViewProfile">View Profile</Link>
@@ -80,10 +73,8 @@ class BrowseUsers extends React.Component {
                 <Card.Header>John Doe</Card.Header>
                 <Card.Description>Goals: </Card.Description>
                 <Header as='h4'>Music Interests:</Header>
-                <List bulleted horizontal>
-                  <List.Item>stuff</List.Item>
-                  <List.Item>another stuff</List.Item>
-                </List>
+                <Label>stuff</Label>
+                <Label>other stuff</Label>
               </Card.Content>
               <Card.Content extra>
                 <Link to="/ViewProfile">View Profile</Link>
@@ -96,10 +87,8 @@ class BrowseUsers extends React.Component {
                 <Card.Header>John Doe</Card.Header>
                 <Card.Description>Goals: </Card.Description>
                 <Header as='h4'>Music Interests:</Header>
-                <List bulleted horizontal>
-                  <List.Item>stuff</List.Item>
-                  <List.Item>another stuff</List.Item>
-                </List>
+                <Label>stuff</Label>
+                <Label>other stuff</Label>
               </Card.Content>
               <Card.Content extra>
                 <Link to="/ViewProfile">View Profile</Link>
@@ -112,10 +101,8 @@ class BrowseUsers extends React.Component {
                 <Card.Header>John Doe</Card.Header>
                 <Card.Description>Goals: </Card.Description>
                 <Header as='h4'>Music Interests:</Header>
-                <List bulleted horizontal>
-                  <List.Item>stuff</List.Item>
-                  <List.Item>another stuff</List.Item>
-                </List>
+                <Label>stuff</Label>
+                <Label>other stuff</Label>
               </Card.Content>
               <Card.Content extra>
                 <Link to="/ViewProfile">View Profile</Link>
