@@ -5,7 +5,7 @@ import { Header } from 'semantic-ui-react';
 class EditProfile extends React.Component {
   render() {
     return (
-      <Header as="h2" textAlign="center">
+      <Header as="h2" textAlign="center" inverted>
         <p>Implement Code Here</p>
       </Header>
     );

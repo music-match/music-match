@@ -1,0 +1,8 @@
+.body-background {
+  background-color: black;
+}
+
+.music-background {
+  background: url("https://i.pinimg.com/originals/f4/7d/ee/f47deea1e399efb6c8c89a092b9ac0ea.gif") no-repeat center center fixed;
+  background-size: cover;
+}

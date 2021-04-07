@@ -10,6 +10,7 @@ import Landing from '../pages/Landing';
 import BrowseUsers from '../pages/BrowseUsers';
 import BrowseUsersAdmin from '../pages/BrowseUsersAdmin';
 import EditProfile from '../pages/EditProfile';
+import ViewProfile from '../pages/ViewProfile';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -30,6 +31,7 @@ class App extends React.Component {
             <ProtectedRoute path="/browse-users" component={BrowseUsers}/>
             <ProtectedRoute path="/editprofile" component={EditProfile}/>
             <AdminProtectedRoute path="/admin" component={BrowseUsersAdmin}/>
+            <ProtectedRoute path="/viewprofile" component={ViewProfile}/>
             <Route component={NotFound}/>
           </Switch>
           <Footer/>
