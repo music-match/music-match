@@ -18,7 +18,6 @@ class BrowseUsers extends React.Component {
               <Card.Content>
                 <Image floated='right' size='mini' src='https://ethancheez.github.io/images/ethan.jpg'/>
                 <Card.Header>Ethan Chee</Card.Header>
-                <Card.Meta>ethanwc@hawaii.edu</Card.Meta>
                 <Card.Description>Goals: Become a Computer Engineer, Develop Innovative Technologies</Card.Description>
                 <Header as='h4'>Music Interests:</Header>
                 <Label>Pop</Label>
