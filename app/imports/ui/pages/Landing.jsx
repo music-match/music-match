@@ -1,22 +1,41 @@
 import React from 'react';
-import { Grid, Image } from 'semantic-ui-react';
+import { Grid, Header, Icon } from 'semantic-ui-react';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
     return (
-      <Grid id='landing-page' verticalAlign='middle' textAlign='center' container>
-
-        <Grid.Column width={4}>
-          <Image size='small' circular src="/images/meteor-logo.png"/>
-        </Grid.Column>
-
-        <Grid.Column width={8}>
-          <h1>Welcome to this template</h1>
-          <p>Now get to work and modify this app!</p>
-        </Grid.Column>
-
-      </Grid>
+      <div className={ 'bg-image' }>
+        <Grid container centered stackable columns={3}>
+          <Grid.Column textAlign='center'>
+            <Header inverted as='h1' icon>
+              <Icon name='music'/>
+              Create a Profile
+            </Header>
+            <Header inverted as='h3'>
+              Create a profile with your musical interests, goals, skills, and other information. Your profile will be visible to other users on the platform.
+            </Header>
+          </Grid.Column>
+          <Grid.Column textAlign='center'>
+            <Header inverted as='h1' icon>
+              <Icon name='share alternate'/>
+              Network with Musicians
+            </Header>
+            <Header inverted as='h3'>
+              Network with others using their contact information on their profile.
+            </Header>
+          </Grid.Column>
+          <Grid.Column textAlign='center'>
+            <Header inverted as='h1' icon>
+              <Icon name='search'/>
+              Browse by Interests
+            </Header>
+            <Header inverted as='h3'>
+              You can use our search bar to filter people with certain musical interests, goals, backgrounds, and skill levels to browse various profiles.
+            </Header>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }
