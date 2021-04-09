@@ -11,7 +11,7 @@ function addData(data) {
 }
 
 function addProfile(data) {
-  console.log(`  Adding: ${data.name} (${data.owner})`);
+  console.log(`  Adding: ${data.name} (${data.email})`);
   Profiles.collection.insert(data);
 }
 

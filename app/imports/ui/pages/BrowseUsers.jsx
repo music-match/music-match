@@ -17,15 +17,18 @@ class BrowseUsers extends React.Component {
   // Render the page once subscriptions have been received.
   renderPage() {
     return (
-      <Container>
-        <Header inverted as="h2" textAlign="center">Browse Users</Header>
-        <Card.Group centered>
-          {this.props.profiles.map((profile, index) => <Profile
-            key={index}
-            profile={profile}
-            music_interests={this.props.music_interests.filter(music_interests => (music_interests.owner === profile.owner))}/>)}
-        </Card.Group>
-      </Container>
+      <div className='music-background'>
+        <Container>
+          <Header inverted as="h2" textAlign="center">Browse Users</Header>
+          <Card.Group centered>
+            {this.props.profiles.map((profile, index) => <Profile
+              key={index}
+              profile={profile}
+              music_interests={this.props.music_interests.filter(music_interests => (music_interests.email === profile.email))}/>)}
+          </Card.Group>
+        </Container>
+      </div>
+
     );
   }
 }
