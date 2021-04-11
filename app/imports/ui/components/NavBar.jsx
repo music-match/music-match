@@ -21,10 +21,26 @@ class NavBar extends React.Component {
           </Menu.Item>
           {this.props.currentUser ? (
             [/* <Menu.Item as={NavLink} activeClassName="active" exact to="/add" key='add'>Add Stuff</Menu.Item>, */
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/browse-users" key='list'>Browse Users</Menu.Item>]
+              <Menu.Item as={NavLink} activeClassName="active" exact to="/browse-users" key='list'>Browse Users</Menu.Item>,
+              <Menu.Item key='list'>
+                <Dropdown text='Jams' icon='dropdown' pointing='top left'>
+                  <Dropdown.Menu>
+                    <Dropdown.Item text='Browse Jams' as={NavLink} exact to="/browse-jams"/>
+                    <Dropdown.Item text='My Jams' as={NavLink} exact to="/my-jams"/>
+                    <Dropdown.Item text='Add Jams' as={NavLink} exact to="/add-jams"/>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Menu.Item>]
           ) : ''}
           {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
+            <Menu.Item key='list'>
+              <Dropdown text='Admin' icon='dropdown' pointing='top left'>
+                <Dropdown.Menu>
+                  <Dropdown.Item text='Browse Users (Admin)' as={NavLink} exact to="/admin"/>
+                  <Dropdown.Item text='Browse Jams (Admin)' as={NavLink} exact to="/my-jams"/>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Menu.Item>
           ) : ''}
           <Menu.Item position="right">
             {this.props.currentUser === '' ? (
