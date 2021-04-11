@@ -15,6 +15,10 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ViewProfile from '../pages/ViewProfile';
+import BrowseJams from '../pages/BrowseJams';
+import AddJams from '../pages/AddJams';
+import EditJams from '../pages/EditJams';
+import MyJams from '../pages/MyJams';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -32,6 +36,10 @@ class App extends React.Component {
             <ProtectedRoute path="/editprofile" component={EditProfile}/>
             <AdminProtectedRoute path="/admin" component={BrowseUsersAdmin}/>
             <ProtectedRoute path="/viewprofile" component={ViewProfile}/>
+            <ProtectedRoute path="/browse-jams" component={BrowseJams}/>
+            <ProtectedRoute path="/add-jams" component={AddJams}/>
+            <ProtectedRoute path="/edit-jams" component={EditJams}/>
+            <ProtectedRoute path="/my-jams" component={MyJams}/>
             <Route component={NotFound}/>
           </Switch>
           <Footer/>
