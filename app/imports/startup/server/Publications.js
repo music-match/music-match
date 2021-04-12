@@ -25,8 +25,8 @@ Meteor.publish(Profiles.userPublicationName, function () {
 
 Meteor.publish(MusicInterests.userPublicationName, function () {
   if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return MusicInterests.collection.find({ email: username });
+    // const username = Meteor.users.findOne(this.userId).username;
+    return MusicInterests.collection.find();
   }
   return this.ready();
 });

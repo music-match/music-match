@@ -14,7 +14,7 @@ class MusicInterestsCollection {
 
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      music_interest: String,
+      type: String,
       email: String,
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.

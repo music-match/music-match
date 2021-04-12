@@ -16,7 +16,7 @@ class Profile extends React.Component {
             src={this.props.profile.image}
           />
           <Card.Header>{this.props.profile.name}</Card.Header>
-          <Card.Description>{this.props.profile.goals}</Card.Description>
+          <Card.Description>Goals: {this.props.profile.goals}</Card.Description>
           <Header as='h4'>Music Interests:</Header>
           {this.props.music_interests.map((music_interest, index) => <MusicLabel key={index} music_interest={music_interest}/>)}
         </Card.Content>
