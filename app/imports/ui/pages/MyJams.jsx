@@ -21,7 +21,7 @@ class MyJams extends React.Component {
         <Container>
           <Header inverted as="h2" textAlign="center">My Jams</Header>
           <Card.Group centered itemsPerRow={3}>
-            {this.props.jams.map((jam, index) => <JamCard key={index} jam={jam}/>)}
+            {this.props.jams.map((jam, index) => <JamCard key={index} jam={this.props.jams.filter(userJams => (userJams.email === jam.email))}/>)}
           </Card.Group>
         </Container>
       </div>
