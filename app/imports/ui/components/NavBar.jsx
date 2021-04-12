@@ -28,6 +28,7 @@ class NavBar extends React.Component {
                     <Dropdown.Item text='Browse Jams' as={NavLink} exact to="/browse-jams"/>
                     <Dropdown.Item text='My Jams' as={NavLink} exact to="/my-jams"/>
                     <Dropdown.Item text='Add Jams' as={NavLink} exact to="/add-jams"/>
+                    <Dropdown.Item text='Edit Jams' as={NavLink} exact to="/edit-jams"/>
                   </Dropdown.Menu>
                 </Dropdown>
               </Menu.Item>]
