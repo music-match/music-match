@@ -4,6 +4,7 @@ import { _ } from 'meteor/underscore';
 import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Jams } from '../../api/profile/Jams';
 import JamCard from '../components/JamCard';
 
@@ -22,6 +23,7 @@ class MyJams extends React.Component {
       <div className='music-background'>
         <Container>
           <Header inverted as="h2" textAlign="center">My Jams</Header>
+          <Link to="/edit-jams">Edit Jams</Link>
           <Card.Group centered itemsPerRow={3}>
             {myJams.map((jam, index) => <JamCard key={index} jam={jam}/>)}
           </Card.Group>
