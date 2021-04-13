@@ -8,7 +8,7 @@ class MusicLabel extends React.Component {
   render() {
     return (
       <Label>
-        Hi
+        {this.props.music_interest.type}
       </Label>
     );
   }
@@ -16,7 +16,7 @@ class MusicLabel extends React.Component {
 
 // Require a document to be passed to this component.
 MusicLabel.propTypes = {
-  music_interests: PropTypes.object.isRequired,
+  music_interest: PropTypes.object.isRequired,
 };
 
 // Wrap this component in withRouter since we use the <Link> React Router element.

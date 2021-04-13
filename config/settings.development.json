@@ -18,7 +18,7 @@
   "defaultProfiles": [
     { "name": "Ethan Chee", "address": "UH Manoa", "email" : "ethanwc@hawaii.edu",
       "image" : "https://ethancheez.github.io/images/ethan.jpg",
-      "goals" : "yes"
+      "goals" : "Become a Computer Engineer, Develop Innovative Technologies"
     },
     { "name": "Preston Garcia", "address": "UH Manoa", "email" : "garcia77@hawaii.edu",
       "image" : "https://prestontgarcia.github.io/images/WIN_20210114_12_58_00_Pro.jpg",
@@ -31,6 +31,22 @@
     { "name": "Adam Parrilla", "address": "UH Manoa", "email" : "ajp808@hawaii.edu",
       "image" : "https://adamjparrilla.github.io/images/profilepicture.jpg",
       "goals" : "yes"
+    }
+  ],
+
+  "defaultMusicInterests" : [
+    { "type" : "pop", "email": "ethanwc@hawaii.edu" },
+    { "type" : "kpop", "email": "ethanwc@hawaii.edu" }
+  ],
+
+  "defaultJams" : [
+    {
+      "title" : "As If It's Your Last", "id" : "Amq-qlqbjYA", "email" : "ethanwc@hawaii.edu",
+      "description" : "lol kpop"
+    },
+    {
+      "title" : "Forever Young", "id" : "89kTb73csYg", "email" : "ethanwc@hawaii.edu",
+      "description" : "lol more kpop"
     }
   ]
 }
