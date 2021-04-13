@@ -51,6 +51,7 @@ class Landing extends React.Component {
                         iframe={{
                           allowFullScreen: true,
                         }}
+                        autoplay={false}
                       />
                       <Card.Description>
                         Example Jam Description

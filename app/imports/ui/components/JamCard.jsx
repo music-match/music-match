@@ -18,6 +18,7 @@ class JamCard extends React.Component {
             iframe={{
               allowFullScreen: true,
             }}
+            autoplay={false}
           />
           <Card.Description>
             <Header as='h4'>Description:</Header>
