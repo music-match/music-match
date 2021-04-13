@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Profiles } from '../../api/profile/Profiles';
+import { MusicInterests } from '../../api/profile/MusicInterests';
+import { Jams } from '../../api/profile/Jams';
 
 /* eslint-disable no-console */
 
@@ -15,6 +17,16 @@ function addProfile(data) {
   Profiles.collection.insert(data);
 }
 
+function addInterest(data) {
+  console.log(`  Adding: ${data.music_interest} (${data.email})`);
+  MusicInterests.collection.insert(data);
+}
+
+function addJam(data) {
+  console.log(`  Adding: ${data.title} (${data.email})`);
+  Jams.collection.insert(data);
+}
+
 // Initialize the StuffsCollection if empty.
 if (Stuffs.collection.find().count() === 0) {
   if (Meteor.settings.defaultData) {
@@ -27,5 +39,19 @@ if (Profiles.collection.find().count() === 0) {
   if (Meteor.settings.defaultProfiles) {
     console.log('Creating default profiles.');
     Meteor.settings.defaultProfiles.map(data => addProfile(data));
+  }
+}
+
+if (MusicInterests.collection.find().count() === 0) {
+  if (Meteor.settings.defaultMusicInterests) {
+    console.log('Creating default Music Interests.');
+    Meteor.settings.defaultMusicInterests.map(data => addInterest(data));
+  }
+}
+
+if (Jams.collection.find().count() === 0) {
+  if (Meteor.settings.defaultJams) {
+    console.log('Creating default Jams.');
+    Meteor.settings.defaultJams.map(data => addJam(data));
   }
 }
