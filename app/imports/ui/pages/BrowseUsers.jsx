@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, TextArea, Form } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Profiles } from '../../api/profile/Profiles';
@@ -20,6 +20,9 @@ class BrowseUsers extends React.Component {
       <div className='music-background'>
         <Container>
           <Header inverted as="h2" textAlign="center">Browse Users</Header>
+          <Form className='search' centered>
+            <TextArea placeholder='Browse Users' />
+          </Form>
           <Card.Group centered>
             {this.props.profiles.map((profile, index) => <Profile
               key={index}
