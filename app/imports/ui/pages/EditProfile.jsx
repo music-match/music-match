@@ -18,7 +18,7 @@ class EditProfile extends React.Component {
           </Grid.Column>
           <Grid.Column>
             <Card fluid>
-              <div className='padding'>
+              <div className='edit-profile'>
                 <Form>
                   <Form.Group widths='equal'>
                     <Form.Input fluid label='Full Name' placeholder='Full Name' />

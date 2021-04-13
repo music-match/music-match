@@ -1,4 +1,3 @@
-
 .bg-image{
   background: url('images/music-match-background.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -21,4 +20,8 @@
 }
 .admin-link {
   padding: 5px;
+}
+
+.edit-profile {
+  padding: 10px 10px 10px 10px;
 }
