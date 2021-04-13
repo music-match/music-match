@@ -19,7 +19,7 @@ class NavBar extends React.Component {
           <Header inverted as='h1'>Music Match</Header>
         </Menu.Item>
         {this.props.currentUser ? (
-          [<Menu.Item as={NavLink} activeClassName="active" exact to="/add" key='add'>My Profile</Menu.Item>,
+          [<Menu.Item as={NavLink} activeClassName="active" exact to="/viewprofile" key='viewprofile'>My Profile</Menu.Item>,
             <Menu.Item as={NavLink} activeClassName="active" exact to="/browse-users" key='list'>Browse Users</Menu.Item>,
             <Menu.Item key='jams'>
               <Dropdown text='Jams' icon='dropdown' pointing='top left'>
