@@ -23,7 +23,6 @@ class MyJams extends React.Component {
       <div className='music-background'>
         <Container>
           <Header inverted as="h2" textAlign="center">My Jams</Header>
-          <Link to="/edit-jams">Edit Jams</Link>
           <Card.Group centered itemsPerRow={3}>
             {myJams.map((jam, index) => <JamCard key={index} jam={jam}/>)}
           </Card.Group>

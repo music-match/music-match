@@ -28,6 +28,9 @@ class JamCard extends React.Component {
         <Card.Content extra>
           Recommended by: <Link to="/viewprofile">{this.props.jam.email}</Link>
         </Card.Content>
+        <Card.Content extra>
+          <Link to="/edit-jams">Edit Jam</Link>
+        </Card.Content>
       </Card>
     );
   }
