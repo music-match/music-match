@@ -1,6 +1,10 @@
 {
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
+    { "email": "ethanwc@hawaii.edu", "password": "changeme", "role": "admin" },
+    { "email": "garcia77@hawaii.edu", "password": "changeme", "role": "admin" },
+    { "email": "icce@hawaii.edu", "password": "changeme", "role": "admin" },
+    { "email": "ajp808@hawaii.edu", "password": "changeme", "role": "admin" },
     { "email": "john@foo.com", "password": "changeme" }
   ],
 
@@ -9,5 +13,24 @@
     { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+  ],
+
+  "defaultProfiles": [
+    { "name": "Ethan Chee", "address": "UH Manoa", "email" : "ethanwc@hawaii.edu",
+      "image" : "https://ethancheez.github.io/images/ethan.jpg",
+      "goals" : "yes"
+    },
+    { "name": "Preston Garcia", "address": "UH Manoa", "email" : "garcia77@hawaii.edu",
+      "image" : "https://prestontgarcia.github.io/images/WIN_20210114_12_58_00_Pro.jpg",
+      "goals" : "yes"
+    },
+    { "name": "Isaiah Eusebio", "address": "UH Manoa", "email" : "icce@hawaii.edu",
+      "image" : "https://icce2k.github.io/images/professionalsquare.jpg",
+      "goals" : "yes"
+    },
+    { "name": "Adam Parrilla", "address": "UH Manoa", "email" : "ajp808@hawaii.edu",
+      "image" : "https://adamjparrilla.github.io/images/profilepicture.jpg",
+      "goals" : "yes"
+    }
   ]
 }

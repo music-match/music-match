@@ -7,14 +7,18 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
-import ListStuff from '../pages/ListStuff';
-import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
-import EditStuff from '../pages/EditStuff';
+import BrowseUsers from '../pages/BrowseUsers';
+import BrowseUsersAdmin from '../pages/BrowseUsersAdmin';
+import EditProfile from '../pages/EditProfile';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
+import ViewProfile from '../pages/ViewProfile';
+import BrowseJams from '../pages/BrowseJams';
+import AddJams from '../pages/AddJams';
+import EditJams from '../pages/EditJams';
+import MyJams from '../pages/MyJams';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -28,10 +32,14 @@ class App extends React.Component {
             <Route path="/signin" component={Signin}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/signout" component={Signout}/>
-            <ProtectedRoute path="/list" component={ListStuff}/>
-            <ProtectedRoute path="/add" component={AddStuff}/>
-            <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
-            <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
+            <ProtectedRoute path="/browse-users" component={BrowseUsers}/>
+            <ProtectedRoute path="/editprofile" component={EditProfile}/>
+            <AdminProtectedRoute path="/admin" component={BrowseUsersAdmin}/>
+            <ProtectedRoute path="/viewprofile" component={ViewProfile}/>
+            <ProtectedRoute path="/browse-jams" component={BrowseJams}/>
+            <ProtectedRoute path="/add-jams" component={AddJams}/>
+            <ProtectedRoute path="/edit-jams" component={EditJams}/>
+            <ProtectedRoute path="/my-jams" component={MyJams}/>
             <Route component={NotFound}/>
           </Switch>
           <Footer/>
