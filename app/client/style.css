@@ -14,5 +14,8 @@
 }
 
 .search {
+  padding-left: 425px;
+  padding-right: 425px;
   padding-bottom: 20px;
+  min-height: 5px;
 }

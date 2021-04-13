@@ -21,7 +21,7 @@ class BrowseUsers extends React.Component {
         <Container>
           <Header inverted as="h2" textAlign="center">Browse Users</Header>
           <Form className='search' centered>
-            <TextArea placeholder='Browse Users' style={{ minHeight: 10 }} />
+            <TextArea placeholder='Browse Users' />
           </Form>
           <Card.Group centered>
             {this.props.profiles.map((profile, index) => <Profile
