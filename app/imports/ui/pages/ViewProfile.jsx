@@ -29,6 +29,9 @@ class ViewProfile extends React.Component {
               <Card.Content extra>
                 <Link to="/editprofile">Edit Profile</Link>
               </Card.Content>
+              <Card.Content extra>
+                <Link to="/my-jams">My Jams</Link>
+              </Card.Content>
             </Card>
           </Grid.Column>
         </Grid>
