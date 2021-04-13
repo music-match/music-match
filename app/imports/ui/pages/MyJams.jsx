@@ -4,7 +4,6 @@ import { _ } from 'meteor/underscore';
 import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { Jams } from '../../api/profile/Jams';
 import JamCard from '../components/JamCard';
 
