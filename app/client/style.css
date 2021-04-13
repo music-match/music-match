@@ -2,6 +2,8 @@
 .bg-image{
   background: url('images/music-match-background.jpg') no-repeat center center fixed;
   background-size: cover;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 .music-background {
   background: url("https://i.pinimg.com/originals/f4/7d/ee/f47deea1e399efb6c8c89a092b9ac0ea.gif") no-repeat center center fixed;
@@ -13,7 +15,6 @@
 .white-link {
   color: white;
 }
-
 
 .featured-jam {
   margin-top: 20px;
