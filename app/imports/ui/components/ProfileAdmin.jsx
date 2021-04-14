@@ -21,10 +21,10 @@ class Profile extends React.Component {
           {this.props.music_interests.map((music_interest, index) => <MusicLabel key={index} music_interest={music_interest}/>)}
         </Card.Content>
         <Card.Content extra>
-          <Link to="/viewprofile">View Profile</Link>
-          <Grid floated>
+          <Link to={`/viewprofile/${this.props.profile._id}`}>View Profile</Link>
+          <Grid>
             <Grid.Column floated='left' width={5}>
-              <Button fluid href='/#/edit-jams' size='mini'>Edit</Button>
+              <Button fluid href={`/#/editprofile/${this.props.profile._id}`} size='mini'>Edit</Button>
             </Grid.Column>
             <Grid.Column floated='right' width={6}>
               <Button fluid color='red' size='mini'>Delete</Button>

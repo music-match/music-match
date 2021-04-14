@@ -21,7 +21,7 @@ class Profile extends React.Component {
           {this.props.music_interests.map((music_interest, index) => <MusicLabel key={index} music_interest={music_interest}/>)}
         </Card.Content>
         <Card.Content extra>
-          <Link to="/viewprofile">View Profile</Link>
+          <Link to={`/viewprofile/${this.props.profile._id}`}>View Profile</Link>
         </Card.Content>
       </Card>
     );

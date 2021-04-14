@@ -7,6 +7,7 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
+import CreateProfile from '../pages/CreateProfile';
 import BrowseUsers from '../pages/BrowseUsers';
 import BrowseUsersAdmin from '../pages/BrowseUsersAdmin';
 import EditProfile from '../pages/EditProfile';
@@ -33,10 +34,11 @@ class App extends React.Component {
             <Route path="/signin" component={Signin}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/signout" component={Signout}/>
+            <ProtectedRoute path="/create-profile" component={CreateProfile}/>
             <ProtectedRoute path="/browse-users" component={BrowseUsers}/>
-            <ProtectedRoute path="/editprofile" component={EditProfile}/>
+            <ProtectedRoute path="/editprofile/:_id" component={EditProfile}/>
             <AdminProtectedRoute path="/browse-users-admin" component={BrowseUsersAdmin}/>
-            <ProtectedRoute path="/viewprofile" component={ViewProfile}/>
+            <ProtectedRoute path="/viewprofile/:_id" component={ViewProfile}/>
             <ProtectedRoute path="/browse-jams" component={BrowseJams}/>
             <AdminProtectedRoute path="/browse-jams-admin" component={BrowseJamsAdmin}/>
             <ProtectedRoute path="/add-jams" component={AddJams}/>
