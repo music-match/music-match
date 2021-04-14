@@ -22,7 +22,7 @@ class BrowseUsers extends React.Component {
           <Header inverted as="h2" textAlign="center">Browse Users</Header>
           <Input fluid
             icon={{ name: 'search', circular: true, link: true }}
-            placeholder='Search User...'
+            placeholder='Search User...' className='search'
           />
           <Card.Group centered>
             {this.props.profiles.map((profile, index) => <Profile
