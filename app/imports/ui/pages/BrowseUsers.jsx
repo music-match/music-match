@@ -20,10 +20,12 @@ class BrowseUsers extends React.Component {
       <div className='music-background'>
         <Container>
           <Header inverted as="h2" textAlign="center">Browse Users</Header>
-          <Input fluid
-            icon={{ name: 'search', circular: true, link: true }}
-            placeholder='Search User...'
-          />
+          <div className='search-padding'>
+            <Input fluid
+              icon={{ name: 'search', circular: true, link: true }}
+              placeholder='Search User...'
+            />
+          </div>
           <Card.Group centered>
             {this.props.profiles.map((profile, index) => <Profile
               key={index}

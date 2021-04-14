@@ -5,7 +5,7 @@ import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Jams } from '../../api/profile/Jams';
-import JamCard from '../components/JamCard';
+import JamCardAdmin from '../components/JamCardAdmin';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class MyJams extends React.Component {
@@ -23,7 +23,7 @@ class MyJams extends React.Component {
         <Container>
           <Header inverted as="h2" textAlign="center">My Jams</Header>
           <Card.Group centered itemsPerRow={3}>
-            {myJams.map((jam, index) => <JamCard key={index} jam={jam}/>)}
+            {myJams.map((jam, index) => <JamCardAdmin key={index} jam={jam}/>)}
           </Card.Group>
         </Container>
       </div>

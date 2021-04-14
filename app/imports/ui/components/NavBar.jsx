@@ -35,8 +35,8 @@ class NavBar extends React.Component {
           <Menu.Item key='admin'>
             <Dropdown text='Admin' icon='dropdown' pointing='top left'>
               <Dropdown.Menu>
-                <Dropdown.Item text='Browse Users (Admin)' as={NavLink} exact to="/admin"/>
-                <Dropdown.Item text='Browse Jams (Admin)' as={NavLink} exact to="/my-jams"/>
+                <Dropdown.Item text='Browse Users (Admin)' as={NavLink} exact to="/browse-users-admin"/>
+                <Dropdown.Item text='Browse Jams (Admin)' as={NavLink} exact to="/browse-jams-admin"/>
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Item>

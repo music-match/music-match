@@ -1,10 +1,10 @@
 import React from 'react';
-import { Card, Embed, Header } from 'semantic-ui-react';
+import { Card, Embed, Header, Grid, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
-class JamCard extends React.Component {
+class JamCardAdmin extends React.Component {
   render() {
     return (
       <Card centered>
@@ -27,6 +27,14 @@ class JamCard extends React.Component {
         </Card.Content>
         <Card.Content extra>
           Recommended by: <Link to="/viewprofile">{this.props.jam.email}</Link>
+          <Grid floated>
+            <Grid.Column floated='left' width={5}>
+              <Button fluid href='/#/edit-jams' size='mini'>Edit</Button>
+            </Grid.Column>
+            <Grid.Column floated='right' width={5}>
+              <Button fluid color='red' size='mini'>Delete</Button>
+            </Grid.Column>
+          </Grid>
         </Card.Content>
       </Card>
     );
@@ -34,9 +42,9 @@ class JamCard extends React.Component {
 }
 
 // Require a document to be passed to this component.
-JamCard.propTypes = {
+JamCardAdmin.propTypes = {
   jam: PropTypes.object.isRequired,
 };
 
 // Wrap this component in withRouter since we use the <Link> React Router element.
-export default withRouter(JamCard);
+export default withRouter(JamCardAdmin);

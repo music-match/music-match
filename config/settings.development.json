@@ -36,17 +36,18 @@
 
   "defaultMusicInterests" : [
     { "type" : "pop", "email": "ethanwc@hawaii.edu" },
-    { "type" : "kpop", "email": "ethanwc@hawaii.edu" }
+    { "type" : "kpop", "email": "ethanwc@hawaii.edu" },
+    { "type" : "alternate", "email": "ethanwc@hawaii.edu" }
   ],
 
   "defaultJams" : [
     {
       "title" : "As If It's Your Last", "id" : "Amq-qlqbjYA", "email" : "ethanwc@hawaii.edu",
-      "description" : "lol kpop"
+      "description" : "As If It's Your Last - BlackPink"
     },
     {
-      "title" : "Forever Young", "id" : "89kTb73csYg", "email" : "ethanwc@hawaii.edu",
-      "description" : "lol more kpop"
+      "title" : "Ground Control", "id" : "k-_YAaRFnl8", "email" : "ethanwc@hawaii.edu",
+      "description" : "Ground Control - All Time Low (Feat. Tegan & Sara)"
     },
     {
       "title" : "Japanese Denim", "id" : "KoUMZfYgXzA", "email" : "icce@hawaii.edu",
