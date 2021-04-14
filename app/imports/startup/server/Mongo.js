@@ -18,7 +18,7 @@ function addProfile(data) {
 }
 
 function addInterest(data) {
-  console.log(`  Adding: ${data.music_interest} (${data.email})`);
+  console.log(`  Adding: ${data.type} (${data.email})`);
   MusicInterests.collection.insert(data);
 }
 

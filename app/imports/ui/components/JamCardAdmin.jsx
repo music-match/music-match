@@ -27,7 +27,7 @@ class JamCardAdmin extends React.Component {
         </Card.Content>
         <Card.Content extra>
           Recommended by: <Link to="/viewprofile">{this.props.jam.email}</Link>
-          <Grid floated>
+          <Grid>
             <Grid.Column floated='left' width={5}>
               <Button fluid href='/#/edit-jams' size='mini'>Edit</Button>
             </Grid.Column>

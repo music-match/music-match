@@ -15,29 +15,11 @@ Meteor.publish(Stuffs.userPublicationName, function () {
   return this.ready();
 });
 
-Meteor.publish(Profiles.userPublicationName, function () {
-  if (this.userId) {
-    // const username = Meteor.users.findOne(this.userId).username;
-    return Profiles.collection.find();
-  }
-  return this.ready();
-});
+Meteor.publish(Profiles.userPublicationName, () => Profiles.collection.find());
 
-Meteor.publish(MusicInterests.userPublicationName, function () {
-  if (this.userId) {
-    // const username = Meteor.users.findOne(this.userId).username;
-    return MusicInterests.collection.find();
-  }
-  return this.ready();
-});
+Meteor.publish(MusicInterests.userPublicationName, () => MusicInterests.collection.find());
 
-Meteor.publish(Jams.userPublicationName, function () {
-  if (this.userId) {
-    // const username = Meteor.users.findOne(this.userId).username;
-    return Jams.collection.find();
-  }
-  return this.ready();
-});
+Meteor.publish(Jams.userPublicationName, () => Jams.collection.find());
 
 // Admin-level publication.
 // If logged in and with admin role, then publish all documents from all users. Otherwise publish nothing.

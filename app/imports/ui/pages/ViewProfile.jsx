@@ -3,6 +3,7 @@ import { Grid, Card, Image, Header, Rating, Loader } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
+import { _ } from 'meteor/underscore';
 import PropTypes from 'prop-types';
 import { Profiles } from '../../api/profile/Profiles';
 import { MusicInterests } from '../../api/profile/MusicInterests';
@@ -35,7 +36,7 @@ class ViewProfile extends React.Component {
                 <Header as='h4'>Skill Level:</Header>
                 <Rating icon='star' defaultRating={3} maxRating={5} />
                 <Header as='h4'>Music Interests:</Header>
-                {this.props.music_interests.map((music_interest, index) => <MusicLabel
+                {this.props.myInterests.map((music_interest, index) => <MusicLabel
                   key={index}
                   music_interest={music_interest}/>)}
               </Card.Content>
@@ -59,8 +60,8 @@ class ViewProfile extends React.Component {
 
 // Require an array of Stuff documents in the props.
 ViewProfile.propTypes = {
-  profile: PropTypes.object.isRequired,
-  music_interests: PropTypes.array.isRequired,
+  profile: PropTypes.object,
+  myInterests: PropTypes.array,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -71,14 +72,16 @@ export default withTracker(({ match }) => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe(Profiles.userPublicationName);
   const subscription2 = Meteor.subscribe(MusicInterests.userPublicationName);
+  // Determine if the subscription is ready
+  const ready = subscription.ready() && subscription2.ready();
   // Get the Stuff documents
   const profile = Profiles.collection.findOne(documentId);
   const music_interests = MusicInterests.collection.find().fetch();
-  // Determine if the subscription is ready
-  const ready = subscription.ready() && subscription2.ready();
+  const myInterests = _.filter(music_interests, function (interest) { return profile.email === interest.email; });
+
   return {
     profile,
-    music_interests,
+    myInterests,
     ready,
   };
 })(ViewProfile);
