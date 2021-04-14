@@ -18,6 +18,10 @@ class ProfilesCollection {
       address: String,
       image: String,
       goals: String,
+      instruments: {
+        type: String,
+        optional: true,
+      },
       email: String,
       phone: {
         type: String,

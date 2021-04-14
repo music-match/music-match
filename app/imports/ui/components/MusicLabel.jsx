@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 class MusicLabel extends React.Component {
   render() {
     return (
-      <Label>
+      <Label color='orange'>
         {this.props.music_interest.type}
       </Label>
     );

@@ -12,6 +12,10 @@ const formSchema = new SimpleSchema({
   address: String,
   image: String,
   goals: String,
+  instruments: {
+    type: String,
+    optional: true,
+  },
   phone: {
     type: String,
     optional: true,
@@ -25,9 +29,9 @@ class CreateProfile extends React.Component {
 
   // On successful submit, insert the data.
   submit(data) {
-    const { name, address, image, goals, phone } = data;
+    const { name, address, image, goals, phone, instruments } = data;
     const email = Meteor.user().username;
-    Profiles.collection.insert({ name, address, image, goals, email, phone },
+    Profiles.collection.insert({ name, address, image, goals, email, phone, instruments },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -49,9 +53,10 @@ class CreateProfile extends React.Component {
                 <Form.Group widths='equal'>
                   <TextField name='name' />
                   <TextField name='address' />
-                  <TextField name='phone' />
+                  <TextField name='phone' placeholder='(XXX) XXX-XXXX'/>
                 </Form.Group>
                 <TextField name='image'/>
+                <TextField name='instruments' placeholder='List the instruments separated by comma. Leave blank if none.'/>
                 <LongTextField name='goals'/>
                 <SubmitField value='Submit'/>
               </Segment>

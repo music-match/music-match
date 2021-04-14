@@ -2,11 +2,12 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { Form, Grid, Image, Loader, Segment } from 'semantic-ui-react';
-import { AutoForm, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
+import { Form, Grid, Image, Loader, Segment, Button, Header } from 'semantic-ui-react';
+import { AutoForm, LongTextField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import PropTypes from 'prop-types';
 import { Profiles } from '../../api/profile/Profiles';
+import { Link } from 'react-router-dom';
 
 const bridge = new SimpleSchema2Bridge(Profiles.schema);
 
@@ -42,8 +43,10 @@ class EditProfile extends React.Component {
                 </Form.Group>
                 <TextField name='address' />
                 <TextField name='image'/>
+                <TextField name='instruments' placeholder='List the instruments separated by comma. Leave blank if none.'/>
                 <LongTextField name='goals'/>
-                <SubmitField value='Save Changes'/>
+                <Button color='green'>Save Changes</Button>
+                <Button href={`#/viewprofile/${this.props.profile._id}`} color='red'>Go Back</Button>
               </Segment>
             </AutoForm>
           </Grid.Column>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Grid, Card, Image, Header, Rating, Loader } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Grid, Card, Image, Header, Rating, Loader, Button } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { _ } from 'meteor/underscore';
@@ -32,8 +31,8 @@ class ViewProfile extends React.Component {
                 <Card.Meta>{this.props.profile.email}</Card.Meta>
                 <Card.Description>Goals: {this.props.profile.goals}</Card.Description>
                 <Header as='h4'>Instruments:</Header>
-                <p>Harmonica, Piano, Banjo</p>
-                <Header as='h4'>Skill Level:</Header>
+                {(this.props.profile.instruments) ? this.props.profile.instruments : <p>None</p>}
+                <Header as='h4'>Music Skill Level:</Header>
                 <Rating icon='star' defaultRating={3} maxRating={5} />
                 <Header as='h4'>Music Interests:</Header>
                 {this.props.myInterests.map((music_interest, index) => <MusicLabel
@@ -42,12 +41,7 @@ class ViewProfile extends React.Component {
               </Card.Content>
               {this.props.profile.email === Meteor.user().username ?
                 <Card.Content extra>
-                  <Link to={`/editprofile/${this.props.profile._id}`}>Edit Profile</Link>
-                </Card.Content> : ''
-              }
-              {this.props.profile.email === Meteor.user().username ?
-                <Card.Content extra>
-                  <Link to="/my-jams">My Jams</Link>
+                  <Button href={`#/editprofile/${this.props.profile._id}`} size='small'>Edit Profile</Button>
                 </Card.Content> : ''
               }
             </Card>
@@ -78,7 +72,6 @@ export default withTracker(({ match }) => {
   const profile = Profiles.collection.findOne(documentId);
   const music_interests = MusicInterests.collection.find().fetch();
   const myInterests = _.filter(music_interests, function (interest) { return profile.email === interest.email; });
-
   return {
     profile,
     myInterests,
