@@ -22,22 +22,28 @@
     },
     { "name": "Preston Garcia", "address": "UH Manoa", "email" : "garcia77@hawaii.edu",
       "image" : "https://prestontgarcia.github.io/images/WIN_20210114_12_58_00_Pro.jpg",
-      "goals" : "yes"
+      "goals" : "Practice my guitar skills, Become a computational physicist"
     },
     { "name": "Isaiah Eusebio", "address": "UH Manoa", "email" : "icce@hawaii.edu",
       "image" : "https://icce2k.github.io/images/professionalsquare.jpg",
-      "goals" : "Learn how to play the piano, Meet new friends, Discover new music"
+      "goals" : "Discover new music, Become a Software Developer"
     },
     { "name": "Adam Parrilla", "address": "UH Manoa", "email" : "ajp808@hawaii.edu",
       "image" : "https://adamjparrilla.github.io/images/profilepicture.jpg",
-      "goals" : "yes"
+      "goals" : "Learn more about Game Development, Integrate my artwork through games."
     }
   ],
 
   "defaultMusicInterests" : [
+    { "type" : "pop", "email": "icce@hawaii.edu" },
+    { "type" : "rap", "email": "icce@hawaii.edu" },
     { "type" : "pop", "email": "ethanwc@hawaii.edu" },
     { "type" : "kpop", "email": "ethanwc@hawaii.edu" },
-    { "type" : "alternate", "email": "ethanwc@hawaii.edu" }
+    { "type" : "alternate", "email": "ethanwc@hawaii.edu" },
+    { "type" : "pop", "email": "garcia77@hawaii.edu" },
+    { "type" : "lofi", "email": "garcia77@hawaii.edu" },
+    { "type" : "pop", "email": "ajp808@hawaii.edu" },
+    { "type" : "rap", "email": "ajp808@hawaii.edu" }
   ],
 
   "defaultJams" : [
