@@ -3,6 +3,7 @@ import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Profiles } from '../../api/profile/Profiles';
 import { MusicInterests } from '../../api/profile/MusicInterests';
 import { Jams } from '../../api/profile/Jams';
+import { AllInterests } from '../../api/interests/AllInterests';
 
 /* eslint-disable no-console */
 
@@ -25,6 +26,11 @@ function addInterest(data) {
 function addJam(data) {
   console.log(`  Adding: ${data.title} (${data.email})`);
   Jams.collection.insert(data);
+}
+
+function addPossibleInterest(data) {
+  console.log(`  Adding: ${data.name} `);
+  AllInterests.collection.insert(data);
 }
 
 // Initialize the StuffsCollection if empty.
@@ -53,5 +59,12 @@ if (Jams.collection.find().count() === 0) {
   if (Meteor.settings.defaultJams) {
     console.log('Creating default Jams.');
     Meteor.settings.defaultJams.map(data => addJam(data));
+  }
+}
+
+if (AllInterests.collection.find().count() === 0) {
+  if (Meteor.settings.allInterests) {
+    console.log('Creating list of Possible interests.');
+    Meteor.settings.allInterests.map(data => addPossibleInterest(data));
   }
 }

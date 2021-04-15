@@ -37,15 +37,15 @@
   ],
 
   "defaultMusicInterests" : [
-    { "type" : "pop", "email": "icce@hawaii.edu" },
-    { "type" : "rap", "email": "icce@hawaii.edu" },
-    { "type" : "pop", "email": "ethanwc@hawaii.edu" },
-    { "type" : "kpop", "email": "ethanwc@hawaii.edu" },
-    { "type" : "alternate", "email": "ethanwc@hawaii.edu" },
-    { "type" : "pop", "email": "garcia77@hawaii.edu" },
-    { "type" : "lofi", "email": "garcia77@hawaii.edu" },
-    { "type" : "pop", "email": "ajp808@hawaii.edu" },
-    { "type" : "rap", "email": "ajp808@hawaii.edu" }
+    { "type" : "Pop", "email": "icce@hawaii.edu" },
+    { "type" : "Rap", "email": "icce@hawaii.edu" },
+    { "type" : "Pop", "email": "ethanwc@hawaii.edu" },
+    { "type" : "K-Pop", "email": "ethanwc@hawaii.edu" },
+    { "type" : "Alternative", "email": "ethanwc@hawaii.edu" },
+    { "type" : "Pop", "email": "garcia77@hawaii.edu" },
+    { "type" : "Lofi", "email": "garcia77@hawaii.edu" },
+    { "type" : "Pop", "email": "ajp808@hawaii.edu" },
+    { "type" : "Rap", "email": "ajp808@hawaii.edu" }
   ],
 
   "defaultJams" : [
@@ -65,5 +65,34 @@
       "title" : "Self Control", "id" : "1YuuT5v4RvA", "email" : "icce@hawaii.edu",
       "description" : "Self Control - Frank Ocean (Cover by Rini)"
     }
+  ],
+
+  "allInterests" : [
+    { "name": "Alternative" },
+    { "name": "Blues" },
+    { "name": "Broadway" },
+    { "name": "Classical" },
+    { "name": "Country" },
+    { "name": "Disney" },
+    { "name": "Electronic" },
+    { "name": "Funk" },
+    { "name": "Hardcore" },
+    { "name": "Hip-Hop" },
+    { "name": "Holiday" },
+    { "name": "Indie" },
+    { "name": "Industrial" },
+    { "name": "Instrumental" },
+    { "name": "J-Pop" },
+    { "name": "Jazz" },
+    { "name": "K-Pop" },
+    { "name": "Lofi" },
+    { "name": "Metal" },
+    { "name": "Noise" },
+    { "name": "Opera" },
+    { "name": "Pop" },
+    { "name": "R&B" },
+    { "name": "Rap" },
+    { "name": "Reggae" },
+    { "name": "Rock" }
   ]
 }

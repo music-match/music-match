@@ -15,7 +15,10 @@ class ProfilesCollection {
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
       name: String,
-      address: String,
+      address: {
+        type: String,
+        optional: true,
+      },
       image: String,
       goals: String,
       instruments: {

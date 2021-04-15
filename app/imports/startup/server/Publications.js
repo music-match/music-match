@@ -4,6 +4,7 @@ import { Stuffs } from '../../api/stuff/Stuff';
 import { Profiles } from '../../api/profile/Profiles';
 import { MusicInterests } from '../../api/profile/MusicInterests';
 import { Jams } from '../../api/profile/Jams';
+import { AllInterests } from '../../api/interests/AllInterests';
 
 // User-level publication.
 // If logged in, then publish documents owned by this user. Otherwise publish nothing.
@@ -20,6 +21,8 @@ Meteor.publish(Profiles.userPublicationName, () => Profiles.collection.find());
 Meteor.publish(MusicInterests.userPublicationName, () => MusicInterests.collection.find());
 
 Meteor.publish(Jams.userPublicationName, () => Jams.collection.find());
+
+Meteor.publish(AllInterests.userPublicationName, () => AllInterests.collection.find());
 
 // Admin-level publication.
 // If logged in and with admin role, then publish all documents from all users. Otherwise publish nothing.
