@@ -19,6 +19,7 @@ class ProfilesCollection {
       image: String,
       goals: String,
       email: String,
+      instruments: String,
       phone: {
         type: String,
         optional: true,

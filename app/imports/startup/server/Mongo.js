@@ -55,3 +55,4 @@ if (Jams.collection.find().count() === 0) {
     Meteor.settings.defaultJams.map(data => addJam(data));
   }
 }
+

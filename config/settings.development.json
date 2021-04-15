@@ -18,19 +18,23 @@
   "defaultProfiles": [
     { "name": "Ethan Chee", "address": "UH Manoa", "email" : "ethanwc@hawaii.edu",
       "image" : "https://ethancheez.github.io/images/ethan.jpg",
-      "goals" : "Become a Computer Engineer, Develop Innovative Technologies"
+      "goals" : "Become a Computer Engineer, Develop Innovative Technologies",
+      "phone" : "(123) 123-1234", "instruments" : "Banjo, Harmonica, Piano"
     },
     { "name": "Preston Garcia", "address": "UH Manoa", "email" : "garcia77@hawaii.edu",
       "image" : "https://prestontgarcia.github.io/images/WIN_20210114_12_58_00_Pro.jpg",
-      "goals" : "Practice my guitar skills, Become a computational physicist"
+      "goals" : "Practice my guitar skills, Become a computational physicist",
+      "phone" : "(123) 123-1234", "instruments" : "Guitar, Clarinet, Bass"
     },
     { "name": "Isaiah Eusebio", "address": "UH Manoa", "email" : "icce@hawaii.edu",
       "image" : "https://icce2k.github.io/images/professionalsquare.jpg",
-      "goals" : "Discover new music, Become a Software Developer"
+      "goals" : "Discover new music, Become a Software Developer",
+      "phone" : "(123) 123-1234", "instruments" : "Violin, Piano, Mandolin"
     },
     { "name": "Adam Parrilla", "address": "UH Manoa", "email" : "ajp808@hawaii.edu",
       "image" : "https://adamjparrilla.github.io/images/profilepicture.jpg",
-      "goals" : "Learn more about Game Development, Integrate my artwork through games."
+      "goals" : "Learn more about Game Development, Integrate my artwork through games.",
+      "phone" : "(123) 123-1234", "instruments" : "Drums, Tuba, Trombone"
     }
   ],
 

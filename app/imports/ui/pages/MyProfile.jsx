@@ -1,11 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import { _ } from 'meteor/underscore';
 import { Grid, Card, Image, Header, Label, Rating, Loader } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Profiles } from '../../api/profile/Profiles';
-import Profile from '../components/Profile';
 import { MusicInterests } from '../../api/profile/MusicInterests';
 
 /** A simple static component to render some text for the landing page. */
@@ -16,21 +16,22 @@ class ViewProfile extends React.Component {
   }
 
   renderPage() {
+    const myProfile = _.find(this.props.profiles, function (profile) { return profile.email === Meteor.user().username; });
     return (
       <div className='music-background'>
         <Grid container columns={2}>
           <Grid.Column>
-            <Image size='medium' src='https://ethancheez.github.io/images/ethan.jpg'/>
+            <Image size='medium' src={myProfile.image}/>
           </Grid.Column>
           <Grid.Column>
             <Card fluid>
               <Card.Content>
-                <Card.Header>Ethan Chee</Card.Header>
-                <Card.Meta>Honolulu, Hawaii</Card.Meta>
-                <Card.Meta>(XXX) XXX-XXXX, john@foo.com</Card.Meta>
-                <Card.Description>Goals: Become a Computer Engineer, Develop Innovative Technologies</Card.Description>
+                <Card.Header>{myProfile.name}</Card.Header>
+                <Card.Meta>{myProfile.address}</Card.Meta>
+                <Card.Meta>{myProfile.phone}, {myProfile.email}</Card.Meta>
+                <Card.Description>Goals: {myProfile.goals}</Card.Description>
                 <Header as='h4'>Instruments:</Header>
-                <p>Harmonica, Piano, Banjo</p>
+                <p>{myProfile.instruments}</p>
                 <Header as='h4'>Skill Level:</Header>
                 <Rating icon='star' defaultRating={3} maxRating={5} />
                 <Header as='h4'>Music Interests:</Header>

@@ -15,6 +15,7 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ViewProfile from '../pages/ViewProfile';
+import MyProfile from '../pages/MyProfile';
 import BrowseJams from '../pages/BrowseJams';
 import BrowseJamsAdmin from '../pages/BrowseJamsAdmin';
 import AddJams from '../pages/AddJams';
@@ -37,6 +38,7 @@ class App extends React.Component {
             <ProtectedRoute path="/editprofile" component={EditProfile}/>
             <AdminProtectedRoute path="/browse-users-admin" component={BrowseUsersAdmin}/>
             <ProtectedRoute path="/viewprofile" component={ViewProfile}/>
+            <ProtectedRoute path="/myprofile" component={MyProfile}/>
             <ProtectedRoute path="/browse-jams" component={BrowseJams}/>
             <AdminProtectedRoute path="/browse-jams-admin" component={BrowseJamsAdmin}/>
             <ProtectedRoute path="/add-jams" component={AddJams}/>
