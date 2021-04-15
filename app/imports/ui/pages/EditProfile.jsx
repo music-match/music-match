@@ -5,7 +5,7 @@ import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { _ } from 'meteor/underscore';
 import { Form, Grid, Image, Loader, Segment, Button } from 'semantic-ui-react';
-import { AutoForm, LongTextField, TextField } from 'uniforms-semantic';
+import { AutoForm, LongTextField, SelectField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import PropTypes from 'prop-types';
 import { AllInterests } from '../../api/interests/AllInterests';
@@ -22,6 +22,7 @@ const makeSchema = (allInterests) => new SimpleSchema({
   goals: { type: String, label: 'Goals' },
   phone: { type: String, label: 'Phone (Optional)', optional: true },
   instruments: { type: String, label: 'Instruments', optional: true },
+  skill: { type: Number, label: 'Music Skill Level', allowedValues: [0, 1, 2, 3, 4, 5] },
   interests: { type: Array, label: 'Music Interests' },
   'interests.$': { type: String, allowedValues: allInterests },
 });
@@ -59,21 +60,24 @@ class EditProfile extends React.Component {
     return (
       <div className='music-background'>
         <Grid container columns={2}>
-          <Grid.Column>
+          <Grid.Column width={6}>
             <Image size='medium' src={this.props.profile.image}/>
           </Grid.Column>
-          <Grid.Column>
+          <Grid.Column width={10}>
             <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={model}>
               <Segment>
                 <Form.Group widths='equal'>
-                  <TextField name='name' showInlineError={true} />
+                  <TextField name='name' showInlineError={true} placeholder='Full Name'/>
                   <TextField name='phone' placeholder='(XXX) XXX-XXXX' showInlineError={true}/>
                 </Form.Group>
-                <TextField name='address' showInlineError={true}/>
-                <TextField name='image' showInlineError={true}/>
-                <LongTextField name='goals' showInlineError={true}/>
+                <TextField name='address' showInlineError={true} placeholder='Address'/>
+                <TextField name='image' showInlineError={true} placeholder='Insert Complete Image URL'/>
+                <LongTextField name='goals' showInlineError={true} placeholder='State your goals here. This can be goals related to anything.'/>
                 <TextField name='instruments' showInlineError={true} placeholder='List the instruments separated by comma. Leave blank if none.'/>
-                <MultiSelectField name='interests' showInlineError={true} placeholder={'Music Interests'}/>
+                <Form.Group widths='equal'>
+                  <MultiSelectField name='interests' showInlineError={true} placeholder={'Music Interests'}/>
+                  <SelectField name='skill'/>
+                </Form.Group>
                 <Button color='green'>Save Changes</Button>
                 <Button href={`#/viewprofile/${this.props.profile._id}`} color='red'>Go Back</Button>
               </Segment>

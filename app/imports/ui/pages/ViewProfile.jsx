@@ -19,10 +19,10 @@ class ViewProfile extends React.Component {
     return (
       <div className='music-background'>
         <Grid container columns={2}>
-          <Grid.Column>
+          <Grid.Column width={6}>
             <Image size='medium' src={this.props.profile.image}/>
           </Grid.Column>
-          <Grid.Column>
+          <Grid.Column width={10}>
             <Card fluid>
               <Card.Content>
                 <Card.Header>{this.props.profile.name}</Card.Header>
@@ -33,7 +33,7 @@ class ViewProfile extends React.Component {
                 <Header as='h4'>Instruments:</Header>
                 {(this.props.profile.instruments) ? this.props.profile.instruments : <p>None</p>}
                 <Header as='h4'>Music Skill Level:</Header>
-                <Rating icon='star' defaultRating={3} maxRating={5} />
+                <Rating icon='star' defaultRating={this.props.profile.skill} maxRating={5} disabled/>
                 <Header as='h4'>Music Interests:</Header>
                 {this.props.myInterests.map((music_interest, index) => <MusicLabel
                   key={index}

@@ -17,22 +17,22 @@
     { "name": "Ethan Chee", "address": "UH Manoa", "email" : "ethanwc@hawaii.edu",
       "image" : "https://ethancheez.github.io/images/ethan.jpg",
       "goals" : "Become a Computer Engineer, Develop Innovative Technologies",
-      "instruments" : "Ukulele"
+      "instruments" : "Ukulele", "skill": 0
     },
     { "name": "Preston Garcia", "address": "UH Manoa", "email" : "garcia77@hawaii.edu",
       "image" : "https://prestontgarcia.github.io/images/WIN_20210114_12_58_00_Pro.jpg",
       "goals" : "Practice my guitar skills, Become a computational physicist",
-      "instruments" : ""
+      "instruments" : "", "skill": 0
     },
     { "name": "Isaiah Eusebio", "address": "UH Manoa", "email" : "icce@hawaii.edu",
       "image" : "https://icce2k.github.io/images/professionalsquare.jpg",
       "goals" : "Discover new music, Become a Software Developer",
-      "instruments" : ""
+      "instruments" : "", "skill": 0
     },
     { "name": "Adam Parrilla", "address": "UH Manoa", "email" : "ajp808@hawaii.edu",
       "image" : "https://adamjparrilla.github.io/images/profilepicture.jpg",
       "goals" : "Learn more about Game Development, Integrate my artwork through games.",
-      "instruments" : ""
+      "instruments" : "", "skill": 0
     }
   ],
 

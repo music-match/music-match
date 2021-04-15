@@ -30,6 +30,11 @@ class ProfilesCollection {
         type: String,
         optional: true,
       },
+      skill: {
+        type: Number,
+        allowedValues: [0, 1, 2, 3, 4, 5],
+        defaultValue: 0,
+      },
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
