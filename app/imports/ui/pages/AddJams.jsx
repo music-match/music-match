@@ -9,14 +9,35 @@ import {
 } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
-import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-import { Stuffs } from '../../api/stuff/Stuff';
+import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import { Jams } from '../../api/profile/Jams';
+
+function getID(link) {
+  let start = link.indexOf('=');
+  const end = link.indexOf('&');
+
+  if (start < 0) {
+    start = link.lastIndexOf('/');
+    return link.substring(start + 1);
+  }
+  return link.substring(start + 1, end);
+}
+
+function isYouTube(link) {
+  if (link.indexOf('youtube.com/') > 0 || link.indexOf('youtu.be/') > 0) {
+    return true;
+  }
+  return false;
+}
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
   title: String,
-  ID: String,
+  link: {
+    type: String,
+    label: 'YouTube Link',
+  },
   description: String,
 });
 
@@ -27,9 +48,16 @@ class AddStuff extends React.Component {
 
   // On submit, insert the data.
   submit(data, formRef) {
-    const { name, quantity, condition } = data;
-    const owner = Meteor.user().username;
-    Stuffs.collection.insert({ name, quantity, condition, owner },
+    const { title, link, description } = data;
+    const email = Meteor.user().username;
+    const id = getID(link);
+
+    if (!isYouTube(link)) {
+      swal('Error', 'Invalid YouTube Link', 'error');
+      return;
+    }
+
+    Jams.collection.insert({ title, id, description, email },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -44,20 +72,22 @@ class AddStuff extends React.Component {
   render() {
     let fRef = null;
     return (
-      <Grid container centered>
-        <Grid.Column>
-          <Header as="h2" textAlign="center">Create Jam</Header>
-          <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
-            <Segment>
-              <TextField name='title'/>
-              <TextField name='ID'/>
-              <LongTextField name='description'/>
-              <SubmitField value='Submit'/>
-              <ErrorsField/>
-            </Segment>
-          </AutoForm>
-        </Grid.Column>
-      </Grid>
+      <div className='music-background'>
+        <Grid container centered>
+          <Grid.Column>
+            <Header inverted as="h2" textAlign="center">Create Jam</Header>
+            <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
+              <Segment>
+                <TextField name='title' placeholder={'Title of the Jam'}/>
+                <TextField name='link' placeholder={'Please only insert YouTube links, acquired from the search bar of your browser'}/>
+                <LongTextField name='description' placeholder={'Description of the Jam, such as the original artist'}/>
+                <SubmitField value='Submit'/>
+                <ErrorsField/>
+              </Segment>
+            </AutoForm>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }
