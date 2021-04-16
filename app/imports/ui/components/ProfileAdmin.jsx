@@ -22,7 +22,7 @@ class Profile extends React.Component {
         </Card.Content>
         <Card.Content extra>
           <Link to="/viewprofile">View Profile</Link>
-          <Grid floated>
+          <Grid>
             <Grid.Column floated='left' width={5}>
               <Button fluid href='/#/edit-jams' size='mini'>Edit</Button>
             </Grid.Column>
