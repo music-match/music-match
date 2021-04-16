@@ -7,6 +7,10 @@ import PropTypes from 'prop-types';
 import { Jams } from '../../api/profile/Jams';
 import JamCardAdmin from '../components/JamCardAdmin';
 
+function alphaSort(jams) {
+  return _.sortBy(jams, function (jam) { return jam.title.toLowerCase(); });
+}
+
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class MyJams extends React.Component {
 
@@ -23,7 +27,7 @@ class MyJams extends React.Component {
         <Container>
           <Header inverted as="h2" textAlign="center">My Jams</Header>
           <Card.Group centered itemsPerRow={3}>
-            {myJams.map((jam, index) => <JamCardAdmin key={index} jam={jam}/>)}
+            {alphaSort(myJams).map((jam, index) => <JamCardAdmin key={index} jam={jam}/>)}
           </Card.Group>
         </Container>
       </div>

@@ -1,8 +1,13 @@
 import React from 'react';
+import { _ } from 'meteor/underscore';
 import { Card, Image, Header } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import MusicLabel from './MusicLabel';
+
+function alphaSort(interests) {
+  return _.sortBy(interests, 'type');
+}
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Profile extends React.Component {
@@ -19,7 +24,7 @@ class Profile extends React.Component {
           <Card.Meta>{this.props.profile.email}</Card.Meta>
           <Card.Description>Goals: {this.props.profile.goals}</Card.Description>
           <Header as='h4'>Music Interests:</Header>
-          {this.props.music_interests.map((music_interest, index) => <MusicLabel key={index} music_interest={music_interest}/>)}
+          {alphaSort(this.props.music_interests).map((music_interest, index) => <MusicLabel key={index} music_interest={music_interest}/>)}
         </Card.Content>
         <Card.Content extra>
           <Link to={`/viewprofile/${this.props.profile._id}`}>View Profile</Link>

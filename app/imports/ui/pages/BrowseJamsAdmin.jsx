@@ -1,10 +1,15 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import { _ } from 'meteor/underscore';
 import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import JamCardAdmin from '../components/JamCardAdmin';
 import { Jams } from '../../api/profile/Jams';
+
+function alphaSort(jams) {
+  return _.sortBy(jams, function (jam) { return jam.title.toLowerCase(); });
+}
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class BrowseJamsAdmin extends React.Component {
@@ -21,7 +26,7 @@ class BrowseJamsAdmin extends React.Component {
         <Container>
           <Header inverted as="h2" textAlign="center">Browse Jams (Admin)</Header>
           <Card.Group centered itemsPerRow={3}>
-            {this.props.jams.map((jam, index) => <JamCardAdmin key={index} jam={jam}/>)}
+            {alphaSort(this.props.jams).map((jam, index) => <JamCardAdmin key={index} jam={jam}/>)}
           </Card.Group>
         </Container>
       </div>

@@ -7,6 +7,10 @@ import { Profiles } from '../../api/profile/Profiles';
 import Profile from '../components/Profile';
 import { MusicInterests } from '../../api/profile/MusicInterests';
 
+function alphaSort(profiles) {
+  return _.sortBy(profiles, function (profile) { return profile.name.toLowerCase(); });
+}
+
 /** A simple static component to render some text for the landing page. */
 class BrowseUsers extends React.Component {
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
@@ -27,7 +31,7 @@ class BrowseUsers extends React.Component {
             />
           </div>
           <Card.Group centered>
-            {this.props.profiles.map((profile, index) => <Profile
+            {alphaSort(this.props.profiles).map((profile, index) => <Profile
               key={index}
               profile={profile}
               music_interests={this.props.music_interests.filter(music_interests => (music_interests.email === profile.email))}/>)}

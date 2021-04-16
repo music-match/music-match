@@ -1,11 +1,16 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import { _ } from 'meteor/underscore';
 import { Container, Header, Loader, Card, Input } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Profiles } from '../../api/profile/Profiles';
 import ProfileAdmin from '../components/ProfileAdmin';
 import { MusicInterests } from '../../api/profile/MusicInterests';
+
+function alphaSort(profiles) {
+  return _.sortBy(profiles, function (profile) { return profile.name.toLowerCase(); });
+}
 
 /** A simple static component to render some text for the landing page. */
 class BrowseUsersAdmin extends React.Component {
@@ -27,7 +32,7 @@ class BrowseUsersAdmin extends React.Component {
             />
           </div>
           <Card.Group centered>
-            {this.props.profiles.map((profile, index) => <ProfileAdmin
+            {alphaSort(this.props.profiles).map((profile, index) => <ProfileAdmin
               key={index}
               profile={profile}
               music_interests={this.props.music_interests.filter(music_interests => (music_interests.email === profile.email))}/>)}
