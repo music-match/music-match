@@ -5,14 +5,13 @@ import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { _ } from 'meteor/underscore';
 import { Form, Grid, Image, Loader, Segment, Button } from 'semantic-ui-react';
-import { AutoForm, LongTextField, SelectField, TextField } from 'uniforms-semantic';
+import { AutoForm, LongTextField, SelectField, SubmitField, TextField, ErrorsField, HiddenField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import PropTypes from 'prop-types';
 import { AllInterests } from '../../api/interests/AllInterests';
 import { MusicInterests } from '../../api/profile/MusicInterests';
 import { Profiles } from '../../api/profile/Profiles';
 import MultiSelectField from '../forms/controllers/MultiSelectField';
-import { updateProfileMethod } from '../../startup/both/Methods';
 
 const makeSchema = (allInterests) => new SimpleSchema({
   email: { type: String, label: 'Email' },
@@ -32,13 +31,15 @@ class EditProfile extends React.Component {
 
   // On successful submit, insert the data.
   submit(data) {
-    Meteor.call(updateProfileMethod, data, (error) => {
-      if (error) {
-        swal('Error', error.message, 'error');
-      } else {
-        swal('Success', 'Profile updated successfully', 'success');
-      }
-    });
+    const { name, phone, address, image, goals, instruments, skill, /* interests, email, */ _id } = data;
+
+    Profiles.collection.update(_id, { $set: { name, phone, address, image, goals, instruments, skill } }, (error) => (error ?
+      swal('Error', error.message, 'error') :
+      swal('Success', 'Item updated successfully', 'success')));
+
+    /* MusicInterests.collection.update(_id, { $set: { interests, email } }, (error) => (error ?
+      swal('Error', error.message, 'error') :
+      swal('Success', 'Item updated successfully', 'success'))); */
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
@@ -76,9 +77,11 @@ class EditProfile extends React.Component {
                 <TextField name='instruments' showInlineError={true} placeholder='List the instruments separated by comma. Leave blank if none.'/>
                 <Form.Group widths='equal'>
                   <MultiSelectField name='interests' showInlineError={true} placeholder={'Music Interests'}/>
+                  <HiddenField name='email'/>
                   <SelectField name='skill'/>
                 </Form.Group>
-                <Button color='green'>Save Changes</Button>
+                <SubmitField value='Submit'/>
+                <ErrorsField/>
                 <Button href={`#/viewprofile/${this.props.profile._id}`} color='red'>Go Back</Button>
               </Segment>
             </AutoForm>
