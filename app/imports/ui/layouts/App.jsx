@@ -42,7 +42,7 @@ class App extends React.Component {
             <ProtectedRoute path="/browse-jams" component={BrowseJams}/>
             <AdminProtectedRoute path="/browse-jams-admin" component={BrowseJamsAdmin}/>
             <ProtectedRoute path="/add-jams" component={AddJams}/>
-            <ProtectedRoute path="/edit-jams" component={EditJams}/>
+            <ProtectedRoute path="/edit-jams/:_id" component={EditJams}/>
             <ProtectedRoute path="/my-jams" component={MyJams}/>
             <Route component={NotFound}/>
           </Switch>

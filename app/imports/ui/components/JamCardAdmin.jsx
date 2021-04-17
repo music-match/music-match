@@ -29,7 +29,7 @@ class JamCardAdmin extends React.Component {
           Recommended by: <Link to="/viewprofile">{this.props.jam.email}</Link>
           <Grid>
             <Grid.Column floated='left' width={5}>
-              <Button fluid href='/#/edit-jams' size='mini'>Edit</Button>
+              <Button fluid href={`/#/edit-jams/${this.props.jam._id}`} size='mini'>Edit</Button>
             </Grid.Column>
             <Grid.Column floated='right' width={5}>
               <Button fluid color='red' size='mini'>Delete</Button>
