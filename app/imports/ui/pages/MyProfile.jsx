@@ -37,7 +37,7 @@ class ViewProfile extends React.Component {
                 <Rating icon='star' size="large" rating={myProfile.skill} maxRating={5} disabled/>
                 <Header as='h4'>Music Interests:</Header>
                 <CardContent>
-                  {myMusicInterests.map((interest, index) => <Label key={index} interest={interest}/>)}
+                  {myMusicInterests.map((interest, index) => <Label key={index} content={interest}/>)}
                 </CardContent>
               </Card.Content>
               <Card.Content extra>
