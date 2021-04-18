@@ -2,9 +2,15 @@ import React from 'react';
 import { Card, Embed, Header, Grid, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
+import { Jams } from '../../api/profile/Jams';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class JamCardAdmin extends React.Component {
+
+  removeJam(ID) {
+    Jams.collection.remove({ _id: ID });
+  }
+
   render() {
     return (
       <Card centered>
@@ -32,7 +38,7 @@ class JamCardAdmin extends React.Component {
               <Button fluid href='/#/edit-jams' size='mini'>Edit</Button>
             </Grid.Column>
             <Grid.Column floated='right' width={5}>
-              <Button fluid color='red' size='mini'>Delete</Button>
+              <Button onClick={() => this.removeJam(this.props.jam._id)} fluid color='red' size='mini'>Delete</Button>
             </Grid.Column>
           </Grid>
         </Card.Content>

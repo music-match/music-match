@@ -4,6 +4,8 @@ import { Card, Image, Header, Grid, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import MusicLabel from './MusicLabel';
+import { Profiles } from '../../api/profile/Profiles';
+import { Jams } from '../../api/profile/Jams';
 
 function alphaSort(interests) {
   return _.sortBy(interests, 'type');
@@ -11,6 +13,11 @@ function alphaSort(interests) {
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Profile extends React.Component {
+
+  deleteProfile(ID) {
+    Profiles.collection.remove({ _id: ID });
+  }
+
   render() {
     return (
       <Card>
@@ -32,7 +39,7 @@ class Profile extends React.Component {
               <Button fluid href={`/#/editprofile/${this.props.profile._id}`} size='mini'>Edit</Button>
             </Grid.Column>
             <Grid.Column floated='right' width={6}>
-              <Button fluid color='red' size='mini'>Delete</Button>
+              <Button onClick={() => this.deleteProfile(this.props.profile._id)} fluid color='red' size='mini'>Delete</Button>
             </Grid.Column>
           </Grid>
         </Card.Content>
