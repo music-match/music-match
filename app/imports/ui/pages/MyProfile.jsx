@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
-import { Grid, Card, Image, Header, Label, Rating, Loader } from 'semantic-ui-react';
+import { Grid, Card, Image, Header, Label, Rating, Loader, CardContent } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -17,6 +17,7 @@ class ViewProfile extends React.Component {
 
   renderPage() {
     const myProfile = _.find(this.props.profiles, function (profile) { return profile.email === Meteor.user().username; });
+    const myMusicInterests = _.pluck(_.filter(this.props.music_interests, function (interests) { return interests.email === Meteor.user().username; }), 'type');
     return (
       <div className='music-background'>
         <Grid container columns={2}>
@@ -33,10 +34,11 @@ class ViewProfile extends React.Component {
                 <Header as='h4'>Instruments:</Header>
                 <p>{myProfile.instruments}</p>
                 <Header as='h4'>Skill Level:</Header>
-                <Rating icon='star' defaultRating={3} maxRating={5} />
+                <Rating icon='star' size="large" rating={myProfile.skill} maxRating={5} disabled/>
                 <Header as='h4'>Music Interests:</Header>
-                <Label>Pop</Label>
-                <Label>Alternate</Label>
+                <CardContent>
+                  {myMusicInterests.map((interest, index) => <Label key={index} interest={interest}/>)}
+                </CardContent>
               </Card.Content>
               <Card.Content extra>
                 <Link to="/editprofile">Edit Profile</Link>

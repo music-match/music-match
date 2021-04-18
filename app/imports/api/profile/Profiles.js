@@ -20,6 +20,7 @@ class ProfilesCollection {
       goals: String,
       email: String,
       instruments: String,
+      skill: Number,
       phone: {
         type: String,
         optional: true,
