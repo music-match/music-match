@@ -12,6 +12,10 @@ function alphaSort(jams) {
   return _.sortBy(jams, function (jam) { return jam.title.toLowerCase(); });
 }
 
+function getProfile(profiles, jam) {
+  return _.find(profiles, function (profile) { return jam.email === profile.email; });
+}
+
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class BrowseJams extends React.Component {
 
@@ -30,7 +34,7 @@ class BrowseJams extends React.Component {
             {alphaSort(this.props.jams).map((jam, index) => <JamCard
               key={index}
               jam={jam}
-              profile={(this.props.profiles).filter(profile => (jam.email === profile.email))}/>)}
+              profile={getProfile(this.props.profiles, jam)}/>)}
           </Card.Group>
         </Container>
       </div>
