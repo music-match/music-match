@@ -15,8 +15,10 @@ import { Jams } from '../../api/profile/Jams';
 
 function getID(link) {
   let start = link.indexOf('=');
-  const end = link.indexOf('&');
-
+  let end = link.indexOf('&');
+  if (end === -1) {
+    end = link.length;
+  }
   if (start < 0) {
     start = link.lastIndexOf('/');
     return link.substring(start + 1);
@@ -51,7 +53,6 @@ class AddStuff extends React.Component {
     const { title, link, description } = data;
     const email = Meteor.user().username;
     const id = getID(link);
-
     if (!isYouTube(link)) {
       swal('Error', 'Invalid YouTube Link', 'error');
       return;

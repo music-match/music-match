@@ -4,7 +4,6 @@ import swal from 'sweetalert';
 import {
   AutoForm,
   ErrorsField,
-  HiddenField,
   LongTextField,
   SubmitField,
   TextField,
@@ -13,16 +12,53 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import SimpleSchema from 'simpl-schema';
 import { Jams } from '../../api/profile/Jams';
 
-const bridge = new SimpleSchema2Bridge(Jams.schema);
+const formSchema = new SimpleSchema({
+  title: String,
+  link: {
+    type: String,
+    label: 'YouTube Link',
+  },
+  description: String,
+  email: String,
+});
+
+const bridge = new SimpleSchema2Bridge(formSchema);
+
+function getID(link) {
+  let start = link.indexOf('=');
+  let end = link.indexOf('&');
+  if (end === -1) {
+    end = link.length;
+  }
+  if (start < 0) {
+    start = link.lastIndexOf('/');
+    return link.substring(start + 1);
+  }
+  return link.substring(start + 1, end);
+}
+
+function isYouTube(link) {
+  if (link.indexOf('youtube.com/') > 0 || link.indexOf('youtu.be/') > 0) {
+    return true;
+  }
+  return false;
+}
 
 /** Renders the Page for editing a single document. */
 class EditJams extends React.Component {
 
   // On successful submit, insert the data.
   submit(data) {
-    const { title, id, description, email, _id } = data;
+    const { title, link, description, _id } = data;
+    const email = Meteor.user().username;
+    const id = getID(link);
+    if (!isYouTube(link)) {
+      swal('Error', 'Invalid Youtube Link', 'error');
+      return;
+    }
     Jams.collection.update(_id, { $set: { title, id, description, email } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
@@ -42,11 +78,10 @@ class EditJams extends React.Component {
           <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.jam}>
             <Segment>
               <TextField name='title'/>
-              <TextField name='id'/>
+              <TextField name='link'/>
               <LongTextField name='description'/>
               <SubmitField value='Submit'/>
               <ErrorsField/>
-              <HiddenField name='email'/>
             </Segment>
           </AutoForm>
         </Grid.Column>
@@ -72,6 +107,7 @@ export default withTracker(({ match }) => {
   const ready = subscription.ready();
   // Get the document
   const jam = Jams.collection.findOne(documentId);
+  jam.link = `https://www.youtube.com/watch?v=${jam.id}`;
   return {
     jam,
     ready,
