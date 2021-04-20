@@ -26,7 +26,7 @@ class JamCardAdmin extends React.Component {
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          Recommended by: <Link to="/viewprofile">{this.props.jam.email}</Link>
+          Recommended by: <Link to={`/viewprofile/${this.props.profile._id}`}>{this.props.jam.email}</Link>
           <Grid>
             <Grid.Column floated='left' width={5}>
               <Button fluid href={`/#/edit-jams/${this.props.jam._id}`} size='mini'>Edit</Button>
@@ -43,6 +43,7 @@ class JamCardAdmin extends React.Component {
 
 // Require a document to be passed to this component.
 JamCardAdmin.propTypes = {
+  profile: PropTypes.object.isRequired,
   jam: PropTypes.object.isRequired,
 };
 
