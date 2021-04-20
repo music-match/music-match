@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Profiles } from '../../api/profile/Profiles';
 import { MusicInterests } from '../../api/profile/MusicInterests';
+import { FeaturedJam } from '../../api/profile/FeaturedJam';
 
 /**
  * In Bowfolios, insecure mode is enabled, so it is possible to update the server's Mongo database by making
@@ -27,6 +28,7 @@ import { MusicInterests } from '../../api/profile/MusicInterests';
  */
 
 const updateProfileMethod = 'Profiles.update';
+const addFeaturedJam = 'FeaturedJam.add';
 
 /**
  * The server-side Profiles.update Meteor Method is called by the client-side Home page after pushing the update button.
@@ -41,4 +43,11 @@ Meteor.methods({
   },
 });
 
-export { updateProfileMethod };
+Meteor.methods({
+  'FeaturedJam.add'({ title, id, description, email }) {
+    FeaturedJam.collection.remove({});
+    FeaturedJam.collection.insert({ title: title, id: id, description: description, email: email });
+  },
+});
+
+export { updateProfileMethod, addFeaturedJam };

@@ -83,6 +83,13 @@
     }
   ],
 
+  "defaultFeaturedJam" : [
+    {
+      "title" : "Memories", "id" : "CqFj4aqUrjk", "email" : "ethanwc@hawaii.edu",
+      "description" : "Memories - Maroon 5 (Lukkas Remix)"
+    }
+  ],
+
   "allInterests" : [
     { "name": "Alternative" },
     { "name": "Blues" },
