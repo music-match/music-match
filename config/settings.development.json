@@ -3,7 +3,8 @@
     { "email": "ethanwc@hawaii.edu", "password": "changeme", "role": "admin" },
     { "email": "garcia77@hawaii.edu", "password": "changeme", "role": "admin" },
     { "email": "icce@hawaii.edu", "password": "changeme", "role": "admin" },
-    { "email": "ajp808@hawaii.edu", "password": "changeme", "role": "admin" }
+    { "email": "ajp808@hawaii.edu", "password": "changeme", "role": "admin" },
+    { "email": "john@foo.com", "password": "changeme" }
   ],
 
   "defaultData": [
@@ -14,6 +15,11 @@
   ],
 
   "defaultProfiles": [
+    { "name": "Philip Johnson", "address": "UH Manoa", "email" : "john@foo.com",
+      "image" : "https://philipmjohnson.github.io/images/philip2.jpeg",
+      "goals" : "Be the best ICS 314 Professor",
+      "instruments" : "", "skill": 5
+    },
     { "name": "Ethan Chee", "address": "UH Manoa", "email" : "ethanwc@hawaii.edu",
       "image" : "https://ethancheez.github.io/images/ethan.jpg",
       "goals" : "Become a Computer Engineer, Develop Innovative Technologies",
