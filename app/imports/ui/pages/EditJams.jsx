@@ -1,22 +1,65 @@
 import React from 'react';
 import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
 import swal from 'sweetalert';
-import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
+import {
+  AutoForm,
+  ErrorsField,
+  LongTextField,
+  SubmitField,
+  TextField,
+} from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { Stuffs } from '../../api/stuff/Stuff';
+import SimpleSchema from 'simpl-schema';
+import { Jams } from '../../api/profile/Jams';
 
-const bridge = new SimpleSchema2Bridge(Stuffs.schema);
+const formSchema = new SimpleSchema({
+  title: String,
+  link: {
+    type: String,
+    label: 'YouTube Link',
+  },
+  description: String,
+  email: String,
+});
+
+const bridge = new SimpleSchema2Bridge(formSchema);
+
+function getID(link) {
+  let start = link.indexOf('=');
+  let end = link.indexOf('&');
+  if (end === -1) {
+    end = link.length;
+  }
+  if (start < 0) {
+    start = link.lastIndexOf('/');
+    return link.substring(start + 1);
+  }
+  return link.substring(start + 1, end);
+}
+
+function isYouTube(link) {
+  if (link.indexOf('youtube.com/') > 0 || link.indexOf('youtu.be/') > 0) {
+    return true;
+  }
+  return false;
+}
 
 /** Renders the Page for editing a single document. */
 class EditJams extends React.Component {
 
   // On successful submit, insert the data.
   submit(data) {
-    const { name, quantity, condition, _id } = data;
-    Stuffs.collection.update(_id, { $set: { name, quantity, condition } }, (error) => (error ?
+    const { title, link, description, _id } = data;
+    const email = Meteor.user().username;
+    const id = getID(link);
+    if (!isYouTube(link)) {
+      swal('Error', 'Invalid Youtube Link', 'error');
+      return;
+    }
+    Jams.collection.update(_id, { $set: { title, id, description, email } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
   }
@@ -31,15 +74,14 @@ class EditJams extends React.Component {
     return (
       <Grid container centered>
         <Grid.Column>
-          <Header as="h2" textAlign="center">Edit Stuff</Header>
-          <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
+          <Header as="h2" textAlign="center">Edit Jams</Header>
+          <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.jam}>
             <Segment>
-              <TextField name='name'/>
-              <NumField name='quantity' decimal={false}/>
-              <SelectField name='condition'/>
+              <TextField name='title'/>
+              <TextField name='link'/>
+              <LongTextField name='description'/>
               <SubmitField value='Submit'/>
               <ErrorsField/>
-              <HiddenField name='owner' />
             </Segment>
           </AutoForm>
         </Grid.Column>
@@ -50,7 +92,7 @@ class EditJams extends React.Component {
 
 // Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
 EditJams.propTypes = {
-  doc: PropTypes.object,
+  jam: PropTypes.object,
   model: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
@@ -60,13 +102,14 @@ export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe(Stuffs.userPublicationName);
+  const subscription = Meteor.subscribe(Jams.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the document
-  const doc = Stuffs.collection.findOne(documentId);
+  const jam = Jams.collection.findOne(documentId);
+  jam.link = `https://www.youtube.com/watch?v=${jam.id}`;
   return {
-    doc,
+    jam,
     ready,
   };
 })(EditJams);
