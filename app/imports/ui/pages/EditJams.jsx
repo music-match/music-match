@@ -72,20 +72,22 @@ class EditJams extends React.Component {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
     return (
-      <Grid container centered>
-        <Grid.Column>
-          <Header as="h2" textAlign="center">Edit Jams</Header>
-          <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.jam}>
-            <Segment>
-              <TextField name='title'/>
-              <TextField name='link'/>
-              <LongTextField name='description'/>
-              <SubmitField value='Submit'/>
-              <ErrorsField/>
-            </Segment>
-          </AutoForm>
-        </Grid.Column>
-      </Grid>
+      <div className='music-background'>
+        <Grid container centered>
+          <Grid.Column>
+            <Header inverted as="h2" textAlign="center">Edit Jams</Header>
+            <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.jam}>
+              <Segment>
+                <TextField name='title'/>
+                <TextField name='link'/>
+                <LongTextField name='description'/>
+                <SubmitField value='Submit'/>
+                <ErrorsField/>
+              </Segment>
+            </AutoForm>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }
