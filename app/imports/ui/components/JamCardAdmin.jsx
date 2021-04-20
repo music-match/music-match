@@ -8,6 +8,7 @@ import { addFeaturedJam } from '../../startup/both/Methods';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class JamCardAdmin extends React.Component {
+
   submit(title, id, description, email, _id) {
     const data = {
       title: title,
@@ -16,8 +17,6 @@ class JamCardAdmin extends React.Component {
       email: email,
       _id: _id,
     };
-
-    console.log(data);
 
     Meteor.call(addFeaturedJam, data, (error) => {
       if (error) {
@@ -55,7 +54,13 @@ class JamCardAdmin extends React.Component {
               <Button fluid href={`/#/edit-jams/${this.props.jam._id}`} size='mini'>Edit</Button>
             </Grid.Column>
             <Grid.Column width={5}>
-              <Button fluid onClick={this.submit(this.props.jam.title, this.props.jam.id, this.props.jam.description, this.props.jam.email, this.props.jam._id)} color='green' size='mini' content='Feature'/>
+              <Button fluid onClick={() => this.submit(
+                this.props.jam.title,
+                this.props.jam.id,
+                this.props.jam.description,
+                this.props.jam.email,
+                this.props.jam._id,
+              )} color='green' size='mini' content='Feature'/>
             </Grid.Column>
             <Grid.Column floated='right' width={5}>
               <Button fluid color='red' size='mini'>Delete</Button>

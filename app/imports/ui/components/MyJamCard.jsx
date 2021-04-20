@@ -31,9 +31,6 @@ class MyJamCard extends React.Component {
             <Grid.Column floated='left' width={5}>
               <Button fluid href={`/#/edit-jams/${this.props.jam._id}`} size='mini'>Edit</Button>
             </Grid.Column>
-            <Grid.Column floated='center' width={5}>
-              <Button fluid color='green' size='mini'>Feature</Button>
-            </Grid.Column>
             <Grid.Column floated='right' width={5}>
               <Button fluid color='red' size='mini'>Delete</Button>
             </Grid.Column>

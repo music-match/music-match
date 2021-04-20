@@ -4,7 +4,13 @@ import { Header, Container, Button, Message, Grid, Icon, Card, Embed, Feed, Load
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
+import { Link } from 'react-router-dom';
 import { FeaturedJam } from '../../api/profile/FeaturedJam';
+import { Profiles } from '../../api/profile/Profiles';
+
+function getProfile(profiles, email) {
+  return _.find(profiles, function (profile) { return profile.email === email; });
+}
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
@@ -93,7 +99,7 @@ class Landing extends React.Component {
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                  <a href='#'>Recommended By: {this.props.featuredjam.email}</a>
+                  Recommended By: <Link to={`/viewprofile/${getProfile(this.props.profiles, this.props.featuredjam.email)._id}`}>{this.props.featuredjam.email}</Link>
                 </Card.Content>
               </Card>
             </Grid.Column>
@@ -107,6 +113,7 @@ class Landing extends React.Component {
 }
 // Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
 Landing.propTypes = {
+  profiles: PropTypes.array.isRequired,
   featuredjam: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
@@ -115,12 +122,15 @@ Landing.propTypes = {
 export default withTracker(() => {
   // Get access to Stuff documents.
   const sub1 = Meteor.subscribe(FeaturedJam.userPublicationName);
+  const sub2 = Meteor.subscribe(Profiles.userPublicationName);
   // Determine if the subscription is ready
-  const ready = sub1.ready();
+  const ready = sub1.ready() && sub2.ready();
   // Get the document
+  const profiles = Profiles.collection.find().fetch();
   const featuredjams = FeaturedJam.collection.find().fetch();
   const featuredjam = _.first(featuredjams);
   return {
+    profiles,
     featuredjam,
     ready,
   };
