@@ -1,5 +1,5 @@
 .bg-image{
-  background: url('images/music-match-background.jpg') no-repeat center center fixed;
+  background: url('images/music-match-background.jpg') no-repeat center center;
   background-size: cover;
   padding-bottom: 250px;
 }
