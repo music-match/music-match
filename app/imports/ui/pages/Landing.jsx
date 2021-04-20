@@ -1,80 +1,96 @@
 import React from 'react';
-import { Grid, Header, Icon, Embed, Container, Card } from 'semantic-ui-react';
+import { Header, Container, Button, Message, Grid, Icon, Card, Embed, Feed } from 'semantic-ui-react';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
     return (
-      <div className={ 'bg-image' }>
-        <Grid container centered stackable columns={3}>
-          <Grid.Column textAlign='center'>
-            <Header inverted as='h1' icon>
-              <Icon name='users'/>
-              Network with Musicians
-            </Header>
-            <Header inverted as='h3'>
-              Network with other musicians by using the contact information they listed on their profile.
-            </Header>
-          </Grid.Column>
-          <Grid.Column textAlign='center'>
-            <Grid.Row>
-              <Header inverted as='h1' icon>
-                <Icon name='music'/>
-                Create a Profile
-              </Header>
-              <Header inverted as='h3'>
-                Create a profile with your musical interests, goals, skills, and other information. Your profile will be visible to other users on the platform.
-              </Header>
-            </Grid.Row>
-            <Grid.Row>
+      <div>
+        <div className='bg-image'>
+          <Container textAlign='center'>
+            <div className='landing-padding'>
+              <Grid centered>
+                <Message compact color='black'>
+                  <div className='landing-header'>
+                    <Header inverted color='white'>Music Match</Header>
+                  </div>
+                </Message>
+              </Grid>
+            </div>
+            <Button color='blue' size='huge' href='https://music-match.github.io/'>About Us</Button>
+          </Container>
+        </div>
+
+        <div className='landing-background'>
+          <Grid container centered stackable columns={3}>
+            <Grid.Column textAlign='center'>
               <Header inverted as='h1' icon>
                 <Icon name='headphones'/>
-                  Featured Jams
+                Share Your Jams
               </Header>
-              <Header inverted as='h3'>
-                  Post your jams to share with others, and possibly be featured on our weekly home page featured jam!
+            </Grid.Column>
+            <Grid.Column textAlign='center'>
+              <Header inverted as='h1' icon>
+                <Icon name='users'/>
+                Network with Musicians
               </Header>
-            </Grid.Row>
-            <Grid.Row>
-              <div className={ 'featured-jam' }>
-                <Container>
-                  <Card centered fluid>
-                    <Card.Content>
-                      <Card.Header textAlign={'center'}>
-                        Example Jam Title
-                      </Card.Header>
-                      <Embed
-                        source='youtube'
-                        id='n8kGMPCYxSo'
-                        active={true}
-                        hd={true}
-                        iframe={{
-                          allowFullScreen: true,
-                        }}
-                        autoplay={false}
-                      />
-                      <Card.Description>
-                        Example Jam Description
-                      </Card.Description>
-                    </Card.Content>
-                    <Card.Content extra>
-                      <a href='#'>Creator&apos;s Profile</a>
-                    </Card.Content>
-                  </Card>
-                </Container>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-          <Grid.Column textAlign='center'>
-            <Header inverted as='h1' icon>
-              <Icon name='search'/>
-                  Browse by Interests
-            </Header>
-            <Header inverted as='h3'>
-                  You can use our search bar to filter people with certain musical interests, goals, backgrounds, and skill levels to browse various profiles.
-            </Header>
-          </Grid.Column>
-        </Grid>
+            </Grid.Column>
+            <Grid.Column textAlign='center'>
+              <Header inverted as='h1' icon>
+                <Icon name='search'/>
+                Browse by Interests
+              </Header>
+            </Grid.Column>
+          </Grid>
+
+          <Grid centered>
+            <Grid.Column width={5}>
+              <Card fluid>
+                <Card.Content style={{ height: '600px' }}>
+                  <Header className='landing-card-header' textAlign='center'>News & Events</Header>
+                  <Feed>
+                    <Feed.Event>
+                      <Feed.Label>
+                        <img src='images/logo2.png' alt='logo'/>
+                      </Feed.Label>
+                      <Feed.Content>
+                        <Feed.Summary>Music Match Site</Feed.Summary>
+                        <Feed.Meta>This site is currently under construction.</Feed.Meta>
+                      </Feed.Content>
+                    </Feed.Event>
+                  </Feed>
+                </Card.Content>
+              </Card>
+            </Grid.Column>
+            <Grid.Column width={1}>{}</Grid.Column>
+            <Grid.Column width={7}>
+              <Card fluid>
+                <Card.Content>
+                  <Header className='landing-card-header' textAlign='center'>Featured Jam</Header>
+                  <Card.Header textAlign='center'>Example Jam Title</Card.Header>
+                  <Embed
+                    source='youtube'
+                    id='n8kGMPCYxSo'
+                    active={true}
+                    hd={true}
+                    iframe={{
+                      allowFullScreen: true,
+                    }}
+                    autoplay={false}
+                  />
+                  <Card.Description>
+                      Example Jam Description
+                  </Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                  <a href='#'>Recommended By: </a>
+                </Card.Content>
+              </Card>
+            </Grid.Column>
+          </Grid>
+
+        </div>
+
       </div>
     );
   }
