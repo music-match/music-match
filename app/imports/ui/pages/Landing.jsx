@@ -95,6 +95,7 @@ class Landing extends React.Component {
                     autoplay={false}
                   />
                   <Card.Description>
+                    <Header as='h4'>Description:</Header>
                     {this.props.featuredjam.description}
                   </Card.Description>
                 </Card.Content>
