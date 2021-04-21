@@ -4,6 +4,7 @@ import { Profiles } from '../../api/profile/Profiles';
 import { MusicInterests } from '../../api/profile/MusicInterests';
 import { Jams } from '../../api/profile/Jams';
 import { AllInterests } from '../../api/interests/AllInterests';
+import { FeaturedJam } from '../../api/profile/FeaturedJam';
 
 /* eslint-disable no-console */
 
@@ -26,6 +27,11 @@ function addInterest(data) {
 function addJam(data) {
   console.log(`  Adding: ${data.title} (${data.email})`);
   Jams.collection.insert(data);
+}
+
+function addFeaturedJam(data) {
+  console.log(`  Adding: ${data.title} (${data.email})`);
+  FeaturedJam.collection.insert(data);
 }
 
 function addPossibleInterest(data) {
@@ -59,6 +65,13 @@ if (Jams.collection.find().count() === 0) {
   if (Meteor.settings.defaultJams) {
     console.log('Creating default Jams.');
     Meteor.settings.defaultJams.map(data => addJam(data));
+  }
+}
+
+if (FeaturedJam.collection.find().count() === 0) {
+  if (Meteor.settings.defaultFeaturedJam) {
+    console.log('Creating default Featured Jam.');
+    Meteor.settings.defaultFeaturedJam.map(data => addFeaturedJam(data));
   }
 }
 

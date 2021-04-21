@@ -1,9 +1,25 @@
 import React from 'react';
-import { Header, Container, Button, Message, Grid, Icon, Card, Embed, Feed } from 'semantic-ui-react';
+import { _ } from 'meteor/underscore';
+import { Header, Container, Button, Message, Grid, Icon, Card, Embed, Feed, Loader } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
+import { Link } from 'react-router-dom';
+import { FeaturedJam } from '../../api/profile/FeaturedJam';
+import { Profiles } from '../../api/profile/Profiles';
+
+function getProfile(profiles, email) {
+  return _.find(profiles, function (profile) { return profile.email === email; });
+}
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
+  // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
+    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+  }
+
+  renderPage() {
     return (
       <div>
         <div className='bg-image'>
@@ -12,7 +28,7 @@ class Landing extends React.Component {
               <Grid centered>
                 <Message compact color='black'>
                   <div className='landing-header'>
-                    <Header inverted color='white'>Music Match</Header>
+                    <Header inverted>Music Match</Header>
                   </div>
                 </Message>
               </Grid>
@@ -67,10 +83,10 @@ class Landing extends React.Component {
               <Card fluid>
                 <Card.Content>
                   <Header className='landing-card-header' textAlign='center'>Featured Jam</Header>
-                  <Card.Header textAlign='center'>Example Jam Title</Card.Header>
+                  <Card.Header textAlign='center'>{this.props.featuredjam.title}</Card.Header>
                   <Embed
                     source='youtube'
-                    id='n8kGMPCYxSo'
+                    id={this.props.featuredjam.id}
                     active={true}
                     hd={true}
                     iframe={{
@@ -79,11 +95,12 @@ class Landing extends React.Component {
                     autoplay={false}
                   />
                   <Card.Description>
-                      Example Jam Description
+                    <Header as='h4'>Description:</Header>
+                    {this.props.featuredjam.description}
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                  <a href='#'>Recommended By: </a>
+                  Recommended By: <Link to={`/viewprofile/${getProfile(this.props.profiles, this.props.featuredjam.email)._id}`}>{this.props.featuredjam.email}</Link>
                 </Card.Content>
               </Card>
             </Grid.Column>
@@ -95,5 +112,27 @@ class Landing extends React.Component {
     );
   }
 }
+// Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
+Landing.propTypes = {
+  profiles: PropTypes.array.isRequired,
+  featuredjam: PropTypes.object,
+  ready: PropTypes.bool.isRequired,
+};
 
-export default Landing;
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
+export default withTracker(() => {
+  // Get access to Stuff documents.
+  const sub1 = Meteor.subscribe(FeaturedJam.userPublicationName);
+  const sub2 = Meteor.subscribe(Profiles.userPublicationName);
+  // Determine if the subscription is ready
+  const ready = sub1.ready() && sub2.ready();
+  // Get the document
+  const profiles = Profiles.collection.find().fetch();
+  const featuredjams = FeaturedJam.collection.find().fetch();
+  const featuredjam = _.first(featuredjams);
+  return {
+    profiles,
+    featuredjam,
+    ready,
+  };
+})(Landing);

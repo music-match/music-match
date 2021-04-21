@@ -5,8 +5,8 @@ import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Jams } from '../../api/profile/Jams';
-import JamCardAdmin from '../components/JamCardAdmin';
 import { Profiles } from '../../api/profile/Profiles';
+import MyJamCard from '../components/MyJamCard';
 
 function alphaSort(jams) {
   return _.sortBy(jams, function (jam) { return jam.title.toLowerCase(); });
@@ -32,7 +32,7 @@ class MyJams extends React.Component {
         <Container>
           <Header inverted as="h2" textAlign="center">My Jams</Header>
           <Card.Group centered itemsPerRow={3}>
-            {alphaSort(myJams).map((jam, index) => <JamCardAdmin
+            {alphaSort(myJams).map((jam, index) => <MyJamCard
               key={index}
               jam={jam}
               profile={getProfile(this.props.profiles, jam)}
