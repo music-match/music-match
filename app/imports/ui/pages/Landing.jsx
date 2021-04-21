@@ -21,7 +21,7 @@ class Landing extends React.Component {
 
   renderPage() {
     return (
-      <div>
+      <div id='landing-page'>
         <div className='bg-image'>
           <Container textAlign='center'>
             <div className='landing-padding'>
@@ -42,19 +42,19 @@ class Landing extends React.Component {
             <Grid.Column textAlign='center'>
               <Header inverted as='h1' icon>
                 <Icon name='headphones'/>
-                Share Your Jams
+                  Share Your Jams
               </Header>
             </Grid.Column>
             <Grid.Column textAlign='center'>
               <Header inverted as='h1' icon>
                 <Icon name='users'/>
-                Network with Musicians
+                  Network with Musicians
               </Header>
             </Grid.Column>
             <Grid.Column textAlign='center'>
               <Header inverted as='h1' icon>
                 <Icon name='search'/>
-                Browse by Interests
+                  Browse by Interests
               </Header>
             </Grid.Column>
           </Grid>
@@ -100,7 +100,7 @@ class Landing extends React.Component {
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                  Recommended By: <Link to={`/viewprofile/${getProfile(this.props.profiles, this.props.featuredjam.email)._id}`}>{this.props.featuredjam.email}</Link>
+                    Recommended By: <Link to={`/viewprofile/${getProfile(this.props.profiles, this.props.featuredjam.email)._id}`}>{this.props.featuredjam.email}</Link>
                 </Card.Content>
               </Card>
             </Grid.Column>

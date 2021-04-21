@@ -22,7 +22,7 @@ class BrowseUsers extends React.Component {
   // Render the page once subscriptions have been received.
   renderPage() {
     return (
-      <div className='music-background'>
+      <div id='browseusers-page' className='music-background'>
         <Container>
           <Header inverted as="h2" textAlign="center">Browse Users</Header>
           <div className='search-padding'>

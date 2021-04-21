@@ -24,7 +24,7 @@ class NavBar extends React.Component {
         </Menu.Item>
         {this.props.username && this.props.profile ? (
           [<Menu.Item as={NavLink} activeClassName="active" exact to={`/viewprofile/${this.props.profile._id}`} key='viewprofile'>My Profile</Menu.Item>,
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/browse-users" key='list'>Browse Users</Menu.Item>,
+            <Menu.Item id='navbar-browseusers' as={NavLink} activeClassName="active" exact to="/browse-users" key='list'>Browse Users</Menu.Item>,
             <Menu.Item key='jams'>
               <Dropdown text='Jams' icon='dropdown' pointing='top left'>
                 <Dropdown.Menu>
