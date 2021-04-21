@@ -23,7 +23,7 @@
     { "name": "Ethan Chee", "address": "UH Manoa", "email" : "ethanwc@hawaii.edu",
       "image" : "https://ethancheez.github.io/images/ethan.jpg",
       "goals" : "Become a Computer Engineer, Develop Innovative Technologies",
-      "instruments" : "Ukulele", "skill": 0
+      "instruments" : "", "skill": 1
     },
     { "name": "Preston Garcia", "address": "UH Manoa", "email" : "garcia77@hawaii.edu",
       "image" : "https://prestontgarcia.github.io/images/WIN_20210114_12_58_00_Pro.jpg",
