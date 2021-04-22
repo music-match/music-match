@@ -33,10 +33,11 @@ class NavBar extends React.Component {
                   <Dropdown.Item id='navbar-addjams' text='Share Jams' as={NavLink} exact to="/add-jams"/>
                 </Dropdown.Menu>
               </Dropdown>
-            </Menu.Item>]
-        ) :
-          <Menu.Item as={NavLink} activeClassName="active" exact to="/create-profile" key='createprofile'>Create Profile</Menu.Item>
+            </Menu.Item>]) : ''
         }
+        {(this.props.username && !this.props.profile) ? (
+          <Menu.Item as={NavLink} activeClassName="active" exact to="/create-profile" key='createprofile'>Create Profile</Menu.Item>
+        ) : ''}
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
           <Menu.Item key='admin'>
             <Dropdown text='Admin' icon='dropdown' pointing='top left'>
