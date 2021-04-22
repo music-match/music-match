@@ -38,7 +38,7 @@ class NavBar extends React.Component {
         {(this.props.username && !this.props.profile) ? (
           <Menu.Item as={NavLink} activeClassName="active" exact to="/create-profile" key='createprofile'>Create Profile</Menu.Item>
         ) : ''}
-        {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
+        {Roles.userIsInRole(Meteor.userId(), 'admin') && this.props.profile ? (
           <Menu.Item key='admin'>
             <Dropdown text='Admin' icon='dropdown' pointing='top left'>
               <Dropdown.Menu>
