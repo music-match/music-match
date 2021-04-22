@@ -1,4 +1,6 @@
 import { Meteor } from 'meteor/meteor';
+import { _ } from 'meteor/underscore';
+import swal from 'sweetalert';
 import { Profiles } from '../../api/profile/Profiles';
 import { MusicInterests } from '../../api/profile/MusicInterests';
 import { FeaturedJam } from '../../api/profile/FeaturedJam';
@@ -29,6 +31,7 @@ import { FeaturedJam } from '../../api/profile/FeaturedJam';
 
 const updateProfileMethod = 'Profiles.update';
 const addFeaturedJam = 'FeaturedJam.add';
+const addProfile = 'Profile.add';
 
 /**
  * The server-side Profiles.update Meteor Method is called by the client-side Home page after pushing the update button.
@@ -50,4 +53,19 @@ Meteor.methods({
   },
 });
 
-export { updateProfileMethod, addFeaturedJam };
+Meteor.methods({
+  'Profile.add'({ name, address, image, goals, email, phone, instruments, skill, interests }) {
+    const registeredEmails = _.pluck(Profiles.collection.find().fetch(), 'email');
+    if (_.contains(registeredEmails, email)) {
+      swal('Error', 'Profile already exists! Please return to Home Page.', 'error');
+    } else {
+      Profiles.collection.insert({ name, address, image, goals, email, phone, instruments, skill });
+      if (_.size(interests) > 0) {
+        interests.map((interest) => MusicInterests.collection.insert({ email: email, type: interest }));
+      }
+      swal('Profile Created!', 'You may now return to the Home Page.', 'success');
+    }
+  },
+});
+
+export { updateProfileMethod, addFeaturedJam, addProfile };

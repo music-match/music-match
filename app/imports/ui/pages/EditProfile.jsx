@@ -23,7 +23,7 @@ const makeSchema = (allInterests) => new SimpleSchema({
   phone: { type: String, label: 'Phone (Optional)', optional: true },
   instruments: { type: String, label: 'Instruments', optional: true },
   skill: { type: Number, label: 'Music Skill Level', allowedValues: [0, 1, 2, 3, 4, 5] },
-  interests: { type: Array, label: 'Music Interests' },
+  interests: { type: Array, label: 'Music Interests', optional: true },
   'interests.$': { type: String, allowedValues: allInterests },
 });
 
