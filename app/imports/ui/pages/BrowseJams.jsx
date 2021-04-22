@@ -28,7 +28,7 @@ class BrowseJams extends React.Component {
   renderPage() {
     return (
       <div className='music-background'>
-        <Container>
+        <Container id='browse-jams'>
           <Header inverted as="h2" textAlign="center">Browse Jams</Header>
           <Card.Group centered itemsPerRow={3}>
             {alphaSort(this.props.jams).map((jam, index) => <JamCard

@@ -74,7 +74,7 @@ class AddStuff extends React.Component {
     let fRef = null;
     return (
       <div className='music-background'>
-        <Grid container centered>
+        <Grid id='add-jams' container centered>
           <Grid.Column>
             <Header inverted as="h2" textAlign="center">Create Jam</Header>
             <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >

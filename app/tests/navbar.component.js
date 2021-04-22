@@ -36,6 +36,21 @@ class NavBar {
     await testController.click('#login-dropdown');
     await testController.click('#login-dropdown-sign-up');
   }
+
+  async gotoBrowseJamsPage(testController) {
+    await testController.click('#jams-dropdown');
+    await testController.click('#jams-dropdown-browse-jams');
+  }
+
+  async gotoMyJamsPage(testController) {
+    await testController.click('#jams-dropdown');
+    await testController.click('#jams-dropdown-my-jams');
+  }
+
+  async gotoAddJamsPage(testController) {
+    await testController.click('#jams-dropdown');
+    await testController.click('#jams-dropdown-add-jams');
+  }
 }
 
 export const navBar = new NavBar();
