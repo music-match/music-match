@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import swal from 'sweetalert';
 import { addFeaturedJam } from '../../startup/both/Methods';
+import { Jams } from '../../api/profile/Jams';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class JamCardAdmin extends React.Component {
@@ -25,6 +26,10 @@ class JamCardAdmin extends React.Component {
         swal('Success', 'Featured Jam Updated', 'success');
       }
     });
+  }
+  
+  removeJam(ID) {
+    Jams.collection.remove({ _id: ID });
   }
 
   render() {
@@ -63,7 +68,7 @@ class JamCardAdmin extends React.Component {
               )} color='green' size='mini' content='Feature'/>
             </Grid.Column>
             <Grid.Column floated='right' width={5}>
-              <Button fluid color='red' size='mini'>Delete</Button>
+              <Button onClick={() => this.removeJam(this.props.jam._id)} fluid color='red' size='mini'>Delete</Button>
             </Grid.Column>
           </Grid>
         </Card.Content>
