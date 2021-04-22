@@ -99,9 +99,9 @@ class Landing extends React.Component {
                     {this.props.featuredjam.description}
                   </Card.Description>
                 </Card.Content>
-                <Card.Content extra>
-                    Recommended By: <Link to={`/viewprofile/${getProfile(this.props.profiles, this.props.featuredjam.email)._id}`}>{this.props.featuredjam.email}</Link>
-                </Card.Content>
+                {(getProfile(this.props.profiles, this.props.featuredjam.email) ?
+                  (<Card.Content extra>Recommended By: <Link to={`/viewprofile/${getProfile(this.props.profiles, this.props.featuredjam.email)._id}`}>{this.props.featuredjam.email}</Link></Card.Content>) : ''
+                )}
               </Card>
             </Grid.Column>
           </Grid>
