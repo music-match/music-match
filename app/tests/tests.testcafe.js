@@ -4,11 +4,14 @@ import { signoutPage } from './signout.page';
 import { navBar } from './navbar.component';
 import { browseUsersPage } from './browseusers.page';
 import { myProfilePage } from './myprofile.page';
+import { browseUsersAdminPage } from './browseusersadmin.page';
+import { browseJamsAdminPage } from './browsejamsadmin.page';
 
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'john@foo.com', password: 'changeme' };
+const credentials2 = { adminUsername: 'ajp808@hawaii.edu', adminPassword: 'changeme' };
 
 fixture('meteor-application-template-react localhost test with default db')
   .page('http://localhost:3000');
@@ -39,4 +42,13 @@ test('Test that MyProfile page shows up', async (testController) => {
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoMyProfilePage(testController);
   await myProfilePage.isDisplayed(testController);
+});
+
+test('Test that Admin Pages show up', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, credentials2.adminUsername, credentials2.adminPassword);
+  await navBar.gotoBrowseUsersAdminPage(testController);
+  await browseUsersAdminPage.isDisplayed(testController);
+  await navBar.gotoBrowseJamsAdminPage(testController);
+  await browseJamsAdminPage.isDisplayed(testController);
 });
