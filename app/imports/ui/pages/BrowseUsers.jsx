@@ -1,20 +1,42 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
-import { Container, Header, Loader, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Input } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Profiles } from '../../api/profile/Profiles';
 import Profile from '../components/Profile';
-import SearchBar from '../components/SearchBar';
 import { MusicInterests } from '../../api/profile/MusicInterests';
 
 function alphaSort(profiles) {
   return _.sortBy(profiles, function (profile) { return profile.name.toLowerCase(); });
 }
 
+function filterProfiles(profiles, search) {
+  if (search === '') {
+    return profiles;
+  }
+  const filteredInterests = _.filter(MusicInterests.collection.find().fetch(), function (interest) { return interest.type.toLowerCase().indexOf(search) >= 0; });
+  const filteredProfiles = _.pluck(filteredInterests, 'email');
+  return _.filter(profiles, function (profile) {
+    return _.contains(filteredProfiles, profile.email);
+  });
+}
+
 /** A simple static component to render some text for the landing page. */
 class BrowseUsers extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      searchField: '',
+    };
+  }
+
+  handleMessage(e) {
+    this.setState({ searchField: e.target.value });
+  }
+
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
@@ -22,15 +44,16 @@ class BrowseUsers extends React.Component {
 
   // Render the page once subscriptions have been received.
   renderPage() {
+    const { searchField } = this.state;
     return (
       <div className='music-background'>
         <Container>
           <Header inverted as="h2" textAlign="center">Browse Users</Header>
           <div className='search-padding'>
-            <SearchBar/>
+            <Input fluid onChange={this.handleMessage.bind(this)} placeholder="Search By Interests..."/>
           </div>
           <Card.Group centered>
-            {alphaSort(this.props.profiles).map((profile, index) => <Profile
+            {alphaSort(filterProfiles(this.props.profiles, searchField.toLowerCase())).map((profile, index) => <Profile
               key={index}
               profile={profile}
               music_interests={this.props.music_interests.filter(music_interests => (music_interests.email === profile.email))}/>)}

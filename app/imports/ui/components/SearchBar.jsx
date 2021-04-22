@@ -6,7 +6,6 @@ class SearchBar extends React.Component {
   render() {
     return (
       <Input fluid
-        icon={{ name: 'search', circular: true, link: true }}
         placeholder='Search User...'
       />
     );
