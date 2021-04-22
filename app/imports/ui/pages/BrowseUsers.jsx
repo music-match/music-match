@@ -1,11 +1,12 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
-import { Container, Header, Loader, Card, Input } from 'semantic-ui-react';
+import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Profiles } from '../../api/profile/Profiles';
 import Profile from '../components/Profile';
+import SearchBar from '../components/SearchBar';
 import { MusicInterests } from '../../api/profile/MusicInterests';
 
 function alphaSort(profiles) {
@@ -26,10 +27,7 @@ class BrowseUsers extends React.Component {
         <Container>
           <Header inverted as="h2" textAlign="center">Browse Users</Header>
           <div className='search-padding'>
-            <Input fluid
-              icon={{ name: 'search', circular: true, link: true }}
-              placeholder='Search User...'
-            />
+            <SearchBar/>
           </div>
           <Card.Group centered>
             {alphaSort(this.props.profiles).map((profile, index) => <Profile
