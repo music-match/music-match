@@ -3,7 +3,8 @@
     { "email": "ethanwc@hawaii.edu", "password": "changeme", "role": "admin" },
     { "email": "garcia77@hawaii.edu", "password": "changeme", "role": "admin" },
     { "email": "icce@hawaii.edu", "password": "changeme", "role": "admin" },
-    { "email": "ajp808@hawaii.edu", "password": "changeme", "role": "admin" }
+    { "email": "ajp808@hawaii.edu", "password": "changeme", "role": "admin" },
+    { "email": "john@foo.com", "password": "changeme" }
   ],
 
   "defaultData": [
