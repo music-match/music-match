@@ -17,7 +17,7 @@ class ViewProfile extends React.Component {
 
   renderPage() {
     return (
-      <div className='music-background'>
+      <div id='view-profile-page' className='music-background'>
         <Grid container columns={2}>
           <Grid.Column width={6}>
             <Image size='medium' src={this.props.profile.image}/>

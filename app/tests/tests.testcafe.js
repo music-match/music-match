@@ -3,6 +3,7 @@ import { signinPage } from './signin.page';
 import { signoutPage } from './signout.page';
 import { navBar } from './navbar.component';
 import { browseUsersPage } from './browseusers.page';
+import { myProfilePage } from './myprofile.page';
 
 /* global fixture:false, test:false */
 
@@ -30,4 +31,11 @@ test('Test the BrowseUsers page', async (testController) => {
   await navBar.gotoBrowseUsersPage(testController);
   await browseUsersPage.isDisplayed(testController);
   await browseUsersPage.hasUsers(testController);
+});
+
+test('Test that MyProfile page shows up', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, credentials.username, credentials.password);
+  await navBar.gotoMyProfilePage(testController);
+  await myProfilePage.isDisplayed(testController);
 });
