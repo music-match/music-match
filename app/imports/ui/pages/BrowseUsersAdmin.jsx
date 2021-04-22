@@ -23,7 +23,7 @@ class BrowseUsersAdmin extends React.Component {
   renderPage() {
     return (
       <div className='music-background'>
-        <Container>
+        <Container id='browseusersadmin-page'>
           <Header inverted as="h2" textAlign="center">Browse Users (Admin)</Header>
           <div className='search-padding'>
             <Input fluid

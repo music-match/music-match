@@ -64,6 +64,15 @@ class NavBar {
     await testController.click('#navbar-home');
   }
 
+  async gotoBrowseUsersAdminPage(testController) {
+    await testController.click('#admin-dropdown');
+    await testController.click('#navbar-browseusersadmin');
+  }
+
+  async gotoBrowseJamsAdminPage(testController) {
+    await testController.click('#admin-dropdown');
+    await testController.click('#navbar-browsejamsadmin');
+  }
 }
 
 export const navBar = new NavBar();
