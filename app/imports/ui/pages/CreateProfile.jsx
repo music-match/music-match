@@ -3,13 +3,16 @@ import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { Form, Grid, Segment, Header } from 'semantic-ui-react';
-import { AutoForm, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
+import { AutoForm, ErrorsField, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Profiles } from '../../api/profile/Profiles';
 
 const formSchema = new SimpleSchema({
   name: String,
-  address: String,
+  address: {
+    type: String,
+    optional: true,
+  },
   image: String,
   goals: String,
   instruments: {
@@ -59,6 +62,7 @@ class CreateProfile extends React.Component {
                 <TextField name='instruments' placeholder='List the instruments separated by comma. Leave blank if none.'/>
                 <LongTextField name='goals'/>
                 <SubmitField value='Submit'/>
+                <ErrorsField/>
               </Segment>
             </AutoForm>
           </Grid.Column>

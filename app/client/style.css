@@ -44,3 +44,9 @@
   font-size: 30px;
   padding-bottom: 15px;
 }
+
+.add-jam-error {
+  padding-top: 50px;
+  padding-bottom: 100px;
+  color: white;
+}

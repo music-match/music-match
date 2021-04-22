@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
-import { Container, Header, Loader, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Button, Image } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Jams } from '../../api/profile/Jams';
@@ -32,14 +32,27 @@ class MyJams extends React.Component {
         <Container>
           <Header inverted as="h2" textAlign="center">My Jams</Header>
           <Card.Group centered itemsPerRow={3}>
-            {alphaSort(myJams).map((jam, index) => <MyJamCard
-              key={index}
-              jam={jam}
-              profile={getProfile(this.props.profiles, jam)}
-            />)}
+            {((_.size(myJams) > 0) ?
+              (alphaSort(myJams).map((jam, index) => <MyJamCard
+                key={index}
+                jam={jam}
+                profile={getProfile(this.props.profiles, jam)}
+              />)) :
+              (this.addJamError())
+            )}
           </Card.Group>
         </Container>
       </div>
+    );
+  }
+
+  addJamError() {
+    return (
+      <Container textAlign='center' className='add-jam-error'>
+        <Header inverted as='h4'>You currently do not have any Jams available. Please click the button below to share a jam!</Header>
+        <Button color='orange' size='huge' href='#/add-jams'>Share a Jam!</Button>
+        <Image style={{ paddingTop: '100px' }} centered size='medium' src='https://c.tenor.com/HJvqN2i4Zs4AAAAj/milk-and-mocha-cute.gif'/>
+      </Container>
     );
   }
 }

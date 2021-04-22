@@ -76,7 +76,7 @@ class AddStuff extends React.Component {
       <div className='music-background'>
         <Grid container centered>
           <Grid.Column>
-            <Header inverted as="h2" textAlign="center">Create Jam</Header>
+            <Header inverted as="h2" textAlign="center">Share a Jam!</Header>
             <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
               <Segment>
                 <TextField name='title' placeholder={'Title of the Jam'}/>
