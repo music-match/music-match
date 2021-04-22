@@ -1,7 +1,13 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
-import { Container, Header, Loader, Card } from 'semantic-ui-react';
+import {
+  Container,
+  Header,
+  Loader,
+  Card,
+  Input,
+} from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Jams } from '../../api/profile/Jams';
@@ -16,8 +22,27 @@ function getProfile(profiles, jam) {
   return _.find(profiles, function (profile) { return jam.email === profile.email; });
 }
 
+function filterJams(jams, search) {
+  if (search === '') {
+    return jams;
+  }
+  const filteredJams = _.filter(jams, function (jam) { return jam.title.toLowerCase().indexOf(search) >= 0 || jam.description.toLowerCase().indexOf(search) >= 0; });
+  return filteredJams;
+}
+
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class BrowseJams extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      searchField: '',
+    };
+  }
+
+  handleSearch(input) {
+    this.setState({ searchField: input.target.value });
+  }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
@@ -26,12 +51,18 @@ class BrowseJams extends React.Component {
 
   // Render the page once subscriptions have been received.
   renderPage() {
+    const { searchField } = this.state;
     return (
       <div className='music-background'>
         <Container>
           <Header inverted as="h2" textAlign="center">Browse Jams</Header>
+          <div className='search-padding'>
+            <Input fluid onChange={this.handleSearch.bind(this)}
+              placeholder='Search Jams...'
+            />
+          </div>
           <Card.Group centered itemsPerRow={3}>
-            {alphaSort(this.props.jams).map((jam, index) => <JamCard
+            {alphaSort(filterJams(this.props.jams, searchField.toLowerCase())).map((jam, index) => <JamCard
               key={index}
               jam={jam}
               profile={getProfile(this.props.profiles, jam)}/>)}
