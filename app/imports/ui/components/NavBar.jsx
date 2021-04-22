@@ -19,18 +19,18 @@ class NavBar extends React.Component {
         <Menu.Item as={NavLink} activeClassName="" exact to="/">
           <Image size='mini' src='/images/logo2.png'/>
         </Menu.Item>
-        <Menu.Item as={NavLink} activeClassName="" exact to="/">
+        <Menu.Item id='navbar-home' as={NavLink} activeClassName="" exact to="/">
           <Header inverted as='h1'>Music Match</Header>
         </Menu.Item>
         {this.props.username && this.props.profile ? (
           [<Menu.Item id="navbar-my-profile" as={NavLink} activeClassName="active" exact to={`/viewprofile/${this.props.profile._id}`} key='viewprofile'>My Profile</Menu.Item>,
             <Menu.Item id='navbar-browseusers' as={NavLink} activeClassName="active" exact to="/browse-users" key='list'>Browse Users</Menu.Item>,
             <Menu.Item key='jams'>
-              <Dropdown text='Jams' icon='dropdown' pointing='top left'>
+              <Dropdown id='navbar-jams-dropdown' text='Jams' icon='dropdown' pointing='top left'>
                 <Dropdown.Menu>
-                  <Dropdown.Item text='Browse Jams' as={NavLink} exact to="/browse-jams"/>
-                  <Dropdown.Item text='My Jams' as={NavLink} exact to="/my-jams"/>
-                  <Dropdown.Item text='Add Jams' as={NavLink} exact to="/add-jams"/>
+                  <Dropdown.Item id='navbar-browsejams' text='Browse Jams' as={NavLink} exact to="/browse-jams"/>
+                  <Dropdown.Item id='navbar-myjams' text='My Jams' as={NavLink} exact to="/my-jams"/>
+                  <Dropdown.Item id='navbar-addjams' text='Add Jams' as={NavLink} exact to="/add-jams"/>
                 </Dropdown.Menu>
               </Dropdown>
             </Menu.Item>]

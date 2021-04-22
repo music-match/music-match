@@ -37,13 +37,33 @@ class NavBar {
     await testController.click('#login-dropdown-sign-up');
   }
 
-  async gotoBrowseUsersPage(testController) {
-    await testController.click('#navbar-browseusers');
-  }
-  
   async gotoMyProfilePage(testController) {
     await testController.click('#navbar-my-profile');
   }
+
+  async gotoBrowseUsersPage(testController) {
+    await testController.click('#navbar-browseusers');
+  }
+
+  async gotoBrowseJamsPage(testController) {
+    await testController.click('#navbar-jams-dropdown');
+    await testController.click('#navbar-browsejams');
+  }
+
+  async gotoMyJamsPage(testController) {
+    await testController.click('#navbar-jams-dropdown');
+    await testController.click('#navbar-myjams');
+  }
+
+  async gotoAddJamsPage(testController) {
+    await testController.click('#navbar-jams-dropdown');
+    await testController.click('#navbar-addjams');
+  }
+
+  async gotoLandingPage(testController) {
+    await testController.click('#navbar-home');
+  }
+
 }
 
 export const navBar = new NavBar();
