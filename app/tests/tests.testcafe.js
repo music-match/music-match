@@ -14,6 +14,7 @@ fixture('meteor-application-template-react localhost test with default db')
 
 test('Test that landing page shows up', async (testController) => {
   await landingPage.isDisplayed(testController);
+  await landingPage.hasCards(testController);
 });
 
 test('Test that signin and signout work', async (testController) => {

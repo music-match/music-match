@@ -11,6 +11,11 @@ class LandingPage {
     // This is first test to be run. Wait 10 seconds to avoid timeouts with GitHub Actions.
     await testController.wait(30000).expect(this.pageSelector.exists).ok();
   }
+
+  async hasCards(testController) {
+    const cardCount = Selector('.ui .card').count;
+    await testController.expect(cardCount).eql(2);
+  }
 }
 
 export const landingPage = new LandingPage();
