@@ -1,10 +1,11 @@
 import React from 'react';
 import { _ } from 'meteor/underscore';
-import { Card, Image, Header, Grid, Button } from 'semantic-ui-react';
+import { Card, Image, Header, Grid, Button, Popup } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
+import swal from 'sweetalert';
 import MusicLabel from './MusicLabel';
 import { Profiles } from '../../api/profile/Profiles';
 import { Jams } from '../../api/profile/Jams';
@@ -15,12 +16,23 @@ function alphaSort(interests) {
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Profile extends React.Component {
+  state = { isOpen: false }
+
+  handleOpen = () => {
+    this.setState({ isOpen: true });
+  }
+
+  handleClose = () => {
+    this.setState({ isOpen: false });
+  }
 
   deleteProfile(ID) {
     const emailMatch = this.props.profile.email;
     const removedJamsIds = _.pluck(Jams.collection.find({ email: emailMatch }).fetch(), '_id');
     Profiles.collection.remove({ _id: ID });
     _.map(removedJamsIds, function (id) { Jams.collection.remove({ _id: id }); });
+    this.setState({ isOpen: false });
+    swal('Success', 'Profile and their Jams Deleted.', 'success');
   }
 
   render() {
@@ -44,7 +56,10 @@ class Profile extends React.Component {
               <Button fluid href={`/#/editprofile/${this.props.profile._id}`} size='mini'>Edit</Button>
             </Grid.Column>
             <Grid.Column floated='right' width={6}>
-              <Button onClick={() => this.deleteProfile(this.props.profile._id)} fluid color='red' size='mini'>Delete</Button>
+              <Popup trigger={<Button fluid color='red' size='mini'>Delete</Button>} flowing on='click' hideOnScroll open={this.state.isOpen} onOpen={this.handleOpen} onClose={this.handleClose} basic position='top center'>
+                <Header as='h4'>You are about to delete this profile. Are you sure?</Header>
+                <Button onClick={() => this.deleteProfile(this.props.profile._id)} fluid color='red' size='mini'>Yes, Delete this Profile</Button>
+              </Popup>
             </Grid.Column>
           </Grid>
         </Card.Content>
