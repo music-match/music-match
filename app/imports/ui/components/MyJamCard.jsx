@@ -1,10 +1,28 @@
 import React from 'react';
-import { Card, Embed, Header, Grid, Button } from 'semantic-ui-react';
+import { Card, Embed, Header, Grid, Button, Popup } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
+import swal from 'sweetalert';
+import { Jams } from '../../api/profile/Jams';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class MyJamCard extends React.Component {
+  state = { isOpen: false }
+
+  handleOpen = () => {
+    this.setState({ isOpen: true });
+  }
+
+  handleClose = () => {
+    this.setState({ isOpen: false });
+  }
+
+  removeJam(ID) {
+    Jams.collection.remove({ _id: ID });
+    this.setState({ isOpen: false });
+    swal('Success', 'Jam Deleted.', 'success');
+  }
+
   render() {
     return (
       <Card centered>
@@ -32,7 +50,10 @@ class MyJamCard extends React.Component {
               <Button fluid href={`/#/edit-jams/${this.props.jam._id}`} size='mini'>Edit</Button>
             </Grid.Column>
             <Grid.Column floated='right' width={5}>
-              <Button fluid color='red' size='mini'>Delete</Button>
+              <Popup trigger={<Button fluid color='red' size='mini'>Delete</Button>} flowing on='click' hideOnScroll open={this.state.isOpen} onOpen={this.handleOpen} onClose={this.handleClose} basic position='top center'>
+                <Header as='h4'>You are about to delete this jam. Are you sure?</Header>
+                <Button onClick={() => this.removeJam(this.props.jam._id)} fluid color='red' size='mini'>Yes, Delete this Jam</Button>
+              </Popup>
             </Grid.Column>
           </Grid>
         </Card.Content>
