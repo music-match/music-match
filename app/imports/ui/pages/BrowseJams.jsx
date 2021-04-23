@@ -1,13 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
-import {
-  Container,
-  Header,
-  Loader,
-  Card,
-  Input,
-} from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Input, Image } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Jams } from '../../api/profile/Jams';
@@ -58,16 +52,27 @@ class BrowseJams extends React.Component {
           <Header inverted as="h2" textAlign="center">Browse Jams</Header>
           <div className='search-padding'>
             <Input fluid onChange={this.handleSearch.bind(this)}
-              placeholder='Search Jams...'
+              placeholder='Search Jams by Name...'
             />
           </div>
           <Card.Group centered itemsPerRow={3}>
-            {alphaSort(filterJams(this.props.jams, searchField.toLowerCase())).map((jam, index) => <JamCard
-              key={index}
-              jam={jam}
-              profile={getProfile(this.props.profiles, jam)}/>)}
+            {(_.size(filterJams(this.props.jams, searchField.toLowerCase())) > 0) ?
+              (alphaSort(filterJams(this.props.jams, searchField.toLowerCase())).map((jam, index) => <JamCard
+                key={index}
+                jam={jam}
+                profile={getProfile(this.props.profiles, jam)}/>)) : this.displayNoJams()
+            }
           </Card.Group>
         </Container>
+      </div>
+    );
+  }
+
+  displayNoJams() {
+    return (
+      <div style={{ paddingTop: '200px', paddingBottom: '200px' }}>
+        <Header inverted as='h2'>No Jams Found from Filter</Header>
+        <Image centered src='https://c.tenor.com/HJvqN2i4Zs4AAAAj/milk-and-mocha-cute.gif'/>
       </div>
     );
   }
