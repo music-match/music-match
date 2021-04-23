@@ -71,7 +71,7 @@ class BrowseJams extends React.Component {
   displayNoJams() {
     return (
       <div style={{ paddingTop: '200px', paddingBottom: '200px' }}>
-        <Header inverted as='h2'>No Jams Found from Filter</Header>
+        <Header inverted as='h2'>No Jams Found From Filter</Header>
         <Image centered src='https://c.tenor.com/HJvqN2i4Zs4AAAAj/milk-and-mocha-cute.gif'/>
       </div>
     );
