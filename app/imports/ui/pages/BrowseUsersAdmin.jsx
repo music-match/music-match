@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
-import { Container, Header, Loader, Card, Input } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Input, Image } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Profiles } from '../../api/profile/Profiles';
@@ -53,12 +53,24 @@ class BrowseUsersAdmin extends React.Component {
             <Input fluid onChange={this.handleMessage.bind(this)} placeholder="Search By Interests..."/>
           </div>
           <Card.Group centered>
-            {alphaSort(filterProfiles(this.props.profiles, searchField.toLowerCase())).map((profile, index) => <ProfileAdmin
-              key={index}
-              profile={profile}
-              music_interests={this.props.music_interests.filter(music_interests => (music_interests.email === profile.email))}/>)}
+            {(_.size(filterProfiles(this.props.profiles, searchField.toLowerCase())) > 0) ?
+              (alphaSort(filterProfiles(this.props.profiles, searchField.toLowerCase())).map((profile, index) => <ProfileAdmin
+                key={index}
+                profile={profile}
+                music_interests={this.props.music_interests.filter(music_interests => (music_interests.email === profile.email))}/>)) : this.displayNoUsers()
+            }
           </Card.Group>
         </Container>
+      </div>
+
+    );
+  }
+
+  displayNoUsers() {
+    return (
+      <div style={{ paddingTop: '200px', paddingBottom: '200px' }}>
+        <Header inverted as='h2'>No Users Found from Filter</Header>
+        <Image centered src='https://c.tenor.com/HJvqN2i4Zs4AAAAj/milk-and-mocha-cute.gif'/>
       </div>
     );
   }
