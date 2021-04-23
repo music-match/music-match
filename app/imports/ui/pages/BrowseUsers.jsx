@@ -55,7 +55,7 @@ class BrowseUsers extends React.Component {
         <Container>
           <Header inverted as="h2" textAlign="center">Browse Users</Header>
           <div className='search-padding'>
-            <Input fluid onChange={this.handleMessage.bind(this)} placeholder="Search By Interests..."/>
+            <Input fluid onChange={this.handleMessage.bind(this)} placeholder="Search By Name or Music Interest..."/>
           </div>
           <Card.Group centered>
             {(_.size(filterProfiles(this.props.profiles, searchField.toLowerCase())) > 0) ?
