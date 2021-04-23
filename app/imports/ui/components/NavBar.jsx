@@ -26,11 +26,11 @@ class NavBar extends React.Component {
           [<Menu.Item id="navbar-my-profile" as={NavLink} activeClassName="active" exact to={`/viewprofile/${this.props.profile._id}`} key='viewprofile'>My Profile</Menu.Item>,
             <Menu.Item id='navbar-browseusers' as={NavLink} activeClassName="active" exact to="/browse-users" key='list'>Browse Users</Menu.Item>,
             <Menu.Item key='jams'>
-              <Dropdown id='navbar-jams-dropdown' text='Jams' icon='dropdown' pointing='top left'>
+              <Dropdown id='jams-dropdown' text='Jams' icon='dropdown' pointing='top left'>
                 <Dropdown.Menu>
-                  <Dropdown.Item id='navbar-browsejams' text='Browse Jams' as={NavLink} exact to="/browse-jams"/>
-                  <Dropdown.Item id='navbar-myjams' text='My Jams' as={NavLink} exact to="/my-jams"/>
-                  <Dropdown.Item id='navbar-addjams' text='Share Jams' as={NavLink} exact to="/add-jams"/>
+                  <Dropdown.Item id='jams-dropdown-browse-jams' text='Browse Jams' as={NavLink} exact to="/browse-jams"/>
+                  <Dropdown.Item id='jams-dropdown-my-jams' text='My Jams' as={NavLink} exact to="/my-jams"/>
+                  <Dropdown.Item id='jams-dropdown-add-jams' text='Add Jams' as={NavLink} exact to="/add-jams"/>
                 </Dropdown.Menu>
               </Dropdown>
             </Menu.Item>]) : ''

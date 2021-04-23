@@ -45,21 +45,6 @@ class NavBar {
     await testController.click('#navbar-browseusers');
   }
 
-  async gotoBrowseJamsPage(testController) {
-    await testController.click('#navbar-jams-dropdown');
-    await testController.click('#navbar-browsejams');
-  }
-
-  async gotoMyJamsPage(testController) {
-    await testController.click('#navbar-jams-dropdown');
-    await testController.click('#navbar-myjams');
-  }
-
-  async gotoAddJamsPage(testController) {
-    await testController.click('#navbar-jams-dropdown');
-    await testController.click('#navbar-addjams');
-  }
-
   async gotoLandingPage(testController) {
     await testController.click('#navbar-home');
   }
@@ -72,6 +57,21 @@ class NavBar {
   async gotoBrowseJamsAdminPage(testController) {
     await testController.click('#admin-dropdown');
     await testController.click('#navbar-browsejamsadmin');
+  }
+
+  async gotoBrowseJamsPage(testController) {
+    await testController.click('#jams-dropdown');
+    await testController.click('#jams-dropdown-browse-jams');
+  }
+
+  async gotoMyJamsPage(testController) {
+    await testController.click('#jams-dropdown');
+    await testController.click('#jams-dropdown-my-jams');
+  }
+
+  async gotoAddJamsPage(testController) {
+    await testController.click('#jams-dropdown');
+    await testController.click('#jams-dropdown-add-jams');
   }
 }
 

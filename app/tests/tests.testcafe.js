@@ -6,6 +6,9 @@ import { browseUsersPage } from './browseusers.page';
 import { myProfilePage } from './myprofile.page';
 import { browseUsersAdminPage } from './browseusersadmin.page';
 import { browseJamsAdminPage } from './browsejamsadmin.page';
+import { browseJamsPage } from './browsejams.page';
+import { myJamsPage } from './myjams.page';
+import { addJamsPage } from './addjams.page';
 
 /* global fixture:false, test:false */
 
@@ -51,4 +54,25 @@ test('Test that Admin Pages show up', async (testController) => {
   await browseUsersAdminPage.isDisplayed(testController);
   await navBar.gotoBrowseJamsAdminPage(testController);
   await browseJamsAdminPage.isDisplayed(testController);
+});
+
+test('Test that browse jams works', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, credentials.username, credentials.password);
+  await navBar.gotoBrowseJamsPage(testController);
+  await browseJamsPage.isDisplayed(testController);
+});
+
+test('Test that my jams works', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, credentials.username, credentials.password);
+  await navBar.gotoMyJamsPage(testController);
+  await myJamsPage.isDisplayed(testController);
+});
+
+test('Test that add jams works', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, credentials.username, credentials.password);
+  await navBar.gotoAddJamsPage(testController);
+  await addJamsPage.isDisplayed(testController);
 });

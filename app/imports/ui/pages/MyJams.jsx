@@ -29,7 +29,7 @@ class MyJams extends React.Component {
     const myJams = _.filter(this.props.jams, function (jam) { return jam.email === Meteor.user().username; });
     return (
       <div className='music-background'>
-        <Container>
+        <Container id='my-jams'>
           <Header inverted as="h2" textAlign="center">My Jams</Header>
           <Card.Group centered itemsPerRow={3}>
             {((_.size(myJams) > 0) ?

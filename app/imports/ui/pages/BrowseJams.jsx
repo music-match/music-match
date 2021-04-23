@@ -54,7 +54,7 @@ class BrowseJams extends React.Component {
     const { searchField } = this.state;
     return (
       <div className='music-background'>
-        <Container>
+        <Container id='browse-jams'>
           <Header inverted as="h2" textAlign="center">Browse Jams</Header>
           <div className='search-padding'>
             <Input fluid onChange={this.handleSearch.bind(this)}
