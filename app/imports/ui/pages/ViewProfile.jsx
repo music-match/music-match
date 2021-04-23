@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Card, Image, Header, Rating, Loader, Button } from 'semantic-ui-react';
+import { Grid, Card, Image, Header, Rating, Loader, Button, Popup } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { _ } from 'meteor/underscore';
@@ -11,6 +11,15 @@ import { Jams } from '../../api/profile/Jams';
 
 /** A simple static component to render some text for the landing page. */
 class ViewProfile extends React.Component {
+  state = { isOpen: false }
+
+  handleOpen = () => {
+    this.setState({ isOpen: true });
+  }
+
+  handleClose = () => {
+    this.setState({ isOpen: false });
+  }
 
   deleteProfile(ID) {
     const emailMatch = this.props.profile.email;
@@ -51,7 +60,9 @@ class ViewProfile extends React.Component {
               {this.props.profile.email === Meteor.user().username ?
                 <Card.Content extra>
                   <Button href={`#/editprofile/${this.props.profile._id}`} size='small'>Edit Profile</Button>
-                  <Button href={'/'} onClick={() => this.deleteProfile(this.props.profile._id)} color='red' size='small'>Delete Profile</Button>
+                  <Popup trigger={<Button color='red'>Delete</Button>} flowing on='click' hideOnScroll open={this.state.isOpen} onOpen={this.handleOpen} onClose={this.handleClose} basic position='top center'>
+                    <Header as='h4'>You are about to delete your profile. Are you sure?</Header>
+                    <Button href={'/'} onClick={() => this.deleteProfile(this.props.profile._id)} fluid color='red' size='mini'>Yes, Delete my profile</Button> </Popup>
                 </Card.Content> : ''
               }
             </Card>
