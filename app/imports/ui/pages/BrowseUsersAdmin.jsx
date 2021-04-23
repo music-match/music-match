@@ -16,8 +16,12 @@ function filterProfiles(profiles, search) {
   if (search === '') {
     return profiles;
   }
-  const filteredInterests = _.filter(MusicInterests.collection.find().fetch(), function (interest) { return interest.type.toLowerCase().indexOf(search) >= 0; });
-  const filteredNames = _.filter(Profiles.collection.find().fetch(), function (profile) { return profile.name.toLowerCase().indexOf(search) >= 0; });
+  const filteredInterests = _.filter(MusicInterests.collection.find().fetch(), function (interest) {
+    return interest.type.toLowerCase().indexOf(search) >= 0;
+  });
+  const filteredNames = _.filter(Profiles.collection.find().fetch(), function (profile) {
+    return profile.name.toLowerCase().indexOf(search) >= 0;
+  });
   const filteredProfiles = _.pluck(_.union(filteredInterests, filteredNames), 'email');
   return _.filter(profiles, function (profile) {
     return _.contains(filteredProfiles, profile.email);
