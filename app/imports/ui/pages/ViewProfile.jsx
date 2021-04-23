@@ -7,9 +7,18 @@ import PropTypes from 'prop-types';
 import { Profiles } from '../../api/profile/Profiles';
 import { MusicInterests } from '../../api/profile/MusicInterests';
 import MusicLabel from '../components/MusicLabel';
+import { Jams } from '../../api/profile/Jams';
 
 /** A simple static component to render some text for the landing page. */
 class ViewProfile extends React.Component {
+
+  deleteProfile(ID) {
+    const emailMatch = this.props.profile.email;
+    const removedJamsIds = _.pluck(Jams.collection.find({ email: emailMatch }).fetch(), '_id');
+    Profiles.collection.remove({ _id: ID });
+    _.map(removedJamsIds, function (id) { Jams.collection.remove({ _id: id }); });
+  }
+
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
@@ -42,6 +51,7 @@ class ViewProfile extends React.Component {
               {this.props.profile.email === Meteor.user().username ?
                 <Card.Content extra>
                   <Button href={`#/editprofile/${this.props.profile._id}`} size='small'>Edit Profile</Button>
+                  <Button href={'/'} onClick={() => this.deleteProfile(this.props.profile._id)} color='red' size='small'>Delete Profile</Button>
                 </Card.Content> : ''
               }
             </Card>
@@ -55,6 +65,7 @@ class ViewProfile extends React.Component {
 // Require an array of Stuff documents in the props.
 ViewProfile.propTypes = {
   profile: PropTypes.object,
+  jams: PropTypes.array.isRequired,
   myInterests: PropTypes.array,
   ready: PropTypes.bool.isRequired,
 };
@@ -66,14 +77,17 @@ export default withTracker(({ match }) => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe(Profiles.userPublicationName);
   const subscription2 = Meteor.subscribe(MusicInterests.userPublicationName);
+  const subscription3 = Meteor.subscribe(Jams.userPublicationName);
   // Determine if the subscription is ready
-  const ready = subscription.ready() && subscription2.ready();
+  const ready = subscription.ready() && subscription2.ready() && subscription3.ready();
   // Get the Stuff documents
   const profile = Profiles.collection.findOne(documentId);
   const music_interests = MusicInterests.collection.find().fetch();
   const myInterests = _.filter(music_interests, function (interest) { return profile.email === interest.email; });
+  const jams = Jams.collection.find().fetch();
   return {
     profile,
+    jams,
     myInterests,
     ready,
   };
