@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Card, Image, Container } from 'semantic-ui-react';
+import { Grid, Card, Image, Container, Icon } from 'semantic-ui-react';
 
 /** A simple static component to render some text for the landing page. */
 class AboutUs extends React.Component {
@@ -35,6 +35,9 @@ class AboutUs extends React.Component {
                 <li>Web Design</li>
                 <li>Web Design</li>
               </Card.Content>
+              <Card.Content extra>
+                <a href='https://github.com/ethancheez'><Icon name='github'/></a>
+              </Card.Content>
             </Card>
           </Grid.Column>
           <Grid.Column width={4}>
@@ -53,6 +56,9 @@ class AboutUs extends React.Component {
                 <li>Visualizations in Programming</li>
                 <li>Listening to Music</li>
               </Card.Content>
+              <Card.Content extra>
+                <a href='https://github.com/PrestonTGarcia'><Icon name='github'/></a>
+              </Card.Content>
             </Card>
           </Grid.Column>
           <Grid.Column width={4}>
@@ -69,6 +75,9 @@ class AboutUs extends React.Component {
                 <li>Web Design</li>
                 <li>Web Design</li>
                 <li>Web Design</li>
+              </Card.Content>
+              <Card.Content extra>
+                <a href='https://github.com/icce2k'><Icon name='github'/></a>
               </Card.Content>
             </Card>
           </Grid.Column>
@@ -87,6 +96,9 @@ class AboutUs extends React.Component {
                 <li>Reading</li>
                 <li>Video Games</li>
                 <li>Game Development</li>
+              </Card.Content>
+              <Card.Content extra>
+                <a href='https://github.com/adamjparrilla'><Icon name='github'/></a>
               </Card.Content>
             </Card>
           </Grid.Column>
