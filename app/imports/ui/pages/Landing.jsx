@@ -33,7 +33,7 @@ class Landing extends React.Component {
                 </Message>
               </Grid>
             </div>
-            <Button color='blue' size='huge' href='https://music-match.github.io/'>About Us</Button>
+            <Link to={'/about-us'}><Button color='blue' size='huge'>About Us</Button></Link>
           </Container>
         </div>
 
