@@ -10,7 +10,6 @@ import { FeaturedJam } from '../../api/profile/FeaturedJam';
 
 // Initialize the database with a default data document.
 function addData(data) {
-  console.log(`  Adding: ${data.name} (${data.owner})`);
   Stuffs.collection.insert(data);
 }
 
@@ -20,29 +19,24 @@ function addProfile(data) {
 }
 
 function addInterest(data) {
-  console.log(`  Adding: ${data.type} (${data.email})`);
   MusicInterests.collection.insert(data);
 }
 
 function addJam(data) {
-  console.log(`  Adding: ${data.title} (${data.email})`);
   Jams.collection.insert(data);
 }
 
 function addFeaturedJam(data) {
-  console.log(`  Adding: ${data.title} (${data.email})`);
   FeaturedJam.collection.insert(data);
 }
 
 function addPossibleInterest(data) {
-  console.log(`  Adding: ${data.name} `);
   AllInterests.collection.insert(data);
 }
 
 // Initialize the StuffsCollection if empty.
 if (Stuffs.collection.find().count() === 0) {
   if (Meteor.settings.defaultData) {
-    console.log('Creating default data.');
     Meteor.settings.defaultData.map(data => addData(data));
   }
 }
