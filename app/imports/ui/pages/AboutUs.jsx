@@ -26,17 +26,18 @@ class AboutUs extends React.Component {
               <Card.Content>
                 <Card.Header>Ethan Chee</Card.Header>
                 <Card.Description>
-                  Daniel is a comedian living in Nashville.
+                  Ethan is a student majoring in computer engineering at the University of Hawaii at Manoa. His interests include electrical engineering, software engineering, and artificial intelligence.
                 </Card.Description>
               </Card.Content>
               <Card.Content extra>
                 <a>Interests:</a>
-                <li>Web Design</li>
-                <li>Web Design</li>
-                <li>Web Design</li>
+                <li>Electrical Engineering</li>
+                <li>Software Engineering</li>
+                <li>Artificial Intelligence</li>
               </Card.Content>
               <Card.Content extra>
                 <a href='https://github.com/ethancheez'><Icon name='github'/></a>
+                <a href='https://linkedin.com/in/ethan-cheez'><Icon name='linkedin'/></a>
               </Card.Content>
             </Card>
           </Grid.Column>
@@ -58,6 +59,7 @@ class AboutUs extends React.Component {
               </Card.Content>
               <Card.Content extra>
                 <a href='https://github.com/PrestonTGarcia'><Icon name='github'/></a>
+                <a href='https://www.linkedin.com/in/preston-garcia-371112204/'><Icon name='linkedin'/></a>
               </Card.Content>
             </Card>
           </Grid.Column>
@@ -67,17 +69,18 @@ class AboutUs extends React.Component {
               <Card.Content>
                 <Card.Header>Isaiah Eusebio</Card.Header>
                 <Card.Description>
-                  Daniel is a comedian living in Nashville.
+                  Isaiah is a student majoring in computer science at the University of Hawaii at Manoa. His interests include software engineering, artificial intelligence, and game development.
                 </Card.Description>
               </Card.Content>
               <Card.Content extra>
                 <a>Interests:</a>
-                <li>Web Design</li>
-                <li>Web Design</li>
-                <li>Web Design</li>
+                <li>Software Engineering</li>
+                <li>Artificial Intelligence</li>
+                <li>Game Development</li>
               </Card.Content>
               <Card.Content extra>
                 <a href='https://github.com/icce2k'><Icon name='github'/></a>
+                <a href='https://www.linkedin.com/in/isaiah-eusebio/'><Icon name='linkedin'/></a>
               </Card.Content>
             </Card>
           </Grid.Column>
@@ -94,11 +97,12 @@ class AboutUs extends React.Component {
                 <a>Interests:</a>
                 <li>Drawing & Painting</li>
                 <li>Reading</li>
-                <li>Video Games</li>
+                <li>Software Engineering</li>
                 <li>Game Development</li>
               </Card.Content>
               <Card.Content extra>
                 <a href='https://github.com/adamjparrilla'><Icon name='github'/></a>
+                <a href='http://linkedin.com/in/adam-joseph-parrilla'><Icon name='linkedin'/></a>
               </Card.Content>
             </Card>
           </Grid.Column>
