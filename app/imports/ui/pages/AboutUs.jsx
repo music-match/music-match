@@ -90,7 +90,7 @@ class AboutUs extends React.Component {
               <Card.Content>
                 <Card.Header>Adam Parrilla</Card.Header>
                 <Card.Description>
-                  Adam is a computer science and art studio major attending the University of Hawaii at Manoa. His interests include drawing, painting, reading, video games and game development.
+                  Adam is a student majoring in computer science and art studio at the University of Hawaii at Manoa. His interests include drawing, painting, reading, video games and game development.
                 </Card.Description>
               </Card.Content>
               <Card.Content extra>
