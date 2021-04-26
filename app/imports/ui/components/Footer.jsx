@@ -10,16 +10,17 @@ class Footer extends React.Component {
         <Container>
           <Grid relaxed='very' columns={2}>
             <Grid.Column>
-              <Header as='h3' inverted>Organization Information</Header>
+              <Header as='h3' inverted>About Us</Header>
               <hr/>
               <List>
                 <List.Item><a className='white-link' href='https://music-match.github.io/'>Project Page</a></List.Item>
                 <List.Item><a className='white-link' href='https://github.com/music-match'>Our Github</a></List.Item>
+                <List.Item><a className='white-link' href='/#/about-us'>Meet the Developers</a></List.Item>
               </List>
             </Grid.Column>
 
             <Grid.Column>
-              <Header as='h3' inverted>About Us</Header>
+              <Header as='h3' inverted>Organization Information</Header>
               <hr/>
               <List>
                 <List.Item>Music Match Inc.</List.Item>
