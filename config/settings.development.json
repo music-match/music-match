@@ -28,7 +28,7 @@
     { "name": "Preston Garcia", "address": "UH Manoa", "email" : "garcia77@hawaii.edu",
       "image" : "https://prestontgarcia.github.io/images/WIN_20210114_12_58_00_Pro.jpg",
       "goals" : "Practice my guitar skills, Become a computational physicist",
-      "instruments" : "", "skill": 0
+      "instruments" : "Guitar, Tuba", "skill": 2
     },
     { "name": "Isaiah Eusebio", "address": "UH Manoa", "email" : "icce@hawaii.edu",
       "image" : "https://icce2k.github.io/images/professionalsquare.jpg",
