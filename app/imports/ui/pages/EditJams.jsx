@@ -83,30 +83,16 @@ class EditJams extends React.Component {
     }
 
     return (
-      <div
-        className='music-background'>
-        <Grid
-          container
-          centered>
+      <div className='music-background'>
+        <Grid container centered>
           <Grid.Column>
-            <Header
-              inverted
-              as="h2"
-              textAlign="center">Edit
-                  Jams</Header>
-            <AutoForm
-              schema={bridge}
-              onSubmit={data => this.submit(data)}
-              model={this.props.jam}>
+            <Header inverted as="h2" textAlign="center">Edit Jams</Header>
+            <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.jam}>
               <Segment>
-                <TextField
-                  name='title'/>
-                <TextField
-                  name='link'/>
-                <LongTextField
-                  name='description'/>
-                <SubmitField
-                  value='Submit'/>
+                <TextField name='title'/>
+                <TextField name='link'/>
+                <LongTextField name='description'/>
+                <SubmitField value='Submit'/>
                 <ErrorsField/>
               </Segment>
             </AutoForm>
@@ -114,7 +100,6 @@ class EditJams extends React.Component {
         </Grid>
       </div>
     );
-
   }
 }
 
