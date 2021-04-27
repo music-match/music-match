@@ -13,6 +13,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
+import { Redirect } from 'react-router';
 import { Jams } from '../../api/profile/Jams';
 
 const formSchema = new SimpleSchema({
@@ -50,6 +51,11 @@ function isYouTube(link) {
 /** Renders the Page for editing a single document. */
 class EditJams extends React.Component {
 
+  constructor() {
+    super();
+    this.redirectToMyJams = false;
+  }
+
   // On successful submit, insert the data.
   submit(data) {
     const { title, link, description, _id } = data;
@@ -62,6 +68,7 @@ class EditJams extends React.Component {
     Jams.collection.update(_id, { $set: { title, id, description, email } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
+    this.redirectToMyJams = true;
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
@@ -71,17 +78,35 @@ class EditJams extends React.Component {
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
+    if (this.redirectToMyJams) {
+      return <Redirect to={'/my-jams'}/>;
+    }
+
     return (
-      <div className='music-background'>
-        <Grid container centered>
+      <div
+        className='music-background'>
+        <Grid
+          container
+          centered>
           <Grid.Column>
-            <Header inverted as="h2" textAlign="center">Edit Jams</Header>
-            <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.jam}>
+            <Header
+              inverted
+              as="h2"
+              textAlign="center">Edit
+                  Jams</Header>
+            <AutoForm
+              schema={bridge}
+              onSubmit={data => this.submit(data)}
+              model={this.props.jam}>
               <Segment>
-                <TextField name='title'/>
-                <TextField name='link'/>
-                <LongTextField name='description'/>
-                <SubmitField value='Submit'/>
+                <TextField
+                  name='title'/>
+                <TextField
+                  name='link'/>
+                <LongTextField
+                  name='description'/>
+                <SubmitField
+                  value='Submit'/>
                 <ErrorsField/>
               </Segment>
             </AutoForm>
@@ -89,6 +114,7 @@ class EditJams extends React.Component {
         </Grid>
       </div>
     );
+
   }
 }
 
