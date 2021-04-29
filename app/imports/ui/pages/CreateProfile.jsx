@@ -56,11 +56,10 @@ class CreateProfile extends React.Component {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Profile Created!', 'You may now return to the Home Page.', 'success').then(() => this.setState({ redirectToLanding: true }));
+        swal('Profile Created!', 'Welcome to Music Match!', 'success').then(() => this.setState({ redirectToLanding: true }));
       }
     });
     this.setState({ redirectToLanding: true });
-    // console.log(this.redirectToLanding);
   }
 
   render() {
@@ -68,7 +67,6 @@ class CreateProfile extends React.Component {
   }
 
   renderPage() {
-    console.log(this.state.redirectToLanding);
     if (this.state.redirectToLanding) {
       return <Redirect to={'/'}/>;
     }
