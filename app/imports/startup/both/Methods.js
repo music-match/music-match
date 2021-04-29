@@ -66,7 +66,6 @@ Meteor.methods({
       if (_.size(interests) > 0) {
         interests.map((interest) => MusicInterests.collection.insert({ email: email, type: interest }));
       }
-      swal('Profile Created!', 'You may now return to the Home Page.', 'success');
     }
   },
 });

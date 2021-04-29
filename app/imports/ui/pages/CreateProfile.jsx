@@ -32,7 +32,7 @@ class CreateProfile extends React.Component {
 
   constructor() {
     super();
-    this.redirectToLanding = false;
+    this.state = { redirectToLanding: false };
   }
 
   // On successful submit, insert the data.
@@ -55,9 +55,12 @@ class CreateProfile extends React.Component {
     Meteor.call(addProfile, data, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
+      } else {
+        swal('Profile Created!', 'You may now return to the Home Page.', 'success').then(() => this.setState({ redirectToLanding: true }));
       }
     });
-    this.redirectToLanding = true;
+    this.setState({ redirectToLanding: true });
+    // console.log(this.redirectToLanding);
   }
 
   render() {
@@ -65,7 +68,8 @@ class CreateProfile extends React.Component {
   }
 
   renderPage() {
-    if (this.redirectToLanding) {
+    console.log(this.state.redirectToLanding);
+    if (this.state.redirectToLanding) {
       return <Redirect to={'/'}/>;
     }
     const allInterests = _.pluck(AllInterests.collection.find().fetch(), 'name');
