@@ -1,10 +1,24 @@
 import React from 'react';
-import { Card, Embed, Header } from 'semantic-ui-react';
+import { Meteor } from 'meteor/meteor';
+import { _ } from 'meteor/underscore';
+import { Card, Embed, Header, Button, Icon, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
+import { Profiles } from '../../api/profile/Profiles';
+import { updateLikedJam } from '../../startup/both/Methods';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class JamCard extends React.Component {
+  submit(jamID, username, oldLikes) {
+    const profileID = Profiles.collection.findOne({ email: username })._id;
+    const data = {
+      jamID: jamID,
+      profileID: profileID,
+      oldLikes: oldLikes,
+    };
+    Meteor.call(updateLikedJam, data);
+  }
+
   render() {
     return (
       <Card centered>
@@ -27,6 +41,15 @@ class JamCard extends React.Component {
         </Card.Content>
         <Card.Content extra>
           Recommended by: <Link to={`/viewprofile/${this.props.profile._id}`}>{this.props.profile.email}</Link>
+          <div>
+            <Button circular color='red' size='mini' onClick={() => this.submit(this.props.jam._id, Meteor.user().username, this.props.jam.likes)}>
+              <Icon name='heart' />
+              Like
+            </Button>
+            <Label basic pointing='left' size='tiny' color='orange'>
+              {this.props.jam.likes}
+            </Label>
+          </div>
         </Card.Content>
       </Card>
     );

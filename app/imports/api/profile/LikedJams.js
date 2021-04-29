@@ -5,23 +5,17 @@ import { Tracker } from 'meteor/tracker';
 /**
  * The StuffsCollection. It encapsulates state and variable values for stuff.
  */
-class JamsCollection {
+class LikedJamsCollection {
   constructor() {
     // The name of this collection.
-    this.name = 'JamsCollection';
+    this.name = 'LikedJamsCollection';
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
 
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      title: String,
-      id: String,
-      description: String,
-      likes: {
-        type: Number,
-        defaultValue: 0,
-      },
-      email: String,
+      profileID: String,
+      jamID: String,
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
@@ -35,4 +29,4 @@ class JamsCollection {
  * The singleton instance of the StuffsCollection.
  * @type {StuffsCollection}
  */
-export const Jams = new JamsCollection();
+export const LikedJams = new LikedJamsCollection();
