@@ -43,9 +43,9 @@ class EditProfile extends React.Component {
         swal('Error', error.message, 'error');
       } else {
         swal('Success', 'Profile updated successfully', 'success');
+        this.redirectToMyProfile = true;
       }
     });
-    this.redirectToMyProfile = true;
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
@@ -54,6 +54,7 @@ class EditProfile extends React.Component {
   }
 
   renderPage() {
+    console.log(this.redirectToMyProfile);
     if (this.redirectToMyProfile) {
       return <Redirect to={`/viewprofile/${this.props.profile._id}`}/>;
     }
