@@ -4,10 +4,11 @@ import { _ } from 'meteor/underscore';
 import { withTracker } from 'meteor/react-meteor-data';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-import { Form, Grid, Segment, Header } from 'semantic-ui-react';
+import { Form, Grid, Segment, Header, Loader } from 'semantic-ui-react';
 import { AutoForm, ErrorsField, LongTextField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router';
 import { Profiles } from '../../api/profile/Profiles';
 import { AllInterests } from '../../api/interests/AllInterests';
 import MultiSelectField from '../forms/controllers/MultiSelectField';
@@ -29,6 +30,11 @@ const makeSchema = (allInterests) => new SimpleSchema({
 /** A simple static component to render some text for the landing page. */
 class CreateProfile extends React.Component {
 
+  constructor() {
+    super();
+    this.state = { redirectToLanding: false };
+  }
+
   // On successful submit, insert the data.
   submit(tempData) {
     const { name, address, image, goals, phone, instruments, interests, skill } = tempData;
@@ -49,11 +55,21 @@ class CreateProfile extends React.Component {
     Meteor.call(addProfile, data, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
+      } else {
+        swal('Profile Created!', 'Welcome to Music Match!', 'success').then(() => this.setState({ redirectToLanding: true }));
       }
     });
+    this.setState({ redirectToLanding: true });
   }
 
   render() {
+    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+  }
+
+  renderPage() {
+    if (this.state.redirectToLanding) {
+      return <Redirect to={'/'}/>;
+    }
     const allInterests = _.pluck(AllInterests.collection.find().fetch(), 'name');
     const formSchema = makeSchema(allInterests);
     const bridge = new SimpleSchema2Bridge(formSchema);
@@ -63,7 +79,7 @@ class CreateProfile extends React.Component {
         <Grid container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center" inverted>Create Profile</Header>
-            <AutoForm schema={bridge} onSubmit={data => this.submit(data)} >
+            <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
               <Segment>
                 <Form.Group widths='equal'>
                   <TextField name='name' showInlineError={true}/>
@@ -72,10 +88,12 @@ class CreateProfile extends React.Component {
                 </Form.Group>
                 <TextField name='image' showInlineError={true}/>
                 <LongTextField name='goals' showInlineError={true}/>
-                <TextField name='instruments' placeholder='List the instruments separated by comma. Leave blank if none.' showInlineError={true}/>
+                <TextField name='instruments'
+                  placeholder='List the instruments separated by comma. Leave blank if none.'
+                  showInlineError={true}/>
                 <Form.Group widths='equal'>
                   <MultiSelectField name='interests' showInlineError={true} placeholder={'Music Interests'}/>
-                  <SelectField name='skill' />
+                  <SelectField name='skill'/>
                 </Form.Group>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
@@ -83,14 +101,6 @@ class CreateProfile extends React.Component {
             </AutoForm>
           </Grid.Column>
         </Grid>
-      </div>
-    );
-  }
-
-  profileComplete() {
-    return (
-      <div>
-        <Header inverted as='h1'>TESTTTT</Header>
       </div>
     );
   }
