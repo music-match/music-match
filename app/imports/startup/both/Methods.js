@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
-import swal from 'sweetalert';
 import { Profiles } from '../../api/profile/Profiles';
 import { MusicInterests } from '../../api/profile/MusicInterests';
 import { FeaturedJam } from '../../api/profile/FeaturedJam';
@@ -60,7 +59,7 @@ Meteor.methods({
   'Profile.add'({ name, address, image, goals, email, phone, instruments, skill, interests }) {
     const registeredEmails = _.pluck(Profiles.collection.find().fetch(), 'email');
     if (_.contains(registeredEmails, email)) {
-      swal('Error', 'Profile already exists! Please return to Home Page.', 'error');
+      throw new Meteor.Error('Profile already exists! Redirecting to Home Page...');
     } else {
       Profiles.collection.insert({ name, address, image, goals, email, phone, instruments, skill });
       if (_.size(interests) > 0) {

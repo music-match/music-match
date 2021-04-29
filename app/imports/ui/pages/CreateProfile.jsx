@@ -54,7 +54,7 @@ class CreateProfile extends React.Component {
 
     Meteor.call(addProfile, data, (error) => {
       if (error) {
-        swal('Error', error.message, 'error');
+        swal('Error', 'Profile already exists!', 'error');
       } else {
         swal('Profile Created!', 'Welcome to Music Match!', 'success').then(() => this.setState({ redirectToLanding: true }));
       }
