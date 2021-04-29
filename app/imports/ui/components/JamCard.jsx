@@ -1,6 +1,5 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { _ } from 'meteor/underscore';
 import { Card, Embed, Header, Button, Icon, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
@@ -9,6 +8,7 @@ import { updateLikedJam } from '../../startup/both/Methods';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class JamCard extends React.Component {
+
   submit(jamID, username, oldLikes) {
     const profileID = Profiles.collection.findOne({ email: username })._id;
     const data = {
@@ -42,10 +42,17 @@ class JamCard extends React.Component {
         <Card.Content extra>
           Recommended by: <Link to={`/viewprofile/${this.props.profile._id}`}>{this.props.profile.email}</Link>
           <div>
-            <Button circular color='red' size='mini' onClick={() => this.submit(this.props.jam._id, Meteor.user().username, this.props.jam.likes)}>
-              <Icon name='heart' />
-              Like
-            </Button>
+            {(this.props.isLiked) ? (
+              <Button circular color='red' size='mini' onClick={() => this.submit(this.props.jam._id, Meteor.user().username, this.props.jam.likes)}>
+                <Icon name='heart' />
+                  Like
+              </Button>
+            ) : (
+              <Button circular size='mini' onClick={() => this.submit(this.props.jam._id, Meteor.user().username, this.props.jam.likes)}>
+                <Icon name='heart' />
+                  Like
+              </Button>
+            )}
             <Label basic pointing='left' size='tiny' color='orange'>
               {this.props.jam.likes}
             </Label>
@@ -60,6 +67,7 @@ class JamCard extends React.Component {
 JamCard.propTypes = {
   profile: PropTypes.object.isRequired,
   jam: PropTypes.object.isRequired,
+  isLiked: PropTypes.bool.isRequired,
 };
 
 // Wrap this component in withRouter since we use the <Link> React Router element.
