@@ -43,9 +43,9 @@ class EditProfile extends React.Component {
         swal('Error', error.message, 'error');
       } else {
         swal('Success', 'Profile updated successfully', 'success');
-        this.redirectToMyProfile = true;
       }
     });
+    this.redirectToMyProfile = true;
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
@@ -54,6 +54,9 @@ class EditProfile extends React.Component {
   }
 
   renderPage() {
+    if (this.redirectToMyProfile) {
+      return <Redirect to={`/viewprofile/${this.props.profile._id}`}/>;
+    }
     const email = this.props.profile.email;
     // Create the form schema for uniforms. Need to determine all interests and projects for muliselect list.
     const allInterests = _.pluck(AllInterests.collection.find().fetch(), 'name');
@@ -63,10 +66,6 @@ class EditProfile extends React.Component {
     const interests = _.pluck(MusicInterests.collection.find({ email: email }).fetch(), 'type');
     const profile = Profiles.collection.findOne({ email });
     const model = _.extend({}, profile, { interests });
-
-    if (this.redirectToMyProfile) {
-      return <Redirect to={'/viewprofile/:_id'}/>;
-    }
 
     return (
       <div className='music-background'>
