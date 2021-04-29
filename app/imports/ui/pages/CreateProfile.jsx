@@ -59,7 +59,6 @@ class CreateProfile extends React.Component {
         swal('Profile Created!', 'Welcome to Music Match!', 'success').then(() => this.setState({ redirectToLanding: true }));
       }
     });
-    this.setState({ redirectToLanding: true });
   }
 
   render() {
