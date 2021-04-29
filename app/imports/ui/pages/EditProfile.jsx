@@ -8,6 +8,7 @@ import { Form, Grid, Image, Loader, Segment, Button } from 'semantic-ui-react';
 import { AutoForm, LongTextField, SelectField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router';
 import { AllInterests } from '../../api/interests/AllInterests';
 import { MusicInterests } from '../../api/profile/MusicInterests';
 import { Profiles } from '../../api/profile/Profiles';
@@ -30,13 +31,18 @@ const makeSchema = (allInterests) => new SimpleSchema({
 /** A simple static component to render some text for the landing page. */
 class EditProfile extends React.Component {
 
+  constructor() {
+    super();
+    this.state = { redirectToMyProfile: false };
+  }
+
   // On successful submit, insert the data.
   submit(data) {
     Meteor.call(updateProfileMethod, data, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', 'Profile updated successfully', 'success');
+        swal('Success', 'Profile updated successfully', 'success').then(() => this.setState({ redirectToMyProfile: true }));
       }
     });
   }
@@ -47,6 +53,9 @@ class EditProfile extends React.Component {
   }
 
   renderPage() {
+    if (this.state.redirectToMyProfile) {
+      return <Redirect to={`/viewprofile/${this.props.profile._id}`}/>;
+    }
     const email = this.props.profile.email;
     // Create the form schema for uniforms. Need to determine all interests and projects for muliselect list.
     const allInterests = _.pluck(AllInterests.collection.find().fetch(), 'name');
