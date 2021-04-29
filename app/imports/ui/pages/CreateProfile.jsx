@@ -54,7 +54,6 @@ class CreateProfile extends React.Component {
 
     Meteor.call(addProfile, data, (error) => {
       if (error) {
-        swal('Error', 'Profile already exists! Redirecting to Home Page...', 'error');
         if (error.message === '[Profile already exists! Redirecting to Home Page...]') {
           swal('Error', error.message, 'error').then(() => this.setState({ redirectToLanding: true }));
         } else {
