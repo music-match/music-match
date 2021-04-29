@@ -33,7 +33,7 @@ class EditProfile extends React.Component {
 
   constructor() {
     super();
-    this.redirectToMyProfile = false;
+    this.state = { redirectToMyProfile: false };
   }
 
   // On successful submit, insert the data.
@@ -42,8 +42,7 @@ class EditProfile extends React.Component {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', 'Profile updated successfully', 'success');
-        this.redirectToMyProfile = true;
+        swal('Success', 'Profile updated successfully', 'success').then(() => this.setState({ redirectToMyProfile: true }));
       }
     });
   }
@@ -54,8 +53,7 @@ class EditProfile extends React.Component {
   }
 
   renderPage() {
-    console.log(this.redirectToMyProfile);
-    if (this.redirectToMyProfile) {
+    if (this.state.redirectToMyProfile) {
       return <Redirect to={`/viewprofile/${this.props.profile._id}`}/>;
     }
     const email = this.props.profile.email;
