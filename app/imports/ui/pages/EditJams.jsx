@@ -67,7 +67,7 @@ class EditJams extends React.Component {
     }
     Jams.collection.update(_id, { $set: { title, id, description, email } }, (error) => (error ?
       swal('Error', error.message, 'error') :
-      swal('Success', 'Item updated successfully', 'success').then(() => {this.setState({ redirectToMyJams: true })})));
+      swal('Success', 'Item updated successfully', 'success').then(() => { this.setState({ redirectToMyJams: true }); })));
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
