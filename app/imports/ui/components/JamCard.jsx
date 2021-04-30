@@ -1,10 +1,13 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Card, Embed, Header, Button, Icon, Label } from 'semantic-ui-react';
+import { _ } from 'meteor/underscore';
+import { Card, Embed, Header, Button, Icon, Label, Modal, Feed } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { Profiles } from '../../api/profile/Profiles';
 import { updateLikedJam } from '../../startup/both/Methods';
+import AddComment from './AddComment';
+import Comment from './Comment';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class JamCard extends React.Component {
@@ -56,9 +59,33 @@ class JamCard extends React.Component {
             <Label basic pointing='left' size='tiny' color='orange'>
               {this.props.jam.likes}
             </Label>
+            {this.displayComments()}
           </div>
         </Card.Content>
       </Card>
+    );
+  }
+
+  displayComments() {
+    const myProfile = Profiles.collection.findOne({ email: Meteor.user().username });
+    return (
+      <Modal trigger={<Button floated='right' size='mini' color='orange'>Comments</Button>}>
+        <Modal.Header>Comments</Modal.Header>
+        <Modal.Content>
+          <Feed>
+            {(_.size(this.props.comments) > 0) ? (
+              _.map(this.props.comments, (comment, index) => <Comment key={index} comment={comment}/>)
+            ) : (
+              <Feed.Event>
+                <Feed.Content>No Comments</Feed.Content>
+              </Feed.Event>
+            )}
+          </Feed>
+        </Modal.Content>
+        <Modal.Content>
+          <AddComment owner={myProfile.name} jamID={this.props.jam._id} profileID={myProfile._id} email={Meteor.user().username} image={myProfile.image}/>
+        </Modal.Content>
+      </Modal>
     );
   }
 }
@@ -67,6 +94,7 @@ class JamCard extends React.Component {
 JamCard.propTypes = {
   profile: PropTypes.object.isRequired,
   jam: PropTypes.object.isRequired,
+  comments: PropTypes.array.isRequired,
   isLiked: PropTypes.bool.isRequired,
 };
 

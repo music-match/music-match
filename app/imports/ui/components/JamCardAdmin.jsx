@@ -1,11 +1,16 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Card, Embed, Header, Grid, Button, Popup } from 'semantic-ui-react';
+import { _ } from 'meteor/underscore';
+import { Card, Embed, Header, Grid, Button, Popup, Modal, Feed } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import swal from 'sweetalert';
 import { addFeaturedJam } from '../../startup/both/Methods';
 import { Jams } from '../../api/profile/Jams';
+import { Profiles } from '../../api/profile/Profiles';
+import CommentAdmin from './CommentAdmin';
+import AddComment from './AddComment';
+import { Comments } from '../../api/comment/Comments';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class JamCardAdmin extends React.Component {
@@ -38,7 +43,11 @@ class JamCardAdmin extends React.Component {
   }
 
   removeJam(ID) {
+    const commentsToBeDeleted = Comments.collection.find({ jamID: ID }).fetch();
+    const commentIDs = _.pluck(commentsToBeDeleted, '_id');
+
     Jams.collection.remove({ _id: ID });
+    _.map(commentIDs, function (id) { Comments.collection.remove({ _id: id }); });
     this.setState({ isOpen: false });
     swal('Success', 'Jam Deleted.', 'success');
   }
@@ -47,7 +56,9 @@ class JamCardAdmin extends React.Component {
     return (
       <Card centered>
         <Card.Content>
-          <Card.Header textAlign={'center'}>{this.props.jam.title}</Card.Header>
+          <Card.Header textAlign={'center'}>
+            {this.props.jam.title}
+          </Card.Header>
           <Embed
             source='youtube'
             id={this.props.jam.id}
@@ -70,13 +81,7 @@ class JamCardAdmin extends React.Component {
               <Button fluid href={`/#/edit-jams/${this.props.jam._id}`} size='mini'>Edit</Button>
             </Grid.Column>
             <Grid.Column width={5}>
-              <Button fluid onClick={() => this.submit(
-                this.props.jam.title,
-                this.props.jam.id,
-                this.props.jam.description,
-                this.props.jam.email,
-                this.props.jam._id,
-              )} color='green' size='mini' content='Feature'/>
+              {this.displayComments()}
             </Grid.Column>
             <Grid.Column floated='right' width={5}>
               <Popup trigger={<Button fluid color='red' size='mini'>Delete</Button>} flowing on='click' hideOnScroll open={this.state.isOpen} onOpen={this.handleOpen} onClose={this.handleClose} basic position='top center'>
@@ -86,7 +91,37 @@ class JamCardAdmin extends React.Component {
             </Grid.Column>
           </Grid>
         </Card.Content>
+        <Button onClick={() => this.submit(
+          this.props.jam.title,
+          this.props.jam.id,
+          this.props.jam.description,
+          this.props.jam.email,
+          this.props.jam._id,
+        )} color='green' size='small' content='Feature'/>
       </Card>
+    );
+  }
+
+  displayComments() {
+    const myProfile = Profiles.collection.findOne({ email: Meteor.user().username });
+    return (
+      <Modal trigger={<Button size='mini' color='orange'>Comments</Button>}>
+        <Modal.Header>Comments (Admin)</Modal.Header>
+        <Modal.Content>
+          <Feed>
+            {(_.size(this.props.comments) > 0) ? (
+              _.map(this.props.comments, (comment, index) => <CommentAdmin key={index} comment={comment}/>)
+            ) : (
+              <Feed.Event>
+                <Feed.Content>No Comments</Feed.Content>
+              </Feed.Event>
+            )}
+          </Feed>
+        </Modal.Content>
+        <Modal.Content>
+          <AddComment owner={myProfile.name} jamID={this.props.jam._id} profileID={myProfile._id} email={Meteor.user().username} image={myProfile.image}/>
+        </Modal.Content>
+      </Modal>
     );
   }
 }
@@ -95,6 +130,7 @@ class JamCardAdmin extends React.Component {
 JamCardAdmin.propTypes = {
   profile: PropTypes.object.isRequired,
   jam: PropTypes.object.isRequired,
+  comments: PropTypes.array.isRequired,
 };
 
 // Wrap this component in withRouter since we use the <Link> React Router element.

@@ -7,6 +7,7 @@ import { Jams } from '../../api/profile/Jams';
 import { AllInterests } from '../../api/interests/AllInterests';
 import { FeaturedJam } from '../../api/profile/FeaturedJam';
 import { LikedJams } from '../../api/profile/LikedJams';
+import { Comments } from '../../api/comment/Comments';
 
 // User-level publication.
 // If logged in, then publish documents owned by this user. Otherwise publish nothing.
@@ -29,6 +30,8 @@ Meteor.publish(FeaturedJam.userPublicationName, () => FeaturedJam.collection.fin
 Meteor.publish(AllInterests.userPublicationName, () => AllInterests.collection.find());
 
 Meteor.publish(LikedJams.userPublicationName, () => LikedJams.collection.find());
+
+Meteor.publish(Comments.userPublicationName, () => Comments.collection.find());
 
 // Admin-level publication.
 // If logged in and with admin role, then publish all documents from all users. Otherwise publish nothing.

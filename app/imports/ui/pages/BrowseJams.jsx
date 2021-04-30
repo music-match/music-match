@@ -8,6 +8,7 @@ import { Jams } from '../../api/profile/Jams';
 import JamCard from '../components/JamCard';
 import { Profiles } from '../../api/profile/Profiles';
 import { LikedJams } from '../../api/profile/LikedJams';
+import { Comments } from '../../api/comment/Comments';
 
 function alphaSort(jams) {
   return _.sortBy(jams, function (jam) { return jam.title.toLowerCase(); });
@@ -71,6 +72,7 @@ class BrowseJams extends React.Component {
                 key={index}
                 jam={jam}
                 profile={getProfile(this.props.profiles, jam)}
+                comments={this.props.comments.filter(comment => (comment.jamID === jam._id))}
                 isLiked={isLiked(_.filter(this.props.profiles, function (profile) { return profile.email === Meteor.user().username; }), this.props.likedJams, jam._id)}/>)
               ) : this.displayNoJams()
             }
@@ -95,6 +97,7 @@ BrowseJams.propTypes = {
   jams: PropTypes.array.isRequired,
   profiles: PropTypes.array.isRequired,
   likedJams: PropTypes.array.isRequired,
+  comments: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -104,16 +107,19 @@ export default withTracker(() => {
   const sub = Meteor.subscribe(Jams.userPublicationName);
   const sub2 = Meteor.subscribe(Profiles.userPublicationName);
   const sub3 = Meteor.subscribe(LikedJams.userPublicationName);
+  const sub4 = Meteor.subscribe(Comments.userPublicationName);
   // Determine if the subscription is ready
-  const ready = sub.ready() && sub2.ready() && sub3.ready();
+  const ready = sub.ready() && sub2.ready() && sub3.ready() && sub4.ready();
   // Get the Stuff documents
   const jams = Jams.collection.find().fetch();
   const profiles = Profiles.collection.find().fetch();
   const likedJams = LikedJams.collection.find().fetch();
+  const comments = Comments.collection.find().fetch();
   return {
     jams,
     profiles,
     likedJams,
+    comments,
     ready,
   };
 })(BrowseJams);
