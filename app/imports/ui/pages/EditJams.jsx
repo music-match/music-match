@@ -53,7 +53,7 @@ class EditJams extends React.Component {
 
   constructor() {
     super();
-    this.redirectToMyJams = false;
+    this.state = { redirectToMyJams: false };
   }
 
   // On successful submit, insert the data.
@@ -67,8 +67,7 @@ class EditJams extends React.Component {
     }
     Jams.collection.update(_id, { $set: { title, id, description, email } }, (error) => (error ?
       swal('Error', error.message, 'error') :
-      swal('Success', 'Item updated successfully', 'success')));
-    this.redirectToMyJams = true;
+      swal('Success', 'Item updated successfully', 'success').then(() => { this.setState({ redirectToMyJams: true }); })));
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
@@ -78,10 +77,9 @@ class EditJams extends React.Component {
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
-    if (this.redirectToMyJams) {
+    if (this.state.redirectToMyJams) {
       return <Redirect to={'/my-jams'}/>;
     }
-
     return (
       <div className='music-background'>
         <Grid container centered>

@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import JamCardAdmin from '../components/JamCardAdmin';
 import { Jams } from '../../api/profile/Jams';
 import { Profiles } from '../../api/profile/Profiles';
+import { Comments } from '../../api/comment/Comments';
 
 function alphaSort(jams) {
   return _.sortBy(jams, function (jam) { return jam.title.toLowerCase(); });
@@ -60,7 +61,8 @@ class BrowseJamsAdmin extends React.Component {
               (alphaSort(filterJams(this.props.jams, searchField.toLowerCase())).map((jam, index) => <JamCardAdmin
                 key={index}
                 jam={jam}
-                profile={getProfile(this.props.profiles, jam)}/>)) : this.displayNoJams()
+                profile={getProfile(this.props.profiles, jam)}
+                comments={this.props.comments.filter(comment => (comment.jamID === jam._id))}/>)) : this.displayNoJams()
             }
           </Card.Group>
         </Container>
@@ -82,22 +84,26 @@ class BrowseJamsAdmin extends React.Component {
 BrowseJamsAdmin.propTypes = {
   jams: PropTypes.array.isRequired,
   profiles: PropTypes.array.isRequired,
+  comments: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe(Jams.userPublicationName);
-  const subscription2 = Meteor.subscribe(Profiles.userPublicationName);
+  const sub = Meteor.subscribe(Jams.userPublicationName);
+  const sub2 = Meteor.subscribe(Profiles.userPublicationName);
+  const sub3 = Meteor.subscribe(Comments.userPublicationName);
   // Determine if the subscription is ready
-  const ready = subscription.ready() && subscription2.ready();
+  const ready = sub.ready() && sub2.ready() && sub3.ready();
   // Get the Stuff documents
-  const jams = Jams.collection.find({}).fetch();
-  const profiles = Profiles.collection.find({}).fetch();
+  const jams = Jams.collection.find().fetch();
+  const profiles = Profiles.collection.find().fetch();
+  const comments = Comments.collection.find().fetch();
   return {
     jams,
     profiles,
+    comments,
     ready,
   };
 })(BrowseJamsAdmin);
