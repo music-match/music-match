@@ -22,6 +22,7 @@ import AddJams from '../pages/AddJams';
 import EditJams from '../pages/EditJams';
 import MyJams from '../pages/MyJams';
 import AboutUs from '../pages/AboutUs';
+import LikedJamsPage from '../pages/LikedJamsPage';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -42,6 +43,7 @@ class App extends React.Component {
             <AdminProtectedRoute path="/browse-users-admin" component={BrowseUsersAdmin}/>
             <ProtectedRoute path="/viewprofile/:_id" component={ViewProfile}/>
             <ProtectedRoute path="/browse-jams" component={BrowseJams}/>
+            <ProtectedRoute path="/liked-jams" component={LikedJamsPage}/>
             <AdminProtectedRoute path="/browse-jams-admin" component={BrowseJamsAdmin}/>
             <ProtectedRoute path="/add-jams" component={AddJams}/>
             <ProtectedRoute path="/edit-jams/:_id" component={EditJams}/>
