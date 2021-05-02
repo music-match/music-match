@@ -1,6 +1,6 @@
 import React from 'react';
 import { _ } from 'meteor/underscore';
-import { Header, Container, Button, Message, Grid, Icon, Card, Embed, Feed, Loader } from 'semantic-ui-react';
+import { Header, Container, Button, Grid, Card, Embed, Feed, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
@@ -25,55 +25,33 @@ class Landing extends React.Component {
           <Container textAlign='center'>
             <div className='landing-padding'>
               <Grid centered>
-                <Message compact color='black'>
-                  <div className='landing-header'>
-                    <Header inverted>Music Match</Header>
-                  </div>
-                </Message>
+                <div className='landing-header'>
+                  <Header inverted>Music Match</Header>
+                </div>
               </Grid>
             </div>
             <Link to={'/about-us'}><Button color='blue' size='huge'>About Us</Button></Link>
+            <div style={{ paddingTop: '350px' }}>
+              {(!this.props.username) ? (
+                <Header inverted as='h2'>Login to begin exploring!</Header>
+              ) : ('')}
+              {(this.props.username && _.size(getProfile(this.props.profiles, this.props.username)) === 0) ? (
+                <Header inverted as='h2'>Create a profile to begin exploring!</Header>
+              ) : ('')}
+              {(this.props.username && _.size(getProfile(this.props.profiles, this.props.username)) > 0) ? (
+                <Header inverted as='h2'>Explore the site using the Navbar!</Header>
+              ) : ('')}
+            </div>
           </Container>
         </div>
 
         <div className='landing-background'>
-          <Grid container centered stackable columns={3}>
-            <Grid.Column textAlign='center'>
-              <Header inverted as='h1' icon>
-                <Icon name='headphones'/>
-                  Share Your Jams
-              </Header>
-            </Grid.Column>
-            <Grid.Column textAlign='center'>
-              <Header inverted as='h1' icon>
-                <Icon name='users'/>
-                  Network with Musicians
-              </Header>
-            </Grid.Column>
-            <Grid.Column textAlign='center'>
-              <Header inverted as='h1' icon>
-                <Icon name='search'/>
-                  Browse by Interests
-              </Header>
-            </Grid.Column>
-          </Grid>
-
           <Grid centered stackable>
             <Grid.Column width={5}>
               <Card fluid>
                 <Card.Content style={{ height: '600px' }}>
                   <Header className='landing-card-header' textAlign='center'>News & Events</Header>
-                  <Feed>
-                    <Feed.Event>
-                      <Feed.Label>
-                        <img src='images/logo2.png' alt='logo'/>
-                      </Feed.Label>
-                      <Feed.Content>
-                        <Feed.Summary>Music Match Site</Feed.Summary>
-                        <Feed.Meta>This site has been completed! Explore and network with your fellow UH Musicians!</Feed.Meta>
-                      </Feed.Content>
-                    </Feed.Event>
-                  </Feed>
+                  {this.displayNewsEvents()}
                 </Card.Content>
               </Card>
             </Grid.Column>
@@ -104,14 +82,39 @@ class Landing extends React.Component {
               </Card>
             </Grid.Column>
           </Grid>
-
         </div>
-
       </div>
+    );
+  }
+
+  displayNewsEvents() {
+    return (
+      <Feed>
+        <Feed.Event>
+          <Feed.Label>
+            <img src='images/logo2.png' alt='logo'/>
+          </Feed.Label>
+          <Feed.Content>
+            <Feed.Summary>Music Match Developers</Feed.Summary>
+            <Feed.Meta>Thank you for all your feedback! We will be slowly improving our site so stay tuned!</Feed.Meta>
+          </Feed.Content>
+        </Feed.Event>
+
+        <Feed.Event>
+          <Feed.Label>
+            <img src='images/logo2.png' alt='logo'/>
+          </Feed.Label>
+          <Feed.Content>
+            <Feed.Summary>Music Match Site</Feed.Summary>
+            <Feed.Meta>This site has been completed! Explore and network with your fellow UH Musicians!</Feed.Meta>
+          </Feed.Content>
+        </Feed.Event>
+      </Feed>
     );
   }
 }
 Landing.propTypes = {
+  username: PropTypes.string,
   profiles: PropTypes.array.isRequired,
   featuredjam: PropTypes.object,
   ready: PropTypes.bool.isRequired,
@@ -119,6 +122,7 @@ Landing.propTypes = {
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
+  const username = Meteor.user() ? Meteor.user().username : '';
   // Get access to documents.
   const sub1 = Meteor.subscribe(FeaturedJam.userPublicationName);
   const sub2 = Meteor.subscribe(Profiles.userPublicationName);
@@ -129,6 +133,7 @@ export default withTracker(() => {
   const featuredjams = FeaturedJam.collection.find().fetch();
   const featuredjam = _.first(featuredjams);
   return {
+    username,
     profiles,
     featuredjam,
     ready,

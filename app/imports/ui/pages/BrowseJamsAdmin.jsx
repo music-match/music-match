@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
-import { Container, Header, Loader, Card, Input, Image } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Input, Image, List, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import JamCardAdmin from '../components/JamCardAdmin';
@@ -9,8 +9,17 @@ import { Jams } from '../../api/profile/Jams';
 import { Profiles } from '../../api/profile/Profiles';
 import { Comments } from '../../api/comment/Comments';
 
-function alphaSort(jams) {
-  return _.sortBy(jams, function (jam) { return jam.title.toLowerCase(); });
+function sort(jams, likeFilter, userFilter, alphaFilter) {
+  if (likeFilter) {
+    return _.sortBy(jams, 'likes').reverse();
+  }
+  if (userFilter) {
+    return _.sortBy(jams, function (jam) { return jam.email.toLowerCase(); });
+  }
+  if (alphaFilter) {
+    return _.sortBy(jams, function (jam) { return jam.title.toLowerCase(); });
+  }
+  return jams.reverse();
 }
 
 function getProfile(profiles, jam) {
@@ -31,6 +40,10 @@ class BrowseJamsAdmin extends React.Component {
     super();
     this.state = {
       searchField: '',
+      dateFilter: true,
+      likeFilter: false,
+      userFilter: false,
+      alphaFilter: false,
     };
   }
 
@@ -55,9 +68,36 @@ class BrowseJamsAdmin extends React.Component {
               placeholder='Search Jams by Name...'
             />
           </div>
+          <List horizontal style={{ paddingBottom: '20px' }}>
+            <List.Item><Header inverted as='h4' style={{ paddingTop: '8px', width: '70px', color: 'white' }}>Filter By: </Header></List.Item>
+            <List.Item>
+              {(this.state.dateFilter) ? (
+                <Button compact color='green' size='small'>Date Created</Button>) : (
+                <Button compact size='small' onClick={() => this.setState({ dateFilter: true, likeFilter: false, userFilter: false, alphaFilter: false })}>Date Created</Button>
+              )}
+            </List.Item>
+            <List.Item>
+              {(this.state.alphaFilter) ? (
+                <Button compact color='green' size='small'>A-Z</Button>) : (
+                <Button compact size='small' onClick={() => this.setState({ alphaFilter: true, likeFilter: false, userFilter: false, dateFilter: false })}>A-Z</Button>
+              )}
+            </List.Item>
+            <List.Item>
+              {(this.state.likeFilter) ? (
+                <Button compact color='green' size='small'>Likes</Button>) : (
+                <Button compact size='small' onClick={() => this.setState({ likeFilter: true, userFilter: false, alphaFilter: false, dateFilter: false })}>Likes</Button>
+              )}
+            </List.Item>
+            <List.Item>
+              {(this.state.userFilter) ? (
+                <Button compact color='green' size='small'>User</Button>) : (
+                <Button compact size='small' onClick={() => this.setState({ userFilter: true, likeFilter: false, alphaFilter: false, dateFilter: false })}>User</Button>
+              )}
+            </List.Item>
+          </List>
           <Card.Group centered itemsPerRow={3}>
             {(_.size(filterJams(this.props.jams, searchField.toLowerCase())) > 0) ?
-              (alphaSort(filterJams(this.props.jams, searchField.toLowerCase())).map((jam, index) => <JamCardAdmin
+              (sort(filterJams(this.props.jams, searchField.toLowerCase()), this.state.likeFilter, this.state.userFilter, this.state.alphaFilter).map((jam, index) => <JamCardAdmin
                 key={index}
                 jam={jam}
                 profile={getProfile(this.props.profiles, jam)}

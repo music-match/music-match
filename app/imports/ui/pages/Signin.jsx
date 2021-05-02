@@ -42,7 +42,7 @@ export default class Signin extends React.Component {
     }
     // Otherwise return the Login form.
     return (
-      <div className='music-background'>
+      <div className='music-background' style={{ paddingBottom: '250px' }}>
         <Container id="signin-page">
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
             <Grid.Column>

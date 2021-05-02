@@ -68,7 +68,7 @@ class JamCard extends React.Component {
   displayComments() {
     const myProfile = Profiles.collection.findOne({ email: Meteor.user().username });
     return (
-      <Modal trigger={<Button floated='right' size='mini' color='orange'>Comments</Button>}>
+      <Modal trigger={<Button floated='right' size='mini' color='orange'>{`Comments (${_.size(this.props.comments)})`}</Button>}>
         <Modal.Header>Comments</Modal.Header>
         <Modal.Content>
           <Feed>
