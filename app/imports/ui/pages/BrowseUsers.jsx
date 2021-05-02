@@ -53,7 +53,7 @@ class BrowseUsers extends React.Component {
       <div id='browseusers-page' className='music-background'>
         <Container>
           <Header inverted as="h2" textAlign="center">Browse Users</Header>
-          <div className='search-padding'>
+          <div style={{ paddingBottom: '20px' }}>
             <Input fluid onChange={this.handleMessage.bind(this)} placeholder="Search By Name or Music Interest..."/>
           </div>
           <Card.Group centered>

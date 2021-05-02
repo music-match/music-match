@@ -53,7 +53,7 @@ class BrowseUsersAdmin extends React.Component {
       <div className='music-background'>
         <Container id='browseusersadmin-page'>
           <Header inverted as="h2" textAlign="center">Browse Users (Admin)</Header>
-          <div className='search-padding'>
+          <div style={{ paddingBottom: '20px' }}>
             <Input fluid onChange={this.handleMessage.bind(this)} placeholder="Search By Interests..."/>
           </div>
           <Card.Group centered>

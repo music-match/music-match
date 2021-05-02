@@ -63,11 +63,7 @@ class BrowseJamsAdmin extends React.Component {
       <div className='music-background'>
         <Container id='browsejamsadmin-page'>
           <Header inverted as="h2" textAlign="center">Browse Jams (Admin)</Header>
-          <div className='search-padding'>
-            <Input fluid onChange={this.handleSearch.bind(this)}
-              placeholder='Search Jams by Name...'
-            />
-          </div>
+          <Input fluid onChange={this.handleSearch.bind(this)} placeholder='Search Jams by Name...'/>
           <List horizontal style={{ paddingBottom: '20px' }}>
             <List.Item><Header inverted as='h4' style={{ paddingTop: '8px', width: '70px', color: 'white' }}>Filter By: </Header></List.Item>
             <List.Item>
