@@ -20,7 +20,7 @@ function sort(jams, likeFilter, userFilter, alphaFilter) {
   if (alphaFilter) {
     return _.sortBy(jams, function (jam) { return jam.title.toLowerCase(); });
   }
-  return jams.reverse();
+  return [...jams].reverse();
 }
 
 function getProfile(profiles, jam) {
