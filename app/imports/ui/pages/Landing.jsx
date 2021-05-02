@@ -12,7 +12,6 @@ function getProfile(profiles, email) {
   return _.find(profiles, function (profile) { return profile.email === email; });
 }
 
-/** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
@@ -112,7 +111,6 @@ class Landing extends React.Component {
     );
   }
 }
-// Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
 Landing.propTypes = {
   profiles: PropTypes.array.isRequired,
   featuredjam: PropTypes.object,
@@ -121,12 +119,12 @@ Landing.propTypes = {
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
-  // Get access to Stuff documents.
+  // Get access to documents.
   const sub1 = Meteor.subscribe(FeaturedJam.userPublicationName);
   const sub2 = Meteor.subscribe(Profiles.userPublicationName);
   // Determine if the subscription is ready
   const ready = sub1.ready() && sub2.ready();
-  // Get the document
+  // Get the documents
   const profiles = Profiles.collection.find().fetch();
   const featuredjams = FeaturedJam.collection.find().fetch();
   const featuredjam = _.first(featuredjams);

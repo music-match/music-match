@@ -1,13 +1,7 @@
 import React from 'react';
 import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
 import swal from 'sweetalert';
-import {
-  AutoForm,
-  ErrorsField,
-  LongTextField,
-  SubmitField,
-  TextField,
-} from 'uniforms-semantic';
+import { AutoForm, ErrorsField, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -101,7 +95,6 @@ class EditJams extends React.Component {
   }
 }
 
-// Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
 EditJams.propTypes = {
   jam: PropTypes.object,
   model: PropTypes.object,
@@ -112,7 +105,7 @@ EditJams.propTypes = {
 export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
-  // Get access to Stuff documents.
+  // Get access to Jams documents.
   const subscription = Meteor.subscribe(Jams.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready();

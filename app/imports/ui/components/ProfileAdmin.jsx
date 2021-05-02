@@ -14,7 +14,6 @@ function alphaSort(interests) {
   return _.sortBy(interests, 'type');
 }
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Profile extends React.Component {
   state = { isOpen: false }
 
@@ -77,11 +76,8 @@ Profile.propTypes = {
 };
 
 export default withTracker(() => {
-  // Get access to Stuff documents.
   const subscription = Meteor.subscribe(Jams.userPublicationName);
-  // Determine if the subscription is ready
   const ready = subscription.ready();
-  // Get the Stuff documents
   const jams = Jams.collection.find({}).fetch();
   return {
     jams,

@@ -25,7 +25,6 @@ function filterJams(jams, search) {
   return filteredJams;
 }
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class BrowseJamsAdmin extends React.Component {
 
   constructor() {
@@ -80,7 +79,6 @@ class BrowseJamsAdmin extends React.Component {
   }
 }
 
-// Require an array of Stuff documents in the props.
 BrowseJamsAdmin.propTypes = {
   jams: PropTypes.array.isRequired,
   profiles: PropTypes.array.isRequired,
@@ -90,13 +88,10 @@ BrowseJamsAdmin.propTypes = {
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
-  // Get access to Stuff documents.
   const sub = Meteor.subscribe(Jams.userPublicationName);
   const sub2 = Meteor.subscribe(Profiles.userPublicationName);
   const sub3 = Meteor.subscribe(Comments.userPublicationName);
-  // Determine if the subscription is ready
   const ready = sub.ready() && sub2.ready() && sub3.ready();
-  // Get the Stuff documents
   const jams = Jams.collection.find().fetch();
   const profiles = Profiles.collection.find().fetch();
   const comments = Comments.collection.find().fetch();

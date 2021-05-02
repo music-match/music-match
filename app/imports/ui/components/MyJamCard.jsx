@@ -11,7 +11,6 @@ import Comment from './Comment';
 import AddComment from './AddComment';
 import { Comments } from '../../api/comment/Comments';
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class MyJamCard extends React.Component {
   state = { isOpen: false }
 

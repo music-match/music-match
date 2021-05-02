@@ -9,7 +9,6 @@ function alphaSort(interests) {
   return _.sortBy(interests, 'type');
 }
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Profile extends React.Component {
   render() {
     return (

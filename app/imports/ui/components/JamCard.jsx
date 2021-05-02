@@ -9,7 +9,6 @@ import { updateLikedJam } from '../../startup/both/Methods';
 import AddComment from './AddComment';
 import Comment from './Comment';
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class JamCard extends React.Component {
 
   submit(jamID, username, oldLikes) {

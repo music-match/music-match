@@ -8,7 +8,6 @@ import { Comments } from '../../api/comment/Comments';
 
 const bridge = new SimpleSchema2Bridge(Comments.schema);
 
-/** Renders the Page for adding a document. */
 class AddComment extends React.Component {
 
   // On submit, insert the data.

@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Profiles } from '../../api/profile/Profiles';
 import { MusicInterests } from '../../api/profile/MusicInterests';
 import { Jams } from '../../api/profile/Jams';
@@ -9,10 +8,6 @@ import { FeaturedJam } from '../../api/profile/FeaturedJam';
 /* eslint-disable no-console */
 
 // Initialize the database with a default data document.
-function addData(data) {
-  Stuffs.collection.insert(data);
-}
-
 function addProfile(data) {
   console.log(`  Adding: ${data.name} (${data.email})`);
   Profiles.collection.insert(data);
@@ -32,13 +27,6 @@ function addFeaturedJam(data) {
 
 function addPossibleInterest(data) {
   AllInterests.collection.insert(data);
-}
-
-// Initialize the StuffsCollection if empty.
-if (Stuffs.collection.find().count() === 0) {
-  if (Meteor.settings.defaultData) {
-    Meteor.settings.defaultData.map(data => addData(data));
-  }
 }
 
 if (Profiles.collection.find().count() === 0) {

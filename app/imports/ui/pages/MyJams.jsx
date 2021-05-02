@@ -17,7 +17,6 @@ function getProfile(profiles, jam) {
   return _.find(profiles, function (profile) { return jam.email === profile.email; });
 }
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class MyJams extends React.Component {
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
@@ -59,7 +58,6 @@ class MyJams extends React.Component {
   }
 }
 
-// Require an array of Stuff documents in the props.
 MyJams.propTypes = {
   jams: PropTypes.array.isRequired,
   profiles: PropTypes.array.isRequired,
@@ -69,13 +67,13 @@ MyJams.propTypes = {
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
-  // Get access to Stuff documents.
+  // Get access to documents.
   const sub = Meteor.subscribe(Jams.userPublicationName);
   const sub2 = Meteor.subscribe(Profiles.userPublicationName);
   const sub3 = Meteor.subscribe(Comments.userPublicationName);
   // Determine if the subscription is ready
   const ready = sub.ready() && sub2.ready() && sub3.ready();
-  // Get the Stuff documents
+  // Get the documents
   const jams = Jams.collection.find().fetch();
   const profiles = Profiles.collection.find().fetch();
   const comments = Comments.collection.find().fetch();

@@ -73,7 +73,6 @@ class NavBar extends React.Component {
   }
 }
 
-// Require an array of Stuff documents in the props.
 NavBar.propTypes = {
   profile: PropTypes.object,
   music_interests: PropTypes.array.isRequired,

@@ -12,7 +12,6 @@ import CommentAdmin from './CommentAdmin';
 import AddComment from './AddComment';
 import { Comments } from '../../api/comment/Comments';
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class JamCardAdmin extends React.Component {
   state = { isOpen: false }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, Card, Image, Container, Icon } from 'semantic-ui-react';
 
-/** A simple static component to render some text for the landing page. */
 class AboutUs extends React.Component {
   render() {
     return (

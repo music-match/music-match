@@ -27,7 +27,6 @@ const makeSchema = (allInterests) => new SimpleSchema({
   'interests.$': { type: String, allowedValues: allInterests },
 });
 
-/** A simple static component to render some text for the landing page. */
 class CreateProfile extends React.Component {
 
   constructor() {
@@ -109,7 +108,6 @@ class CreateProfile extends React.Component {
   }
 }
 
-// Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
 CreateProfile.propTypes = {
   ready: PropTypes.bool.isRequired,
 };

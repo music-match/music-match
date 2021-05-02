@@ -28,7 +28,6 @@ const makeSchema = (allInterests) => new SimpleSchema({
   'interests.$': { type: String, allowedValues: allInterests },
 });
 
-/** A simple static component to render some text for the landing page. */
 class EditProfile extends React.Component {
 
   constructor() {
@@ -98,7 +97,6 @@ class EditProfile extends React.Component {
   }
 }
 
-// Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
 EditProfile.propTypes = {
   profile: PropTypes.object,
   model: PropTypes.object,
@@ -109,7 +107,7 @@ EditProfile.propTypes = {
 export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
-  // Get access to Stuff documents.
+  // Get access to documents.
   const sub1 = Meteor.subscribe(Profiles.userPublicationName);
   const sub2 = Meteor.subscribe(AllInterests.userPublicationName);
   // Determine if the subscription is ready

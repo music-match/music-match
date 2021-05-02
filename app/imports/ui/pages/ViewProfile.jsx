@@ -9,7 +9,6 @@ import { MusicInterests } from '../../api/profile/MusicInterests';
 import MusicLabel from '../components/MusicLabel';
 import { Jams } from '../../api/profile/Jams';
 
-/** A simple static component to render some text for the landing page. */
 class ViewProfile extends React.Component {
   state = { isOpen: false }
 
@@ -73,7 +72,6 @@ class ViewProfile extends React.Component {
   }
 }
 
-// Require an array of Stuff documents in the props.
 ViewProfile.propTypes = {
   profile: PropTypes.object,
   jams: PropTypes.array.isRequired,
@@ -85,13 +83,13 @@ ViewProfile.propTypes = {
 export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
-  // Get access to Stuff documents.
+  // Get access to documents.
   const subscription = Meteor.subscribe(Profiles.userPublicationName);
   const subscription2 = Meteor.subscribe(MusicInterests.userPublicationName);
   const subscription3 = Meteor.subscribe(Jams.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready() && subscription2.ready() && subscription3.ready();
-  // Get the Stuff documents
+  // Get the documents
   const profile = Profiles.collection.findOne(documentId);
   const music_interests = MusicInterests.collection.find().fetch();
   const myInterests = _.filter(music_interests, function (interest) { return profile.email === interest.email; });

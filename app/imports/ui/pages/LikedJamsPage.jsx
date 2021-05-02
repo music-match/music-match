@@ -35,7 +35,6 @@ function isLiked(myProfile, allLikedJams, jamID) {
   return false;
 }
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class LikedJamsPage extends React.Component {
 
   constructor() {
@@ -105,7 +104,6 @@ class LikedJamsPage extends React.Component {
   }
 }
 
-// Require an array of Stuff documents in the props.
 LikedJamsPage.propTypes = {
   jams: PropTypes.array.isRequired,
   profiles: PropTypes.array.isRequired,
@@ -116,14 +114,14 @@ LikedJamsPage.propTypes = {
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
-  // Get access to Stuff documents.
+  // Get access to documents.
   const sub = Meteor.subscribe(Jams.userPublicationName);
   const sub2 = Meteor.subscribe(Profiles.userPublicationName);
   const sub3 = Meteor.subscribe(LikedJams.userPublicationName);
   const sub4 = Meteor.subscribe(Comments.userPublicationName);
   // Determine if the subscription is ready
   const ready = sub.ready() && sub2.ready() && sub3.ready() && sub4.ready();
-  // Get the Stuff documents
+  // Get the documents
   const jams = Jams.collection.find().fetch();
   const profiles = Profiles.collection.find().fetch();
   const likedJams = LikedJams.collection.find().fetch();

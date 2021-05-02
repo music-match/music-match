@@ -1,12 +1,6 @@
 import React from 'react';
 import { Grid, Segment, Header } from 'semantic-ui-react';
-import {
-  AutoForm,
-  ErrorsField,
-  LongTextField,
-  SubmitField,
-  TextField,
-} from 'uniforms-semantic';
+import { AutoForm, ErrorsField, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
@@ -45,8 +39,8 @@ const formSchema = new SimpleSchema({
 
 const bridge = new SimpleSchema2Bridge(formSchema);
 
-/** Renders the Page for adding a document. */
-class AddStuff extends React.Component {
+/** Renders the Page for adding a jam. */
+class AddJams extends React.Component {
 
   // On submit, insert the data.
   submit(data, formRef) {
@@ -93,4 +87,4 @@ class AddStuff extends React.Component {
   }
 }
 
-export default AddStuff;
+export default AddJams;

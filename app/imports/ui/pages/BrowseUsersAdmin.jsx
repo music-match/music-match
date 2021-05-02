@@ -28,7 +28,6 @@ function filterProfiles(profiles, search) {
   });
 }
 
-/** A simple static component to render some text for the landing page. */
 class BrowseUsersAdmin extends React.Component {
 
   constructor() {
@@ -81,7 +80,6 @@ class BrowseUsersAdmin extends React.Component {
   }
 }
 
-// Require an array of Stuff documents in the props.
 BrowseUsersAdmin.propTypes = {
   profiles: PropTypes.array.isRequired,
   music_interests: PropTypes.array.isRequired,
@@ -90,12 +88,9 @@ BrowseUsersAdmin.propTypes = {
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
-  // Get access to Stuff documents.
   const subscription = Meteor.subscribe(Profiles.userPublicationName);
   const subscription2 = Meteor.subscribe(MusicInterests.userPublicationName);
-  // Determine if the subscription is ready
   const ready = subscription.ready() && subscription2.ready();
-  // Get the Stuff documents
   const profiles = Profiles.collection.find({}).fetch();
   const music_interests = MusicInterests.collection.find({}).fetch();
   return {
