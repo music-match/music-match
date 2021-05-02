@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
-import { Container, Header, Loader, Card, Input, Image } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Input, Image, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Jams } from '../../api/profile/Jams';
@@ -67,28 +67,40 @@ class LikedJamsPage extends React.Component {
               placeholder='Search Jams by Name...'
             />
           </div>
-          <Card.Group centered itemsPerRow={3}>
-            {(_.size(filterJams(this.props.jams, searchField.toLowerCase())) > 0) ?
-              (alphaSort(likedJams).map((jam, index) => <JamCard
-                key={index}
-                jam={jam}
-                profile={getProfile(this.props.profiles, jam)}
-                comments={this.props.comments.filter(comment => (comment.jamID === jam._id))}
-                isLiked={true}/>)
-              ) : this.displayNoJams()
-            }
-          </Card.Group>
+          {(_.size(likedJams) > 0) ? (
+            <Card.Group centered itemsPerRow={3}>
+              {(_.size(filterJams(likedJams, searchField.toLowerCase())) > 0) ?
+                (alphaSort(filterJams(likedJams, searchField.toLowerCase())).map((jam, index) => <JamCard
+                  key={index}
+                  jam={jam}
+                  profile={getProfile(this.props.profiles, jam)}
+                  comments={this.props.comments.filter(comment => (comment.jamID === jam._id))}
+                  isLiked={true}/>)
+                ) : this.displayNoFilter()
+              }
+            </Card.Group>
+          ) : this.displayNoLikes()}
         </Container>
       </div>
     );
   }
 
-  displayNoJams() {
+  displayNoFilter() {
     return (
       <div style={{ paddingTop: '200px', paddingBottom: '200px' }}>
         <Header inverted as='h2'>No Jams Found From Filter</Header>
         <Image centered src='https://c.tenor.com/HJvqN2i4Zs4AAAAj/milk-and-mocha-cute.gif'/>
       </div>
+    );
+  }
+
+  displayNoLikes() {
+    return (
+      <Container textAlign='center' style={{ paddingTop: '50px', paddingBottom: '50px' }}>
+        <Header inverted as='h4'>You have not liked any Jams! Click the button below to explore all the Jams!</Header>
+        <Button color='orange' size='huge' href='#/browse-jams'>Browse Jams</Button>
+        <Image style={{ paddingTop: '100px' }} centered size='medium' src='https://c.tenor.com/HJvqN2i4Zs4AAAAj/milk-and-mocha-cute.gif'/>
+      </Container>
     );
   }
 }
