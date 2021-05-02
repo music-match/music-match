@@ -15,7 +15,7 @@ class NavBar extends React.Component {
     // const menuStyle = { marginBottom: '10px', color: 'white' };
     // const myProfile = _.filter(this.props.profiles, function (profile) { return profile.email === this.props.username; });
     return (
-      <Menu attached="top" borderless inverted color='orange'>
+      <Menu attached="top" borderless inverted stackable color='orange'>
         <Menu.Item as={NavLink} activeClassName="" exact to="/">
           <Image size='mini' src='/images/logo2.png'/>
         </Menu.Item>

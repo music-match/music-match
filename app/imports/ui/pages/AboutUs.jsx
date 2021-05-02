@@ -18,7 +18,7 @@ class AboutUs extends React.Component {
           </p>
         </Container>
         <h1 className='about-us-text'>Meet our Developers</h1>
-        <Grid container columns={34}>
+        <Grid container stackable columns={34}>
           <Grid.Column width={4}>
             <Card>
               <Image src='https://ethancheez.github.io/images/ethan.jpg' wrapped ui={false} />

@@ -58,7 +58,7 @@ class Landing extends React.Component {
             </Grid.Column>
           </Grid>
 
-          <Grid centered>
+          <Grid centered stackable>
             <Grid.Column width={5}>
               <Card fluid>
                 <Card.Content style={{ height: '600px' }}>
@@ -70,7 +70,7 @@ class Landing extends React.Component {
                       </Feed.Label>
                       <Feed.Content>
                         <Feed.Summary>Music Match Site</Feed.Summary>
-                        <Feed.Meta>This site is currently under construction.</Feed.Meta>
+                        <Feed.Meta>This site has been completed! Explore and network with your fellow UH Musicians!</Feed.Meta>
                       </Feed.Content>
                     </Feed.Event>
                   </Feed>
