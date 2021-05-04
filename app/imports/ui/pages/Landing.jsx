@@ -33,7 +33,7 @@ class Landing extends React.Component {
             <Link to={'/about-us'}><Button color='blue' size='huge'>About Us</Button></Link>
             <div style={{ paddingTop: '350px' }}>
               {(!this.props.username) ? (
-                <Header inverted as='h2'>Login to begin exploring!</Header>
+                <Header inverted as='h2'><Link to={'/signin'} className='login-link-color'>Login</Link> to begin exploring!</Header>
               ) : ('')}
               {(this.props.username && _.size(getProfile(this.props.profiles, this.props.username)) === 0) ? (
                 <Header inverted as='h2'>Create a profile to begin exploring!</Header>
