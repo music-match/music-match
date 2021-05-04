@@ -35,9 +35,9 @@ class ViewProfile extends React.Component {
   renderPage() {
     return (
       <div id='view-profile-page' className='music-background'>
-        <Grid container columns={2}>
+        <Grid stackable container columns={2}>
           <Grid.Column width={6}>
-            <Image size='medium' src={this.props.profile.image}/>
+            <Image centered size='medium' src={this.props.profile.image}/>
           </Grid.Column>
           <Grid.Column width={10}>
             <Card fluid>

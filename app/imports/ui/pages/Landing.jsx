@@ -49,7 +49,7 @@ class Landing extends React.Component {
           <Grid centered stackable>
             <Grid.Column width={5}>
               <Card fluid>
-                <Card.Content style={{ height: '600px' }}>
+                <Card.Content style={{ height: '400px' }}>
                   <Header className='landing-card-header' textAlign='center'>News & Events</Header>
                   {this.displayNewsEvents()}
                 </Card.Content>

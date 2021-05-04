@@ -91,7 +91,7 @@ class BrowseJamsAdmin extends React.Component {
               )}
             </List.Item>
           </List>
-          <Card.Group centered itemsPerRow={3}>
+          <Card.Group stackable centered itemsPerRow={3}>
             {(_.size(filterJams(this.props.jams, searchField.toLowerCase())) > 0) ?
               (sort(filterJams(this.props.jams, searchField.toLowerCase()), this.state.likeFilter, this.state.userFilter, this.state.alphaFilter).map((jam, index) => <JamCardAdmin
                 key={index}

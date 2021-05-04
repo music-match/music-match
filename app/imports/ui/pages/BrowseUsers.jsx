@@ -56,7 +56,7 @@ class BrowseUsers extends React.Component {
           <div style={{ paddingBottom: '20px' }}>
             <Input fluid onChange={this.handleMessage.bind(this)} placeholder="Search By Name or Music Interest..."/>
           </div>
-          <Card.Group centered>
+          <Card.Group centered stackable>
             {(_.size(filterProfiles(this.props.profiles, searchField.toLowerCase())) > 0) ?
               (alphaSort(filterProfiles(this.props.profiles, searchField.toLowerCase())).map((profile, index) => <Profile
                 key={index}
