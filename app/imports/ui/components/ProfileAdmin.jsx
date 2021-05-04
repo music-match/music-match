@@ -44,6 +44,7 @@ class Profile extends React.Component {
             src={this.props.profile.image}
           />
           <Card.Header>{this.props.profile.name}</Card.Header>
+          <Card.Meta>{this.props.profile.email}</Card.Meta>
           <Card.Description>Goals: {this.props.profile.goals}</Card.Description>
           <Header as='h4'>Music Interests:</Header>
           {alphaSort(this.props.music_interests).map((music_interest, index) => <MusicLabel key={index} music_interest={music_interest}/>)}

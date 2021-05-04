@@ -93,7 +93,7 @@ class LikedJamsPage extends React.Component {
             </List.Item>
           </List>
           {(_.size(likedJams) > 0) ? (
-            <Card.Group centered itemsPerRow={3}>
+            <Card.Group stackable centered itemsPerRow={3}>
               {(_.size(filterJams(likedJams, searchField.toLowerCase())) > 0) ?
                 (sort(filterJams(likedJams, searchField.toLowerCase()), this.state.userFilter, this.state.alphaFilter).map((jam, index) => <JamCard
                   key={index}
