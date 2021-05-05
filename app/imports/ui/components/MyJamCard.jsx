@@ -58,7 +58,7 @@ class MyJamCard extends React.Component {
             <Grid.Column floated='left' width={5}>
               <Button fluid href={`/#/edit-jams/${this.props.jam._id}`} size='mini'>Edit</Button>
             </Grid.Column>
-            <Grid.Column width={5}>
+            <Grid.Column width={6}>
               {this.displayComments()}
             </Grid.Column>
             <Grid.Column floated='right' width={5}>
@@ -76,7 +76,7 @@ class MyJamCard extends React.Component {
   displayComments() {
     const myProfile = Profiles.collection.findOne({ email: Meteor.user().username });
     return (
-      <Modal trigger={<Button size='mini' color='orange'>Comments</Button>}>
+      <Modal trigger={<Button fluid size='mini' color='orange'>{`Comments (${_.size(this.props.comments)})`}</Button>}>
         <Modal.Header>Comments</Modal.Header>
         <Modal.Content>
           <Feed>
